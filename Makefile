@@ -30,10 +30,6 @@ controller: vendor/autoload.php ## Cree un controller
 migration: vendor/autoload.php
 	php bin/console make:migration
 
-.PHONY: install
-install: node_modules/time vendor/autoload.php ## Installe les différentes dépendances
-	yarn run build
-
 .PHONY: migrate
 migrate: vendor/autoload.php ## Migre la base de donnée
 	$(dexec) php php bin/console doctrine:migrations:migrate -q
@@ -70,6 +66,7 @@ bash: ## Ouvre un Terminal dans que container php
 .PHONY: clean
 clean: ## Nettoie les containers
 	$(dc) -f docker-compose.yml -f docker-compose.test.yml down --volumes
+
 
 vendor/autoload.php: composer.lock
 	$(dr) --no-deps php composer install
