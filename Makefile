@@ -1,6 +1,6 @@
-user := 1000
-group := 1000
-dc := docker-compose
+user := $(shell id -u)
+group := $(shell id -g)
+dc := USER_ID=$(user) GROUP_ID=$(group) docker-compose
 dr := $(dc) run --rm
 dexec := docker-compose exec
 drtest := $(dc) -f docker-compose.test.yml run --rm
