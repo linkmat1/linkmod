@@ -78,6 +78,7 @@ node_modules/time: yarn.lock
 
 public/assets: node_modules/time
 	$(dr) --no-deps node yarn run build
+	touch node_modules/time
 
 .PHONY: phpcs
 phpcs: vendor/autoload.php ## Nettoie les code !
