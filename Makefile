@@ -83,7 +83,7 @@ public/assets: node_modules/time
 phpcs: vendor/autoload.php ## Nettoie les code !
 	vendor/bin/php-cs-fixer fix src/  --rules=@PSR2
 .PHONY: db
-db:
+db: #Lance un Terminal Interactif sur la base de donnée docker
 	$(dexec) db mysql -ulinkmat -plinkmat
 
 
