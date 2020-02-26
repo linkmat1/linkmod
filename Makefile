@@ -13,10 +13,13 @@ help: ## Affiche cette aide
 entity: vendor/autoload.php ## CRee une Entity
 	php bin/console make:entity
 
+.PHONY: install
+install: public/assets vendor/autoload.php ## Installe les différentes dépendances
+
 .PHONY: build-docker
 build-docker:
-	docker-compose build php
-	docker-compose build node
+	USER_ID=$(user) GROUP_ID=$(group) docker-compose build php
+	USER_ID=$(user) GROUP_ID=$(group) docker-compose build node
 
 .PHONY: crud
 crud: vendor/autoload.php ## Cree un Crud pour une classe
@@ -27,7 +30,7 @@ controller: vendor/autoload.php ## Cree un controller
 	php bin/console make:controller
 
 .PHONY: migration
-migration: vendor/autoload.php
+migration: vendor/autoload.php # Cree un migration
 	php bin/console make:migration
 
 .PHONY: migrate
@@ -68,11 +71,11 @@ clean: ## Nettoie les containers
 	$(dc) -f docker-compose.yml -f docker-compose.test.yml down --volumes
 
 
-vendor/autoload.php: composer.lock
+vendor/autoload.php: composer.lock # installation
 	$(dr) --no-deps php composer install
 	touch vendor/autoload.php
 
-node_modules/time: yarn.lock
+node_modules/time: yarn.lock #installation
 	$(dr) --no-deps node yarn
 	touch node_modules/time
 
@@ -81,7 +84,7 @@ public/assets: node_modules/time
 	touch node_modules/time
 
 .PHONY: phpcs
-phpcs: vendor/autoload.php ## Nettoie les code !
+phpcs: vendor/autoload.php ## Nettoie les code  en direct!
 	vendor/bin/php-cs-fixer fix src/  --rules=@PSR2
 .PHONY: db
 db: #Lance un Terminal Interactif sur la base de donnée docker
