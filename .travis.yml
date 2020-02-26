@@ -1,0 +1,15 @@
+
+language: node_js
+node_js:
+  - 12
+services:
+  - docker
+install:
+  - make install
+script:
+  - make lint
+  - make test
+cache:
+  yarn: true
+  directories:
+    - node_modules

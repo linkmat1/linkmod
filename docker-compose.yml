@@ -1,0 +1,62 @@
+version: '3.1'
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - 8000:80
+    volumes:
+      - .:/var/www:delegated
+      - ./site.conf:/etc/nginx/conf.d/default.conf
+    links:
+      - php
+  php:
+    build:
+      context: ./docker/php
+      args:
+        USER_ID: ${USER_ID}
+        GROUP_ID: ${GROUP_ID}
+    volumes:
+      - .:/var/www:delegated
+    links:
+      - db
+      - mail
+  node:
+    build:
+      context: ./docker/node
+    command: yarn run dev-server
+    working_dir: /usr/src/app
+    user: 1000:1000
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 8080:8080
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_USER: linkmat
+      MYSQL_PASSWORD: linkmat
+      MYSQL_DATABASE: linkmat
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3307:3306
+    volumes:
+      - ../mysql/data:/var/lib/mysql
+  adminer:
+    image: adminer
+    environment:
+      ADMINER_DESIGN: arcs-material
+      ADMINER_DEFAULT_SERVER: mysql
+    links:
+      - db
+    ports:
+      - 8888:8080
+  mail:
+    image: djfarrelly/maildev
+    ports:
+      - 1080:80
+  redis:
+    image: redis:5-alpine
+
+volumes:
+  db-data:
+    driver: local

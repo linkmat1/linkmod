@@ -1,0 +1,21 @@
+version: '3.1'
+services:
+  php:
+    build:
+      context: ./docker/php
+      args:
+        USER_ID: 1000
+        GROUP_ID: 1000
+    volumes:
+      - .:/var/www:delegated
+    links:
+      - dbtest
+  dbtest:
+    image: mariadb:latest
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
