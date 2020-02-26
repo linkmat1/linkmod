@@ -39,7 +39,7 @@ test: vendor/autoload.php ## Execute les testsi
 	$(drtest) php vendor/bin/phpunit
 
 .PHONY: dev
-dev: vendor/autoload.php ## Lance le serveur de développement
+dev: vendor/autoload.php node_modules/time ## Lance le serveur de développement
 	$(dc) up
 
 .PHONY: lint
