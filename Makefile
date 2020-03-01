@@ -39,7 +39,7 @@ migrate: vendor/autoload.php ## Migre la base de donnée
 
 .PHONY: test
 test: vendor/autoload.php ## Execute les testsi
-	$(drtest) php vendor/bin/phpunit
+	$(drtest) phptest vendor/bin/phpunit
 
 .PHONY: dev
 dev: vendor/autoload.php node_modules/time ## Lance le serveur de développement
@@ -51,7 +51,7 @@ lint: vendor/autoload.php ## Lint mon code !
 
 .PHONY: tt
 tt: vendor/autoload.php ## Lance le Watcher de Tests
-	$(drtest) php vendor/bin/phpunit-watcher watch --filter="nothing" #/vendor/bin/phpunit-watcher watch
+	$(drtest) phptest vendor/bin/phpunit-watcher watch --filter="nothing" #/vendor/bin/phpunit-watcher watch
 
 
 .PHONY: seed
