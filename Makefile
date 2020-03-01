@@ -75,12 +75,12 @@ vendor/autoload.php: composer.lock # installation
 	$(dr) --no-deps php composer install
 	touch vendor/autoload.php
 
-node_modules/time: yarn.lock #installation
-	$(dr) --no-deps node yarn
+node_modules/time: yarn.lock
+	$(dr) --no-deps node npm
 	touch node_modules/time
 
 public/assets: node_modules/time
-	$(dr) --no-deps node yarn run build
+	$(dr) --no-deps node npm run build
 	touch node_modules/time
 
 .PHONY: phpcs
