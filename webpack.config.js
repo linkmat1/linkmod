@@ -8,9 +8,8 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 }
 
 Encore
-    .setOutputPath('public/build/')
-    // public path used by the web server to access the output path
-    .setPublicPath('/build')
+  .setOutputPath('public/assets/')
+  .setPublicPath('/assets')
     // only needed for CDN's or sub-directory deploy
     // .setManifestKeyPrefix('assets/')
     .addEntry('app', './assets/js/app.js')

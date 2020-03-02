@@ -1,0 +1,56 @@
+// Variables
+// ==================
+:root {
+  --color: #121C42;
+  --color-transparent: #{rgba(#121C42, 0)};
+  --color-btn: #EFFBEC;
+  --contrast: #4869EE;
+  --gap: 20px;
+  --space: 8px;
+  --border: #D5E3EC;
+  --border-light: #D5E3EC7F;
+  --background: #F7FAFB;
+  --background-light: #FFF;
+  --shadow: #D8E1E8;
+  --list-hover: var(--background);
+  --play: #F3F9FB; // Couleur de fond du bouton play
+  --space-section: 150px;
+  --card-footer: #F7FAFD;
+  --card-padding: 16px;
+  --header-height: 137px;
+  --red: #FB4635;
+  --green: #41CF7C;
+  --yellow: #FEB32B;
+}
+
+@import "tools/typographie";
+@import "tools/reset";
+@import "tools/mixins";
+@import "tools/functions";
+@import "tools/layout";
+
+// Generic
+// ==================
+body {
+  font-family: $font;
+  font-size: 16px;
+  color: var(--color);
+  line-height: 1.6;
+  background: url(../images/logo.svg) top left / 580px 506px no-repeat var(--background);
+}
+
+::selection {
+  background: var(--contrast);
+  color: #FFF;
+}
+
+
+// Modules
+// ==================
+//@import "modules/header";
+
+// Pages
+// ==================
+// @import "pages/single";
+// @import "pages/single";
+// @import "pages/single";
