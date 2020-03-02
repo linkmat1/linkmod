@@ -1,0 +1,29 @@
+.header {
+  @extend %container-margin;
+  font-family: $font-alt;
+  font-weight: 500;
+  line-height: 1;
+  margin-top: space(6);
+  padding-bottom: space(3);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: space(6);
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header ul {
+  display: flex;
+
+}
+
+.header__nav li {
+  list-style: none;
+  display: inline-block;
+}
+
+.header__nav > * + * {
+  margin-left: space(6);
+}

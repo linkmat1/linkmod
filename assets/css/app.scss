@@ -36,7 +36,7 @@ body {
   font-size: 16px;
   color: var(--color);
   line-height: 1.6;
-  background: url(../images/logo.svg) top left / 580px 506px no-repeat var(--background);
+  background: var(--background);
 }
 
 ::selection {
@@ -47,7 +47,7 @@ body {
 
 // Modules
 // ==================
-//@import "modules/header";
+@import "modules/header";
 
 // Pages
 // ==================

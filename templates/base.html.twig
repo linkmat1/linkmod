@@ -1,12 +1,31 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700|Roboto:300,400&display=swap"
+          rel="stylesheet">
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="turbolinks-cache-control" content="no-cache"/>
+</head>
+<body>
+<nav class="header">
+    <ul class="header__nav">
+        <li><a href="#">{{ icon('home') }}</a></li>
+        <li><a href="#">Forum</a></li>
+        <li><a href="#">Mods</a></li>
+        <li><a href="#">Tutoriels</a></li>
+        <li><a href="#">A Propos</a></li>
+    </ul>
+</nav>
+{% block body %}{% endblock %}
+
+</body>
 </html>
