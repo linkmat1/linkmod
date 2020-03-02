@@ -27,14 +27,15 @@ class TwigCacheExtension extends AbstractExtension
     public function getTokenParsers(): array
     {
         return [
-            new  CacheTokenParser()
+            new  CacheTokenParser(),
         ];
     }
 
-
     /**
-     * @param CacheableInterface|string|null|array $item
+     * @param CacheableInterface|string|array|null $item
+     *
      * @return string
+     *
      * @throws \Exception
      */
     public function getCacheKey($item): string
@@ -56,27 +57,31 @@ class TwigCacheExtension extends AbstractExtension
             $id = $item->getId();
             $className = get_class($item);
             $className = substr($className, strrpos($className, '\\') + 1);
-            return $id . $className . $updatedAt->getTimestamp();
+
+            return $id.$className.$updatedAt->getTimestamp();
         } catch (\Error $e) {
-            throw new \Exception("TwigCache : Impossible de serialiser l'objet pour le cache : \n" . $e->getMessage());
+            throw new \Exception("TwigCache : Impossible de serialiser l'objet pour le cache : \n".$e->getMessage());
         }
     }
 
     /**
      * @param CacheableInterface|string $item
+     *
      * @return string|null
+     *
      * @throws \Psr\Cache\InvalidArgumentException
      */
     public function getCacheValue($item): ?string
     {
         /** @var CacheItem $item */
         $item = $this->cache->getItem($this->getCacheKey($item));
+
         return $item->get();
     }
 
     /**
      * @param CacheableInterface|string $item
-     * @param string $value
+     *
      * @throws \Psr\Cache\InvalidArgumentException
      */
     public function setCacheValue($item, string $value): void
@@ -86,5 +91,4 @@ class TwigCacheExtension extends AbstractExtension
         $item->set($value);
         $this->cache->save($item);
     }
-
 }
