@@ -18,7 +18,15 @@
   display: flex;
 
 }
+.header__home + li {
+  margin-left: 0;
+}
 
+.header svg {
+  width: 12px;
+  height: 12px;
+  margin-right: space(1);
+}
 .header__nav li {
   list-style: none;
   display: inline-block;
@@ -26,4 +34,14 @@
 
 .header__nav > * + * {
   margin-left: space(6);
+}
+
+.header__home {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 16px;
+  border-right: 1px solid currentColor;
+  margin-right: space(2);
+  padding-right: space(1);
 }
