@@ -1,0 +1,174 @@
+
+// Label
+// ==================
+label {
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: .85em;
+}
+
+// Champs texte
+// ==================
+.form-group input,
+.form-group textarea,
+.choices__inner,
+.form-group select,
+%input {
+  border: 1px solid var(--border);
+  background: var(--background);
+  border-radius: 3px;
+  color: var(--color);
+  padding: space(1.5) space(1);
+  display: block;
+  width: 100%;
+  outline: none;
+  min-height: 44px;
+}
+.form-group textarea {
+  min-height: 150px;
+}
+.form-group input.is-invalid {
+  border-color: #FB4635;
+}
+.form-group label {
+  display: block;
+  margin-bottom: space(1);
+}
+
+// Checkbox
+// ==================
+.form-checkboxes {
+  grid-column: 1 / -1;
+}
+.form-check {
+  cursor: pointer;
+  position: relative;
+}
+.form-check input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.form-check label {
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-check label::before {
+  content:'';
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-top: -3px;
+  border: 1px solid var(--border);
+  background: var(--background);
+  margin-right: space(1);
+}
+.form-check label::after {
+  transition: transform .2s;
+  content:'';
+  position: absolute;
+  top: calc(50% - 9px);
+  left: 4px;
+  width: 10px;
+  height: 10px;
+  background: var(--contrast);
+  transform: scale(0);
+}
+.form-check input:checked + label::after {
+  transform: scale(1);
+}
+.form-check input::after {
+  content:'lol';
+}
+
+// Switch
+// ==================
+.form-switch {
+  position: relative;
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  label {
+    display: flex;
+    cursor: pointer;
+  }
+}
+.switch {
+  width: 55px;
+  height: 26px;
+  display: inline-block;
+  background: var(--background);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 4px rgba(213, 222, 233, 0.2);
+  border-radius: 100px;
+  margin-right: space(1);
+  transition: background .3s;
+
+  &::before {
+    content:'';
+    display: block;
+    height: 24px;
+    width: 24px;
+    background: var(--background-light);
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 4px rgba(213, 222, 233, 0.2);
+    border-radius: 100px;
+    transition: transform .3s
+  }
+}
+input:checked + label .switch {
+  background-color: var(--contrast);
+}
+input:checked + label .switch::before {
+  transform: translateX(31px);
+}
+
+// Attachment
+// ==================
+.form-attachment {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}
+
+// Validation
+// ==================
+.form-error {
+  color: #FB4635;
+  font-size: .8em;
+  margin-top: .5em;
+  line-height: 1.2;
+
+  * > * {
+    margin-top: .5em;
+  }
+}
+
+// Accessibilité
+// ==================
+.form-group input:focus,
+.form-check input:focus + label::before,
+  select:focus,
+  textarea:focus,
+  form button:focus,
+  input:focus + label .switch,
+%input-active {
+  border-color: var(--contrast);
+  box-shadow: 0px 0px 3px var(--contrast);
+}
+
+// Misc
+// ==================
+button:hover .icon-delete {
+  color: var(--red);
+}
