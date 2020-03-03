@@ -3,21 +3,19 @@
 {% block title %}Linkmod{% endblock %}
 
 {% block body %}
-<div class="container">
-    <article class="home__mods" >
-        {%  for row in rows %}
-            <div class="card">
-                <div class="card__title"><h2>{{ row.title }}</h2></div>
-                <div class="card__content">
-                    {{ row.content }}
-                </div>
-            <div class="card__meta">
-            <time-ago time="{{ row.createdAt | date }}"></time-ago>
-        </div>
-            </div>
-        {%  endfor %}
-    </article>
-</div>
 
+<div class="container">
+
+        {%  for row in rows %}
+         <div class="mods">
+             <div class="card">
+                <div class="mods__title"><h2>{{ row.title }}</h2></div>
+                 <div class="mods__content">{{ row.content | excerpt(5) }}</div>
+                 <div class="mods_meta"><time-ago time="{{ row.createdAt | date }}"></time-ago></div>
+            </div>
+         </div>
+        {%  endfor %}
+
+</div>
 
 {% endblock %}

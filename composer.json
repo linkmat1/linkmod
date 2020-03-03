@@ -7,6 +7,7 @@
         "ext-iconv": "*",
         "beberlei/doctrineextensions": "^1.2",
         "erusev/parsedown": "^1.7",
+        "fzaninotto/faker": "^1.9",
         "google/apiclient": "^2.4",
         "knplabs/knp-paginator-bundle": "^5.1",
         "sensio/framework-extra-bundle": "^5.1",
@@ -31,26 +32,26 @@
         "symfony/twig-pack": "*",
         "symfony/validator": "5.0.*",
         "symfony/web-link": "5.0.*",
-        "symfony/yaml": "5.0.*",
-        "symfony/webpack-encore-bundle": "^1.7"
+        "symfony/webpack-encore-bundle": "^1.7",
+        "symfony/yaml": "5.0.*"
     },
     "require-dev": {
-        "symfony/debug-pack": "*",
-        "symfony/maker-bundle": "^1.0",
-        "symfony/profiler-pack": "*",
-        "symfony/test-pack": "*",
+        "doctrine/doctrine-fixtures-bundle": "^3.3",
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "hautelook/alice-bundle": "^2.7",
+        "liip/test-fixtures-bundle": "^1.0.0",
         "phpstan/phpstan": "^0.12.7",
         "phpstan/phpstan-doctrine": "^0.12.9",
         "phpstan/phpstan-mockery": "^0.12.3",
         "phpstan/phpstan-phpunit": "^0.12.6",
         "phpunit/phpunit": "^8.5",
-        "theofidry/alice-data-fixtures": "^1.1",
-        "doctrine/doctrine-fixtures-bundle": "^3.3",
-        "liip/test-fixtures-bundle": "^1.0.0",
-        "hautelook/alice-bundle": "^2.7",
         "spatie/phpunit-watcher": "^1.22",
-        "friendsofphp/php-cs-fixer": "^2.16",
-        "squizlabs/php_codesniffer": "^3.5"
+        "squizlabs/php_codesniffer": "^3.5",
+        "symfony/debug-pack": "*",
+        "symfony/maker-bundle": "^1.0",
+        "symfony/profiler-pack": "*",
+        "symfony/test-pack": "*",
+        "theofidry/alice-data-fixtures": "^1.1"
     },
     "config": {
         "preferred-install": {

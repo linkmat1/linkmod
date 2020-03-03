@@ -1,0 +1,18 @@
+.mods {
+  display: inline-flex;
+  margin-right: space(2);
+  min-width: 22%;
+  max-width: 22%;
+  height: 350px!important;
+  margin-top: space(3);
+}
+.mods__title {
+  @extend %card-title;
+  font-size: 16px;
+  padding: space(1);
+}
+.mods__content {
+    margin-top: space(2);
+    max-height: 150px!important;
+    overflow: hidden;
+}
