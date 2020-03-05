@@ -19,6 +19,14 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
+
+    public function findByPublicView(){
+        return $this->createQueryBuilder('p')
+            ->where('p.isOnline = 1' )
+            ->orderBy('p.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return Post[] Returns an array of Post objects
     //  */

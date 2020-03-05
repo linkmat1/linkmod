@@ -45,14 +45,20 @@ class TwigExtension extends AbstractExtension
      * @param int $characterLimit
      * @return string
      */
-    public function excerpt(?string $content, int $characterLimit =  5):string
+    public function excerpt(?string $content, int $characterLimit = 135): string
     {
-
-        $lastSpace = strrpos($content, ' ', $characterLimit);
-
-        return substr($content, 0, $lastSpace) . "...";
+        if ($content === null) {
+            return '';
+        }
+        if (mb_strlen($content) <= $characterLimit) {
+            return $content;
+        }
+        $lastSpace = strpos($content, ' ', $characterLimit);
+        if ($lastSpace === false) {
+            return $content;
+        }
+        return substr($content, 0, $lastSpace) . '...';
     }
-
 
     /**
      * @param string|null $content
