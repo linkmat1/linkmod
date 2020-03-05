@@ -16,10 +16,10 @@ class HomeController extends AbstractController
      */
     public function index(PostRepository $posts): Response
     {
-        $rows =  $posts->findAll();
+
 
         return $this->render('home/index.html.twig', [
-            'rows' => $rows
+            'rows' => $posts->findByPublicView()
         ]);
     }
 }

@@ -3,8 +3,11 @@
   margin-right: space(2);
   min-width: 22%;
   max-width: 22%;
-  height: 350px!important;
   margin-top: space(3);
+  overflow: hidden;
+  height: 250px;
+
+
 }
 .mods__title {
   @extend %card-title;
@@ -13,6 +16,29 @@
 }
 .mods__content {
     margin-top: space(2);
-    max-height: 150px!important;
-    overflow: hidden;
+    display: block;
+
+}
+.mods__meta {
+  font-size: 13px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: relative;
+
+}
+.mods__meta > * {
+  padding-left: space(1);
+  display: inline-flex;
+  width: 30%;
+}
+.mods__download {
+ display: block;
+  line-height: 2.2;
+  height:40px;
+  text-align: center;
+  color: var(--background);
+  font-size: 18px;
+  width: 100%;
+  background: #41CF7C;
 }
