@@ -16,6 +16,10 @@ class TwigCacheExtension extends AbstractExtension
      */
     private AdapterInterface $cache;
 
+    /**
+     * TwigCacheExtension constructor.
+     * @param AdapterInterface $cache
+     */
     public function __construct(AdapterInterface $cache)
     {
         $this->cache = $cache;
@@ -31,13 +35,8 @@ class TwigCacheExtension extends AbstractExtension
         ];
     }
 
-    /**
-     * @param CacheableInterface|string|array|null $item
-     *
-     * @return string
-     *
-     * @throws \Exception
-     */
+
+
     public function getCacheKey($item): string
     {
         if (empty($item)) {

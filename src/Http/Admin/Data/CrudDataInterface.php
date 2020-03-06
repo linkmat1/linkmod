@@ -4,7 +4,8 @@ namespace App\Http\Admin\Data;
 
 use Doctrine\ORM\EntityManagerInterface;
 
-interface CrudDataInterface {
+interface CrudDataInterface
+{
 
     /**
      * @method hydrate(object $post, EntityManagerInterface $em)

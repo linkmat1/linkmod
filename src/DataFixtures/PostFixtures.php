@@ -13,7 +13,7 @@ class PostFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create();
-            $category = new Category();
+        $category = new Category();
 
 
         for ($i = 0; $i < 100; ++$i) {

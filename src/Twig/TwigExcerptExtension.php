@@ -3,7 +3,6 @@
 
 namespace App\Twig;
 
-
 use Parsedown;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -11,14 +10,12 @@ use Twig\TwigFunction;
 
 class TwigExcerptExtension extends AbstractExtension
 {
-
     public function getFilters()
     {
         return [
             new TwigFilter('excerpt', [$this, 'excerpt']),
 
         ];
-
     }
     /**
      * @param string|null $content
@@ -39,6 +36,4 @@ class TwigExcerptExtension extends AbstractExtension
         }
         return substr($content, 0, $lastSpace) . '...';
     }
-
-
 }

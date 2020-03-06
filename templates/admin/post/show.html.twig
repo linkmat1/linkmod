@@ -7,34 +7,22 @@
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ post.id }}</td>
-            </tr>
+
             <tr>
                 <th>Title</th>
                 <td>{{ post.title }}</td>
             </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ post.slug }}</td>
-            </tr>
+
+
             <tr>
                 <th>Content</th>
                 <td class="formatted">{{ post.content | markdown }}</td>
             </tr>
             <tr>
-                <th>CreatedAt</th>
-                <td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <th></th>
+                <td> {{ post.createdAt ? post.createdAt|date('d-F-Y')}}</td>
             </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ post.UpdatedAt ? post.UpdatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>IsOnline</th>
-                <td>{{ post.isOnline ? 'Yes' : 'No' }}</td>
-            </tr>
+
         </tbody>
     </table>
 

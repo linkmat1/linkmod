@@ -31,7 +31,7 @@ controller: vendor/autoload.php ## Cree un controller
 
 .PHONY: migration
 migration: vendor/autoload.php # Cree un migration
-	php bin/console make:migration
+	$(dexec) php php bin/console make:migration
 
 .PHONY: migrate
 migrate: vendor/autoload.php ## Migre la base de donnée
@@ -47,7 +47,7 @@ dev: vendor/autoload.php node_modules/time ## Lance le serveur de développement
 
 .PHONY: lint
 lint: vendor/autoload.php ## Lint mon code !
-	docker run --rm phpstan/phpstan analyse ./vendor/bin/phpstan  analyse src
+	docker run -v $(PWD):/app --rm phpstan/phpstan analyse
 
 .PHONY: tt
 tt: vendor/autoload.php ## Lance le Watcher de Tests

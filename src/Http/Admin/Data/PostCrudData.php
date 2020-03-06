@@ -3,7 +3,6 @@
 
 namespace App\Http\Admin\Data;
 
-
 use App\Entity\Post;
 use App\Form\PostType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -11,7 +10,6 @@ use Symfony\Component\VarDumper\Cloner\Data;
 
 class PostCrudData implements CrudDataInterface
 {
-
     public int $id;
 
     public string $title = "";
@@ -24,7 +22,7 @@ class PostCrudData implements CrudDataInterface
 
     public \DateTimeInterface $createdAt;
 
-    Public \DateTimeInterface $updatedAt;
+    public \DateTimeInterface $updatedAt;
 
     public Post $entity;
 
@@ -44,7 +42,6 @@ class PostCrudData implements CrudDataInterface
         $data->isOnline =  $post->getIsOnline();
         $data->entity  = $post;
         return $data;
-
     }
 
     public function hydrate(Post $post, EntityManagerInterface $em): Post
@@ -57,7 +54,7 @@ class PostCrudData implements CrudDataInterface
             ->setIsOnline($this->isOnline)
             ->setUpdatedAt(new \DateTime());
 
-            return $post;
+        return $post;
     }
     /**
      * @inheritDoc

@@ -3,7 +3,6 @@
 
 namespace App\Twig;
 
-
 use Parsedown;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -20,7 +19,6 @@ class TwigMarkdownExtension extends AbstractExtension
 
     public function __construct(TwigExcerptExtension $ext)
     {
-
         $this->ext = $ext;
     }
 
@@ -31,7 +29,6 @@ class TwigMarkdownExtension extends AbstractExtension
             new TwigFilter('markdown', [$this, 'markdown'], ['is_safe' => ['html']]),
             new TwigFilter('markdown_excerpt', [$this, 'markdownExcerpt'], ['is_safe' => ['html']])
         ];
-
     }
 
 
@@ -49,7 +46,8 @@ class TwigMarkdownExtension extends AbstractExtension
         $content = preg_replace(
             '/<p><a href\="(http|https):\/\/www.youtube.com\/watch\?v=([^\""]+)">[^<]*<\/a><\/p>/',
             '<div class="ratio"><iframe width="560" height="315" src="//www.youtube-nocookie.com/embed/$2" frameborder="0" allowfullscreen=""></iframe></div>',
-            $content);
+            $content
+        );
 
         return $content;
     }
@@ -58,5 +56,4 @@ class TwigMarkdownExtension extends AbstractExtension
     {
         return $this->ext->excerpt(strip_tags($this->markdown($content)), $characterLimit);
     }
-
 }

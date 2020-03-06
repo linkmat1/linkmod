@@ -30,9 +30,8 @@ class HomeController extends AbstractController
      */
     public function showMods(Post $post, string $slug): Response
     {
-        if($post->getSlug() !==  $slug)
-        {
-        return $this->redirectToRoute('mods_show', [
+        if ($post->getSlug() !==  $slug) {
+            return $this->redirectToRoute('mods_show', [
             'id' => $post->getId(),
             'slug' => $post->getSlug()
         ], 301);
@@ -40,6 +39,5 @@ class HomeController extends AbstractController
         return $this->render('admin/post/show.html.twig', [
             'post' => $post,
         ]);
-
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Twig\Cache;
 
-
 use App\Twig\Cache\CacheNode;
 use Twig\Node\Expression\AbstractExpression;
 use Twig\Token;
