@@ -3,21 +3,10 @@
 {% block title %}Linkmod{% endblock %}
 
 {% block body %}
-
-<div class="container">
-        {%  for row in rows %}
-         <div class="mods">
-
-             <div class="card">
-                 <a href="{{ path('post_show', {id: row.id}) }}" >
-                    <div class="mods__title"><h2>{{ row.title }}</h2></div>
-                    <div class="mods__content">{{ row.content | markdown_excerpt(130) }}</div>
-                    <div class="mods__download"><a href="{{ path('post_show', {id: row.id})  }}">TÉLÉCHARGER LE MOD </a>
-             </div>
-                 </a></div>
-         </div>
+            {%  for row in rows %}
+                {% include 'partials/_card.html.twig' %}
         {%  endfor %}
 
-</div>
+
 
 {% endblock %}

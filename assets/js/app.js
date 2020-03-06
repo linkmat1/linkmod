@@ -1,5 +1,8 @@
 
 import '../css/app.scss'
 
+import './elements/Alert'
+import './modules/animation'
 import './elements/DatePicker'
 import './elements/TimeAgo'
+import './libs/turbolinks'

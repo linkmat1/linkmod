@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Post;
 use App\Form\PostType;
+use App\messages\MessageTrait;
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,6 +16,20 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class PostController extends AbstractController
 {
+    /**
+     * @var MessageTrait
+     */
+    private MessageTrait $messages;
+
+    /**
+     * PostController constructor.
+     * @param MessageTrait $messages
+     */
+    public function __construct(MessageTrait $messages)
+    {
+        $this->messages = $messages;
+    }
+
     /**
      * @Route("/", name="post_index", methods={"GET"})
      * @param PostRepository $postRepository
@@ -42,7 +57,7 @@ class PostController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($post);
             $entityManager->flush();
-
+            $this->addFlash('success', 'Le contenu a bien été modifié');
             return $this->redirectToRoute('post_index');
         }
 
@@ -53,12 +68,20 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="post_show", methods={"GET"})
+     * @Route("/{slug<[a-z0-9\-]+>}-{id<\d+>}", name="post_show", methods={"GET"})
      * @param Post $post
+     * @param string $slug
      * @return Response
      */
-    public function show(Post $post): Response
+    public function show(Post $post, string $slug): Response
     {
+        if($post->getSlug() !==  $slug)
+        {
+            return $this->redirectToRoute('post_show', [
+                'id' => $post->getId(),
+                'slug' => $post->getSlug()
+            ], 301);
+        }
         return $this->render('admin/post/show.html.twig', [
             'post' => $post,
         ]);

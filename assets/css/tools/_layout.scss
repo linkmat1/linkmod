@@ -1,10 +1,19 @@
 // Conteneur
-// ==================
+  // ==================
 :root {
   --container-padding: 20px;
   --container-width: calc(100vw - var(--container-padding) * 2);
 }
 
+.waves {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: -1;
+}
 
 %container,
 .container {
@@ -24,4 +33,85 @@
   :root {
     --container-width: 1330px;
   }
+}
+
+// Ratios
+// ==================
+.ratio {
+  height: 0;
+  padding-bottom: 56.25%;
+  position: relative;
+
+  & > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Horizontal
+// ==================
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.inline-1 {
+  display: flex;
+  & > * + * {
+    margin-left: space(1);
+  }
+}
+
+// Grille
+// ==================
+.grid {
+  width: 100%;
+  display: grid;
+  grid-gap: space(2);
+  align-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(var(--col, 275px), 1fr));
+}
+
+.grid .full {
+  grid-column: 1 / -1;
+}
+
+.grid .end {
+  justify-content: flex-end;
+}
+
+// Stacks
+// ==================
+.stack > * + * {
+  margin-top: space(2);
+}
+.stack-large > * + * {
+  margin-top: space(4);
+}
+.stack-separated > * +* {
+  margin-top: space(3);
+  border-top: 1px solid var(--border-light);
+  padding-top: space(3);
+}
+
+// Layout
+// ==================
+.layout-sidebar {
+  @extend %container;
+  display: grid;
+  grid-gap: space(3);
+  grid-template-columns: 100%;
+
+  @include up(1100) {
+    grid-template-columns: calc(100% - 385px) 385px;
+  }
+}
+.sticky {
+  position: sticky;
+  top: space(3);
 }

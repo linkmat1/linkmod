@@ -39,6 +39,25 @@ body {
   background: var(--background);
 }
 
+body.light {
+  background:  var(--background-light);
+  &::after {
+    display: none;
+  }
+}
+
+body::after {
+  content:'';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 580px;
+  height: 506px;
+  z-index: -1;
+  pointer-events: none;
+}
+
 ::selection {
   background: var(--contrast);
   color: #FFF;
@@ -50,11 +69,12 @@ body {
 @import "modules/header";
 @import "modules/form";
 @import "modules/card";
-
 @import "modules/btn";
+@import "modules/alert";
 
 // Pages
 // ==================
 @import "pages/homepage";
+@import "pages/dashboard";
 // @import "pages/single";
 // @import "pages/single";

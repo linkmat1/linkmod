@@ -1,18 +1,80 @@
-.mods {
-  display: inline-flex;
-  margin-right: space(2);
-  min-width: 22%;
-  max-width: 22%;
-  height: 350px!important;
-  margin-top: space(3);
+// Tutoriel
+// ==================
+.course {
+  position: relative;
+  width: 100%;
+  padding: var(--card-padding);
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  @extend %card;
 }
-.mods__title {
-  @extend %card-title;
+.course a {
+  position: relative;
+  z-index: 3;
+}
+.course a:hover {
+  color: var(--contrast)
+}
+.course > * {
+  margin-bottom: space(2);
+}
+.course > *:last-child {
+  margin-bottom: 0;
+}
+.course__title {
+  font-family: $font-alt;
   font-size: 16px;
-  padding: space(1);
+  font-weight: bold;
 }
-.mods__content {
-    margin-top: space(2);
-    max-height: 150px!important;
-    overflow: hidden;
+.course__icons {
+  display: flex;
+  align-items: center;
+}
+.course__icons * + * {
+  margin-left: space(1);
+}
+.course__icons img {
+  width: 40px;
+  height: 40px;
+  display: block;
+}
+.course__icon {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+.course__content {
+  opacity: .65;
+}
+.course .course__link {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+.course__footer {
+  display: flex;
+  align-items: center;
+  min-height: 36px;
+  background: var(--card-footer);
+  margin: auto calc(var(--card-padding) * -1) calc(var(--card-padding) * -1)!important;
+  padding: 0 var(--card-padding);
+}
+.course__footer > * {
+  opacity: .65;
+}
+.course__footer > *:last-child {
+  margin-left: auto;
+}
+.course__footer svg {
+  vertical-align: middle;
+  transform: translateY(-2px);
+  width: 12px;
+  height: 12px;
 }
