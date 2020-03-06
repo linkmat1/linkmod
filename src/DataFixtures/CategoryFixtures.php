@@ -11,17 +11,19 @@ class CategoryFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $faker = Factory::create();
+       $faker = Factory::create();
+
 
         for ($i = 0; $i < 15; ++$i) {
             $category = (new Category())
                 ->setTitle($faker->sentence(3))
-                ->setDescription($faker->text)
-                ->setType($faker->sentence(2));
-            $category->setSlug($category->getTitle());
+                ->setIsOnline($faker->boolean)
+                ->setSlug($faker->slug(4))
+                ->setShortdesc($faker->text(200));
+
+
             $manager->persist($category);
         }
-
         $manager->flush();
     }
 }

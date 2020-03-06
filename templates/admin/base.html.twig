@@ -7,10 +7,11 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700|Roboto:300,400&display=swap" rel="stylesheet">
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
+        {{ encore_entry_link_tags('admin') }}
     {% endblock %}
     {% block javascripts %}
         {{ encore_entry_script_tags('app') | replace({'<script': '<script defer'}) | raw }}
-        {{ encore_entry_script_tags('app') | replace({'<script': '<script defer'}) | raw }}
+        {{ encore_entry_script_tags('admin') | replace({'<script': '<script defer'}) | raw }}
     {% endblock %}
     <link rel="manifest" href="/manifest.webmanifest">
     <meta name="turbolinks-cache-control" content="no-cache" />
@@ -18,7 +19,15 @@
 <body>
 
 <div class="dashboard">
-
+    <nav class="header">
+        <ul class="header__nav">
+            <li class="header__home"><a href="#">{{ icon('home') }}</a></li>
+            <li><a href="#">{{ icon('video') }}Forum</a></li>
+            <li><a href="#">{{ icon('video') }}Mods</a></li>
+            <li><a href="#">{{ icon('video') }}Tutoriels</a></li>
+            <li><a href="#">{{ icon('video') }}A Propos</a></li>
+        </ul>
+    </nav>
     {% include 'partials/flash.html.twig' %}
 <div class="container">
     {% block body %}{% endblock %}

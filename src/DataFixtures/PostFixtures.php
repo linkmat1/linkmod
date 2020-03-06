@@ -3,21 +3,24 @@
 namespace App\DataFixtures;
 
 use App\Entity\Category;
-use App\Entity\Post;
+use App\Entity\Content;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
 
 class PostFixtures extends Fixture
 {
-    public function load(ObjectManager $manager)
+    /**
+     * @param ObjectManager $manager
+     */
+    public function load(ObjectManager $manager):void
     {
-        $faker = Factory::create();
-        $category = new Category();
+       $faker = Factory::create();
+
 
 
         for ($i = 0; $i < 100; ++$i) {
-            $post = new Post();
+            $post = new Content();
             $post->setTitle($faker->sentence(4));
             $post->setSlug($faker->slug);
             $post->setContent($faker->text(2000));
