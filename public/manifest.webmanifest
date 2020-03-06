@@ -1,0 +1,11 @@
+{
+  "name": "Grafikart",
+  "short_name": "Grafikart",
+  "theme_color": "#4869ee",
+  "background_color": "#4869ee",
+  "display": "minimal-ui",
+  "orientation": "portrait",
+  "Scope": "/",
+  "start_url": "/",
+  "splash_pages": null
+}

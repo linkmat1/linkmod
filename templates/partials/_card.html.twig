@@ -1,0 +1,20 @@
+<article class="course" data-title="{{ row.title }}" data-type="post">
+    <div class="course__icons">
+
+    </div>
+    <h2 class="course__title">
+        <a href="{{ path('post_show', {slug: row.slug, id: row.id}) }}" tabindex="-1">
+            {{ row.title }}
+        </a>
+    </h2>
+    <div class="course__content">
+        {{ row.content | markdown | striptags | excerpt(130) }}
+    </div>
+    <a href="{{ path('mods_show', {slug: row.slug, id: row.id}) }}" title="{{ row.title }}" class="course__link"></a>
+    <time-ago time="{{ row.createdAt | date }}"></time-ago>
+    <footer class="course__footer">
+        <div>
+
+        </div>
+    </footer>
+</article>
