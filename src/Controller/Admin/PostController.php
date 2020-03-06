@@ -4,7 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Entity\Post;
 use App\Form\PostType;
-use App\messages\MessageTrait;
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,20 +16,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class PostController extends AbstractController
 {
     /**
-     * @var MessageTrait
-     */
-    private MessageTrait $messages;
-
-    /**
-     * PostController constructor.
-     * @param MessageTrait $messages
-     */
-    public function __construct(MessageTrait $messages)
-    {
-        $this->messages = $messages;
-    }
-
-    /**
      * @Route("/", name="post_index", methods={"GET"})
      * @param PostRepository $postRepository
      * @return Response
@@ -38,7 +23,7 @@ class PostController extends AbstractController
     public function index(PostRepository $postRepository): Response
     {
         return $this->render('admin/post/index.html.twig', [
-            'posts' => $postRepository->findAll(),
+            'posts' => $postRepository->findForAdmin(),
         ]);
     }
 
@@ -58,6 +43,7 @@ class PostController extends AbstractController
             $entityManager->persist($post);
             $entityManager->flush();
             $this->addFlash('success', 'Le contenu a bien été modifié');
+
             return $this->redirectToRoute('post_index');
         }
 
@@ -69,19 +55,16 @@ class PostController extends AbstractController
 
     /**
      * @Route("/{slug<[a-z0-9\-]+>}-{id<\d+>}", name="post_show", methods={"GET"})
-     * @param Post $post
-     * @param string $slug
-     * @return Response
      */
     public function show(Post $post, string $slug): Response
     {
-        if($post->getSlug() !==  $slug)
-        {
+        if ($post->getSlug() !== $slug) {
             return $this->redirectToRoute('post_show', [
                 'id' => $post->getId(),
-                'slug' => $post->getSlug()
+                'slug' => $post->getSlug(),
             ], 301);
         }
+
         return $this->render('admin/post/show.html.twig', [
             'post' => $post,
         ]);
@@ -89,9 +72,6 @@ class PostController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="post_edit", methods={"GET","POST"})
-     * @param Request $request
-     * @param Post $post
-     * @return Response
      */
     public function edit(Request $request, Post $post): Response
     {
@@ -112,9 +92,6 @@ class PostController extends AbstractController
 
     /**
      * @Route("/{id}", name="post_delete", methods={"DELETE"})
-     * @param Request $request
-     * @param Post $post
-     * @return Response
      */
     public function delete(Request $request, Post $post): Response
     {

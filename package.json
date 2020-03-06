@@ -28,6 +28,8 @@
     "scriptjs": "^2.5.9",
     "jest": "^25.1.0",
     "choices.js": "^9.0.1",
+    "codemirror": "^5.52.0",
+    "monaco-editor": "^0.20.0",
     "flatpickr": "^4.6.3",
     "svelte": "^3.18.2",
     "turbolinks": "^5.2.0"

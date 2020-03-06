@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Entity;
+
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -54,6 +55,11 @@ class Post
      * @ORM\Column(type="boolean", options={"default": 0})
      */
     private $isOnline = false;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="Post" )
+     */
+    private $category;
 
     public function getId(): ?int
     {
@@ -128,6 +134,18 @@ class Post
     public function setIsOnline(?bool $isOnline): self
     {
         $this->isOnline = $isOnline;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

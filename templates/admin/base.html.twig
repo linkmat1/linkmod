@@ -10,7 +10,7 @@
     {% endblock %}
     {% block javascripts %}
         {{ encore_entry_script_tags('app') | replace({'<script': '<script defer'}) | raw }}
-        {{ encore_entry_script_tags('admin') | replace({'<script': '<script defer'}) | raw }}
+        {{ encore_entry_script_tags('app') | replace({'<script': '<script defer'}) | raw }}
     {% endblock %}
     <link rel="manifest" href="/manifest.webmanifest">
     <meta name="turbolinks-cache-control" content="no-cache" />
@@ -20,8 +20,9 @@
 <div class="dashboard">
 
     {% include 'partials/flash.html.twig' %}
-
+<div class="container">
     {% block body %}{% endblock %}
+</div>
 </div>
 </body>
 </html>

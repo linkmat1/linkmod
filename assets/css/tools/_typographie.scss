@@ -8,14 +8,66 @@ $font-alt: "Montserrat", "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe 
 /*
 @include font-face('a', './fonts/HKGrotesk-Regular', 300 400 600 700, null, woff2 woff ttf svg eot);
 */
+
+
+%hero-title,
+.hero-title {
+  font-size: 52px;
+  font-family: $font-alt;
+  font-weight: 700;
+  line-height: 1.2;
+
+  strong {
+    color: var(--contrast);
+  }
+
+}
+
+%hero-text {
+  font-size: 18px;
+
+}
+
+%section-title {
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: space(1);
+  margin-bottom: space(3);
+}
+
+%card-title {
+  font-family: $font-alt;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+%h2 {
+  font-weight: 700;
+  font-style: normal;
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+%underlined {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: space(1);
+  margin-bottom: space(3);
+}
+
+// Pour générer les polices : https://transfonter.org/
+
+// Alignements
+// ==================
 .text-right {
   text-align: right!important;
 }
 .text-center {
   text-align: center!important;
 }
-%card-title {
-  font-family: $font-alt;
-  font-size: 20px;
-  font-weight: bold;
+.text-inversed {
+  color: var(--color-inversed);
+}
+.reader-only {
+  display: none;
 }

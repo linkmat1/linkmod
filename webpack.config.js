@@ -4,7 +4,7 @@ const path = require('path')
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
 if (!Encore.isRuntimeEnvironmentConfigured()) {
-  Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev')
+    Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev')
 }
 
 Encore
@@ -19,25 +19,26 @@ Encore
   .enableSingleRuntimeChunk()
   .configureBabel(c => { return {} })
   .addAliases({
-    svelte: path.resolve('node_modules', 'svelte'),
-    '@fn': path.resolve('assets', 'js', 'functions'),
-    '@el': path.resolve('assets', 'js', 'elements')
-  })
-  .addLoader(
-    {
-      test: /\.(html|svelte)$/,
-      exclude: /node_modules/,
-      use: {
-        loader: 'svelte-loader',
-        options: {
-          onwarn: function (warning, onwarn) {
-            if (warning.code !== 'avoid-is') {
-              onwarn(warning)
-            }
-          }
-        }
-      },
+        svelte: path.resolve('node_modules', 'svelte'),
+        '@fn': path.resolve('assets', 'js', 'functions'),
+        '@el': path.resolve('assets', 'js', 'elements')
     })
+  .addLoader(
+      {
+            test: /\.(html|svelte)$/,
+            exclude: /node_modules/,
+            use: {
+                loader: 'svelte-loader',
+                options: {
+                    onwarn: function (warning, onwarn) {
+                        if (warning.code !== 'avoid-is') {
+                            onwarn(warning)
+                        }
+                    }
+                }
+            }
+      }
+  )
   /*
    * FEATURE CONFIG
    *
@@ -59,17 +60,17 @@ Encore
 
 // uncomment to get integrity="..." attributes on your script & link tags
 // requires WebpackEncoreBundle 1.4 or higher
-//.enableIntegrityHashes(Encore.isProduction())
+// .enableIntegrityHashes(Encore.isProduction())
 
 // uncomment if you're having problems with a jQuery plugin
-//.autoProvidejQuery()
+// .autoProvidejQuery()
 
 // uncomment if you use API Platform Admin (composer req api-admin)
-//.enableReactPreset()
-//.addEntry('admin', './assets/js/admin.js')
+// .enableReactPreset()
+// .addEntry('admin', './assets/js/admin.js')
 
 if (!Encore.isProduction()) {
-  Encore.disableCssExtraction()
+    Encore.disableCssExtraction()
 }
 
 const config = Encore.getWebpackConfig()

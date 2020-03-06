@@ -1,6 +1,5 @@
 import Turbolinks from 'turbolinks'
 
-
 document.addEventListener('turbolinks:load', function () {
   const darkToggle = document.querySelector('#dark-toggle')
   if (darkToggle) {
