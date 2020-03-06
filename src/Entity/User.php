@@ -2,13 +2,15 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- *@UniqueEntity(fields={"username"}, message="There is already an account with this email")
+ *  @ORM\Table(name="`user`")
  */
 class User implements UserInterface
 {
@@ -22,42 +24,43 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255, unique=true)
      */
-    private string $username;
+    private string $username = '';
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
      */
-    private string $email;
+    private string $email= '';
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private string $github;
+    private ?string $github = '';
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string The hashed password
+     * @ORM\Column(type="string")
      */
-    private string $password;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private string $website;
+    private $password;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private string $facebook;
+    private ?string $website = '';
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private string $youtube;
+    private ?string $facebook = '';
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private string $twitch;
+    private ?string $youtube = '';
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $twitch = '';
 
     /**
      * @ORM\Column(type="json")
@@ -67,7 +70,17 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private string $name;
+    private ?string $name = '';
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="author")
+     */
+    private $posts;
+
+    public function __construct()
+    {
+        $this->posts = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -209,7 +222,7 @@ class User implements UserInterface
      */
     public function getSalt()
     {
-        // TODO: Implement getSalt() method.
+        return null;
     }
 
     /**
@@ -218,5 +231,36 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+
+    /**
+     * @return Collection|Post[]
+     */
+    public function getPosts(): Collection
+    {
+        return $this->posts;
+    }
+
+    public function addPost(Post $post): self
+    {
+        if (!$this->posts->contains($post)) {
+            $this->posts[] = $post;
+            $post->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removePost(Post $post): self
+    {
+        if ($this->posts->contains($post)) {
+            $this->posts->removeElement($post);
+            // set the owning side to null (unless already changed)
+            if ($post->getAuthor() === $this) {
+                $post->setAuthor(null);
+            }
+        }
+
+        return $this;
     }
 }

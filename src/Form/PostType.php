@@ -24,6 +24,7 @@ class PostType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'title',
             ])
+            ->add('author', TextType::class)
             ->add('createdAt', DateTimeType::class)
             ->add('UpdatedAt', DateTimeType::class)
             ->add('isOnline', CheckboxType::class)
