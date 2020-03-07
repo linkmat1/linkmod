@@ -11,9 +11,12 @@
                 <th>Id</th>
                 <th>Title</th>
                 <th>IsOnline</th>
-                <th>Slug</th>
+
                 <th>Shortdesc</th>
-                <th>actions</th>
+                {% if is_granted('ROLE_SUPERADMIN') %}
+                    <th>actions</th>
+                {% endif %}
+
             </tr>
         </thead>
         <tbody>
@@ -21,11 +24,13 @@
             <tr>
                 <td>{{ category.id }}</td>
                 <td>{{ category.title }}</td>
-                <td>{{ category.isOnline ? 'Yes' : 'No' }}</td>
-                <td>{{ category.slug }}</td>
+                <td><span class="bullet {% if category.isOnline == false %}bullet--danger{% endif %}"></span></td>
+
                 <td>{{ category.shortdesc }}</td>
                 <td>
-                    <a href="{{ path('category_edit', {slug: category.slug, id: category.id})  }}">{{icon('edit')}}</a>
+                    {% if is_granted('ROLE_SUPERADMIN') %}
+                        <a href="{{ path('category_edit', {slug: category.slug, id: category.id})  }}">{{icon('edit')}}</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}

@@ -26,6 +26,23 @@ class ContentRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+    public function getContentToApprouve(){
+        return $this->createQueryBuilder('c')->orderBy('c.id', 'DESC')
+            ->andwhere('c.isOK != true')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult();
+    }
+    public function CountContentToBeApprouved()
+    {
+        return $this->createQueryBuilder('c')
+            ->select('count(c.id)')
+            ->andwhere('c.isOK != true')
+            ->getQuery()
+            ->useQueryCache(true)
+            ->enableResultCache(true, 3600)
+            ->getSingleScalarResult();
+    }
     // /**
     //  * @return Content[] Returns an array of Content objects
     //  */

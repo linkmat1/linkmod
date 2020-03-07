@@ -62,9 +62,11 @@ class User implements UserInterface
      */
     private Collection $contents;
 
+
     public function __construct()
     {
         $this->contents = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -224,4 +226,5 @@ class User implements UserInterface
     {
         return $this->email;
     }
+
 }

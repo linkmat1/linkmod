@@ -3,11 +3,12 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Content;
+use App\Form\ApprouveType;
 use App\Form\ContentType;
 use App\Repository\ContentRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,30 +19,53 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ContentController extends AbstractController
 {
+
+
+
     private string $adminPath = 'admin/';
     /**
      * @var ContentRepository
      */
     private ContentRepository $em;
+    /**
+     * @var PaginatorInterface
+     */
+    private PaginatorInterface $paginator;
 
     /**
      * ContentController constructor.
      * @param ContentRepository $em
+     * @param PaginatorInterface $paginator
      */
-    public function __construct(ContentRepository $em)
+    public function __construct(ContentRepository $em, PaginatorInterface $paginator)
     {
         $this->em = $em;
+        $this->paginator = $paginator;
     }
 
     /**
      * @Route("/", name="content_index", methods={"GET"})
-     * @param ContentRepository $contentRepository
+     * @param Request $request
      * @return Response
      */
-    public function index(ContentRepository $contentRepository): Response
+    public function index( Request $request): Response
     {
+            $query = $this->em->createQueryBuilder('c')
+                ->orderBy('c.id', 'DESC');
+            if($request->get('q')){
+                $query = $query->where('c.title LIKE :title')
+                    ->setParameter('title', "%" . $request->get('q') . "%");
+            }
+            $page = $request->query->getInt('page', 1);
+            $content = $this->paginator->paginate(
+                $query->getQuery(),
+                $page,
+                12
+            );
+
         return $this->render($this->adminPath.'content/index.html.twig', [
-            'contents' => $contentRepository->collectAdminView(),
+            'contents' => $content,
+            'page' => $page
         ]);
     }
 
@@ -121,23 +145,11 @@ class ContentController extends AbstractController
     }
 
     /**
-     * @Route("/content/search/{q?}", name="user_autocomplete")
-     * @param string $q
-     * @return JsonResponse
+     * @Route("/{id}", name="content_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Content $content
+     * @return Response
      */
-    public function search(string $q): JsonResponse
-    {
 
-        $q = strtolower($q);
-        $content = $this->em
-            ->createQueryBuilder('c')
-            ->select('c.id', 'c.title')
-            ->where('LOWER(c.title) LIKE :title')
-            ->setParameter('title', "%$q%")
-            ->setMaxResults(25)
-            ->getQuery()
-            ->getResult();
 
-        return new JsonResponse($content);
-    }
 }

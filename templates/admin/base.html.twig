@@ -17,21 +17,17 @@
     <meta name="turbolinks-cache-control" content="no-cache" />
 </head>
 <body>
-
+<header class="header__dashboard"></header>
 <div class="dashboard">
-    <nav class="header">
-        <ul class="header__nav">
-            <li class="header__home"><a href="{{ path('home') }}">{{ icon('home') }}</a></li>
-            <li><a href="{{path('content_index')}}">{{ icon('video') }}Content</a></li>
-            <li><a href="#">{{ icon('video') }}Users</a></li>
-            <li><a href="{{ path('category_index') }}">{{ icon('video') }}Category</a></li>
-            <li><a href="#">{{ icon('video') }}A Propos</a></li>
-        </ul>
-    </nav>
+    {% include 'admin/partials/_nav.html.twig' %}
+
+
     {% include 'partials/flash.html.twig' %}
 <div class="container">
+    <div class="content__dashboard">
     {% block body %}{% endblock %}
+    </div>
 </div>
-</div>
+
 </body>
 </html>

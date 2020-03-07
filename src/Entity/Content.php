@@ -43,9 +43,9 @@ class Content
     private $updated_at ;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    private bool $isOnline = false;
+    private ?bool $isOnline = false;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="Content")
@@ -57,6 +57,11 @@ class Content
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="contents")
      */
     private $author;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private ?bool $isOK = false;
 
     public function getId(): ?int
     {
@@ -172,7 +177,24 @@ class Content
 
         return $this;
     }
-    public function __toString()
+
+    /**
+     * @param bool|null $isOK
+     * @return Content
+     */
+    public function setIsOK(?bool $isOK): Content
     {
+        $this->isOK = $isOK;
+        return $this;
     }
+
+    /**
+     * @return bool|null
+     */
+    public function getIsOK(): ?bool
+    {
+        return $this->isOK;
+    }
+
+
 }

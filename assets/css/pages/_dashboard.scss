@@ -1,5 +1,8 @@
 .dashboard {
   @extend %container;
+  z-index: 999;
+  position: relative;
+
 }
 .dashboard-title {
   font-weight: 600;
@@ -61,4 +64,68 @@
 
 .form-switch {
   align-self: flex-end;
+}
+.count__category{
+  height: 140px;
+  width: 140px;
+  background: #4869EE;
+  text-align: center;
+  font-size: 25px;
+  color: var(--color-btn);
+  border-radius: 140px;
+  border: #000 3px solid;
+}
+.count__category span{
+  display: block;
+  padding-top: 25px;
+}
+.contentToApprouve{
+  width: 22%;
+  border: var(--border-light);
+}
+.contentToApprouve a svg{
+  width: 16px;
+  height: 16px;
+  margin-left: space(1);
+  text-align: right!important;
+
+}
+.contentToApprouve h3{
+  @extend %h3;
+  color: var(--color-btn);
+}
+.title_approuve {
+  background: #4869EE;
+  height: 40px;
+  line-height: 1.4!important;
+  padding: space(1);
+
+}
+.header__dashboard {
+  background:#4869EE;
+  height: 200px;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+}
+.count_bar{
+  z-index: 999;
+  position: relative;
+}
+.content__dashboard{
+  display: block;
+
+  z-index: 999;
+}
+.contentToApprouve ul li {
+   border-bottom: 1px solid var(--border-light);
+   width: 100%;
+ }
+
+.contentToApprouve ul {
+  width: 100%;
 }

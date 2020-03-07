@@ -7,14 +7,17 @@
     <div class="dashboard-title">
         <h2>Liste des Articles</h2>
     </div>
-
+    <form class="form-group dashboard-search">
+        <input name="q" type="text" placeholder="Rechercher un article" value="{{ app.request.get('q') }}" >
+    </form>
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
-                <th>Created_at</th>
-                <th>IsOnline</th>
+                <th>Titre</th>
+                <th>Crée le</th>
+                <th>Public</th>
+                <th>Approuvée</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -25,6 +28,7 @@
                 <td>{{ content.title }}</td>
                 <td>{{ content.createdAt ? content.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td><span class="bullet {% if content.isOnline == false %}bullet--danger{% endif %}"></span></td>
+                <td><span class="bullet {% if content.isOk == false %}bullet--danger{% endif %}"></span></td>
                 <td>
                     <div class="dashboard-actions">
                     <a href="{{ path('content_edit', {slug: content.slug, id: content.id}) }}">{{ icon('edit') }}</a>
@@ -41,8 +45,9 @@
                 <td colspan="8">no records found</td>
             </tr>
         {% endfor %}
+
         </tbody>
     </table>
 
-
+    {{ knp_pagination_render(contents) }}
 {% endblock %}

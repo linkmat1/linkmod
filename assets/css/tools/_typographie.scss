@@ -49,6 +49,12 @@ $font-alt: "Montserrat", "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe 
   line-height: 1.2;
 }
 
+%h3 {
+  font-size: 500;
+  font-style: normal;
+  font-size: 22px;
+  line-height: 1.1;
+}
 %underlined {
   border-bottom: 1px solid var(--border);
   padding-bottom: space(1);

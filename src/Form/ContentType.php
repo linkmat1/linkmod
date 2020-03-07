@@ -26,7 +26,14 @@ class ContentType extends AbstractType
             ->add('content', TextareaType::class)
             ->add('created_at', DateTimeType::class)
             ->add('updated_at', DateTimeType::class)
-            ->add('isOnline', CheckboxType::class)
+            ->add('isOnline', CheckboxType::class, [
+                'required' => false
+            ])
+            ->add('isOk', CheckboxType::class, [
+                'required' => false,
+                'data' => true
+
+            ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'title',

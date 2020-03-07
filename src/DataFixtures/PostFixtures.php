@@ -25,6 +25,7 @@ class PostFixtures extends Fixture
             $post->setSlug($faker->slug);
             $post->setContent($faker->text(2000));
             $post->setIsOnline($faker->boolean);
+            $post->setIsOK(true);
             $post->setCreatedAt($faker->dateTime);
             $post->setUpdatedAt($faker->dateTime);
             $manager->persist($post);
