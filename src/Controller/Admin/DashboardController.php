@@ -4,7 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,12 +12,11 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class DashboardController extends AbstractController
 {
-    private string $adminPath = "admin/";
+    private string $adminPath = 'admin/';
     /**
      * @var CategoryRepository
      */
     private CategoryRepository $cr;
-
 
     public function __construct(CategoryRepository $cr)
     {
@@ -27,13 +25,13 @@ class DashboardController extends AbstractController
 
     /**
      * @Route("/", name="admin_dashboard", methods={"GET"})
-     * @return Response
      */
     public function index(): Response
     {
-        $count  = $this->cr->countCategory();
-        return $this->render($this->adminPath . 'dashboard.html.twig', [
-            'count' => $count
+        $count = $this->cr->countCategory();
+
+        return $this->render($this->adminPath.'dashboard.html.twig', [
+            'count' => $count,
         ]);
     }
 }

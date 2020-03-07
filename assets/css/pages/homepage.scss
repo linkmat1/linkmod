@@ -1,4 +1,10 @@
 // Tutoriel
+/*
+
+    <form class="form-group dashboard-search">
+        <input name="q" type="text" placeholder="Rechercher un article" value="{{ app.request.get('q') }}" >
+    </form>
+ */
 // ==================
 .course {
   position: relative;

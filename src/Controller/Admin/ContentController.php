@@ -5,11 +5,12 @@ namespace App\Controller\Admin;
 use App\Entity\Content;
 use App\Form\ContentType;
 use App\Repository\ContentRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/admin/content")
@@ -17,7 +18,20 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
  */
 class ContentController extends AbstractController
 {
-    private string $adminPath = "admin/";
+    private string $adminPath = 'admin/';
+    /**
+     * @var ContentRepository
+     */
+    private ContentRepository $em;
+
+    /**
+     * ContentController constructor.
+     * @param ContentRepository $em
+     */
+    public function __construct(ContentRepository $em)
+    {
+        $this->em = $em;
+    }
 
     /**
      * @Route("/", name="content_index", methods={"GET"})
@@ -26,7 +40,7 @@ class ContentController extends AbstractController
      */
     public function index(ContentRepository $contentRepository): Response
     {
-        return $this->render($this->adminPath .'content/index.html.twig', [
+        return $this->render($this->adminPath.'content/index.html.twig', [
             'contents' => $contentRepository->collectAdminView(),
         ]);
     }
@@ -47,15 +61,15 @@ class ContentController extends AbstractController
             $entityManager->persist($content);
             $entityManager->flush();
             $this->addFlash('success', 'Le contenu a bien été Crée');
+
             return $this->redirectToRoute('content_index');
         }
 
-        return $this->render($this->adminPath . 'content/new.html.twig', [
+        return $this->render($this->adminPath.'content/new.html.twig', [
             'content' => $content,
             'form' => $form->createView(),
         ]);
     }
-
 
     /**
      * @Route("/{slug<[a-z0-9\-]+>}-{id<\d+>}/edit", name="content_edit", methods={"GET","POST"})
@@ -64,12 +78,12 @@ class ContentController extends AbstractController
      * @param string $slug
      * @return Response
      */
-    public function edit(Request $request, Content $content, string  $slug): Response
+    public function edit(Request $request, Content $content, string $slug): Response
     {
         if ($content->getSlug() !== $slug) {
             return $this->redirectToRoute('content_edit', [
                 'id' => $content->getId(),
-                'slug' => $content->getSlug()
+                'slug' => $content->getSlug(),
             ], 301);
         }
         $form = $this->createForm(ContentType::class, $content);
@@ -78,10 +92,11 @@ class ContentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('success', 'Le contenu a bien été Modifier');
+
             return $this->redirectToRoute('content_index');
         }
 
-        return $this->render($this->adminPath . 'content/edit.html.twig', [
+        return $this->render($this->adminPath.'content/edit.html.twig', [
             'content' => $content,
             'form' => $form->createView(),
         ]);
@@ -101,6 +116,28 @@ class ContentController extends AbstractController
             $entityManager->flush();
         }
         $this->addFlash('success', 'Le contenu a bien été Suprimée');
+
         return $this->redirectToRoute('content_index');
+    }
+
+    /**
+     * @Route("/content/search/{q?}", name="user_autocomplete")
+     * @param string $q
+     * @return JsonResponse
+     */
+    public function search(string $q): JsonResponse
+    {
+
+        $q = strtolower($q);
+        $content = $this->em
+            ->createQueryBuilder('c')
+            ->select('c.id', 'c.title')
+            ->where('LOWER(c.title) LIKE :title')
+            ->setParameter('title', "%$q%")
+            ->setMaxResults(25)
+            ->getQuery()
+            ->getResult();
+
+        return new JsonResponse($content);
     }
 }
