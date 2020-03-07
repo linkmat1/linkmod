@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -14,7 +15,7 @@ class Content
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private ?int $id = 0;
+    private ?int $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -34,12 +35,12 @@ class Content
     /**
      * @ORM\Column(type="datetime")
      */
-    private \DateTimeInterface $created_at;
+    private $created_at ;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private \DateTimeInterface $updated_at;
+    private $updated_at ;
 
     /**
      * @ORM\Column(type="boolean")
@@ -50,17 +51,28 @@ class Content
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="Content")
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
-    private ?Category $category;
+    private $category;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="contents")
      */
-    private ?User $author;
+    private $author;
+
+    public function getId(): ?int  {
+        return $this->id;
+    }
+    public function setId(?int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     public function getTitle(): ?string
     {
         return $this->title;
     }
+
 
     public function setTitle(?string $title): self
     {
@@ -93,24 +105,31 @@ class Content
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    /**
+     * @return DateTimeInterface|null
+     */
+    public function getCreatedAt(): ?DateTimeInterface
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): self
+    /**
+     * @param DateTimeInterface $created_at
+     * @return $this
+     */
+    public function setCreatedAt(DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?DateTimeInterface
     {
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updated_at): self
+    public function setUpdatedAt(?DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
 
@@ -146,11 +165,15 @@ class Content
         return $this->author;
     }
 
-    public function setAuthor(?User $author): self
+    public function setAuthor(?User $author): Content
     {
         $this->author = $author;
 
         return $this;
+    }
+    public function __toString()
+    {
+
     }
 
 }

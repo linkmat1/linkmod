@@ -1,0 +1,46 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Content index{% endblock %}
+
+{% block body %}
+    <a href="{{ path('content_new') }}" class="dashboard-btn">Ajouter un article</a>
+    <h1>Content index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Created_at</th>
+                <th>IsOnline</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for content in contents %}
+            <tr>
+                <td>{{ content.id }}</td>
+                <td>{{ content.title }}</td>
+                <td>{{ content.createdAt ? content.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ content.isOnline ? 'Yes' : 'No' }}</td>
+                <td>
+                    <div class="dashboard-actions">
+                    <a href="{{ path('content_edit', {slug: content.slug, id: content.id}) }}">{{ icon('edit') }}</a>
+                     <form method="post" action="{{ path('content_delete', {'id': content.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ content.id) }}">
+                            <button class="btn">{{ icon('cross') }}</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

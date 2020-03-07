@@ -1,6 +1,16 @@
 {% extends "admin/base.html.twig" %}
 
 {% block body %}
-{{ count }}
+    <div class="count_bar">
+        <div class="count__category inline__count">
+
+            {{ count }}
+
+
+        </div>
+    </div>
+    <a href="{{ path('category_index') }}">Category</a>
+    <a href="{{ path('content_index') }}">Content</a>
+
 
 {% endblock %}

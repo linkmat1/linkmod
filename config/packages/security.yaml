@@ -14,7 +14,9 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
         main:
+            access_denied_handler: App\Http\Handler\AccessDeniedHandler
             anonymous: lazy
             logout:
                 path: app_logout

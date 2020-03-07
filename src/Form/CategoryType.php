@@ -16,6 +16,7 @@ class CategoryType extends AbstractType
             ->add('isOnline')
             ->add('slug')
             ->add('shortdesc')
+
         ;
     }
 
