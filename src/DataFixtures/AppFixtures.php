@@ -45,6 +45,5 @@ class AppFixtures extends Fixture
         $user2->setPassword($encode2);
         $manager->persist($user2);
         $manager->flush();
-
     }
 }

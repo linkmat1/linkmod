@@ -46,7 +46,6 @@ class CategoryController extends AbstractController
             $entityManager->flush();
             $this->addFlash('success', 'Le contenu a bien été modifié');
             return $this->redirectToRoute('category_index');
-
         }
 
         return $this->render($this->adminPath .'category/new.html.twig', [

@@ -31,7 +31,7 @@ class Category
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private  string $slug = "";
+    private string $slug = "";
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -42,7 +42,7 @@ class Category
      * @ORM\OneToMany(targetEntity="App\Entity\Content", mappedBy="category")
      * @var Collection<int, content>
      */
-    private  $Content;
+    private $Content;
 
     public function __construct()
     {

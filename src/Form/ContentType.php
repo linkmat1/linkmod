@@ -21,7 +21,7 @@ class ContentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title',TextType::class)
+            ->add('title', TextType::class)
             ->add('slug', TextType::class)
             ->add('content', TextareaType::class)
             ->add('created_at', DateTimeType::class)
@@ -31,7 +31,7 @@ class ContentType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'title',
             ])
-            ->add('author', EntityType::class,  [
+            ->add('author', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'username',
             ])

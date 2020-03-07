@@ -22,9 +22,9 @@
     <nav class="header">
         <ul class="header__nav">
             <li class="header__home"><a href="{{ path('home') }}">{{ icon('home') }}</a></li>
-            <li><a href="#">{{ icon('video') }}Forum</a></li>
-            <li><a href="#">{{ icon('video') }}Mods</a></li>
-            <li><a href="#">{{ icon('video') }}Tutoriels</a></li>
+            <li><a href="{{path('content_index')}}">{{ icon('video') }}Content</a></li>
+            <li><a href="#">{{ icon('video') }}Users</a></li>
+            <li><a href="{{ path('category_index') }}">{{ icon('video') }}Category</a></li>
             <li><a href="#">{{ icon('video') }}A Propos</a></li>
         </ul>
     </nav>

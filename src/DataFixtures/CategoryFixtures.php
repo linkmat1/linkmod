@@ -11,7 +11,7 @@ class CategoryFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-       $faker = Factory::create();
+        $faker = Factory::create();
 
 
         for ($i = 0; $i < 15; ++$i) {

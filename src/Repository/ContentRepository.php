@@ -19,7 +19,8 @@ class ContentRepository extends ServiceEntityRepository
         parent::__construct($registry, Content::class);
     }
 
-    public function collectAdminView(){
+    public function collectAdminView()
+    {
         return $this->createQueryBuilder('c')
             ->orderBy('c.id', 'DESC')
             ->getQuery()

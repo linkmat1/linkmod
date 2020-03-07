@@ -19,16 +19,14 @@ class CategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, Category::class);
     }
 
-    public function countCategory(){
-       return $this->createQueryBuilder('c')
+    public function countCategory()
+    {
+        return $this->createQueryBuilder('c')
             ->select('count(c.id)')
             ->getQuery()
            ->useQueryCache(true)
            ->enableResultCache(true, 3600)
             ->getSingleScalarResult();
-
-
-
     }
 
     // /**

@@ -15,7 +15,7 @@ class PostFixtures extends Fixture
      */
     public function load(ObjectManager $manager):void
     {
-       $faker = Factory::create();
+        $faker = Factory::create();
 
 
 

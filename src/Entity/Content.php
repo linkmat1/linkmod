@@ -58,7 +58,8 @@ class Content
      */
     private $author;
 
-    public function getId(): ?int  {
+    public function getId(): ?int
+    {
         return $this->id;
     }
     public function setId(?int $id): self
@@ -173,7 +174,5 @@ class Content
     }
     public function __toString()
     {
-
     }
-
 }

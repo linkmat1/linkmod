@@ -22,7 +22,7 @@
                 <td>{{ content.id }}</td>
                 <td>{{ content.title }}</td>
                 <td>{{ content.createdAt ? content.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ content.isOnline ? 'Yes' : 'No' }}</td>
+                <td><span class="bullet {% if content.online == false %}bullet--danger{% endif %}"></span></td>
                 <td>
                     <div class="dashboard-actions">
                     <a href="{{ path('content_edit', {slug: content.slug, id: content.id}) }}">{{ icon('edit') }}</a>

@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
-
 /**
  * @Route("/admin/content")
  * @IsGranted("ROLE_ADMIN")
@@ -26,7 +25,6 @@ class ContentController extends AbstractController
      * @return Response
      */
     public function index(ContentRepository $contentRepository): Response
-
     {
         return $this->render($this->adminPath .'content/index.html.twig', [
             'contents' => $contentRepository->collectAdminView(),

@@ -20,7 +20,7 @@ class DashboardController extends AbstractController
     private CategoryRepository $cr;
 
 
-    public function __construct(CategoryRepository $cr )
+    public function __construct(CategoryRepository $cr)
     {
         $this->cr = $cr;
     }
@@ -36,6 +36,4 @@ class DashboardController extends AbstractController
             'count' => $count
         ]);
     }
-
-
 }
