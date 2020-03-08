@@ -4,7 +4,7 @@
         <li><a href="{{path('content_index')}}">{{ icon('video') }}Content</a></li>
         <li><a href="{{path('user_index') }}">{{ icon('video') }}Users</a></li>
         <li><a href="{{ path('category_index') }}">{{ icon('video') }}Category</a></li>
-        <li><a href="#">{{ icon('video') }}A Propos</a></li>
+        <li><a href="{{ path('mods_index') }}">{{ icon('video') }}Mods</a></li>
         {% if app.user %}
             <li class="header__account"><a href="{{ path('app_logout') }}">{{ icon('user') }} {{ app.user.username }}</a>
             </li>

@@ -2,18 +2,17 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Content;
-use App\Form\ApprouveType;
-use App\Form\ContentType;
+
 use App\Repository\CategoryRepository;
 use App\Repository\ContentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/admin")
+ * @IsGranted("ROLE_ADMIN")
  */
 class DashboardController extends AbstractController
 {

@@ -62,10 +62,17 @@ class User implements UserInterface
      */
     private Collection $contents;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Mods", mappedBy="testedby")
+     */
+    private $mods;
+
 
     public function __construct()
     {
         $this->contents = new ArrayCollection();
+        $this->mods = new ArrayCollection();
+
 
     }
 
@@ -219,6 +226,7 @@ class User implements UserInterface
         return $this;
     }
 
+
     /**
      * @return string
      */
@@ -226,5 +234,43 @@ class User implements UserInterface
     {
         return $this->email;
     }
+
+    /**
+     * @return Collection|Mods[]
+     */
+    public function getMods(): Collection
+    {
+        return $this->mods;
+    }
+
+    public function addMod(Mods $mod): self
+    {
+        if (!$this->mods->contains($mod)) {
+            $this->mods[] = $mod;
+            $mod->setTestedby($this);
+            $mod->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMod(Mods $mod): self
+    {
+        if ($this->mods->contains($mod)) {
+            $this->mods->removeElement($mod);
+            // set the owning side to null (unless already changed)
+            if ($mod->getTestedby() === $this) {
+                $mod->setTestedby(null);
+            }
+            if ($mod->getAuthor() === $this) {
+                $mod->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
 
 }

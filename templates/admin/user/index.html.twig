@@ -4,7 +4,12 @@
 
 {% block body %}
     <h1>User index</h1>
+    <div class="right-align">
+        <form class="form-group dashboard-search">
+            <input name="q" type="text" placeholder="Rechercher un article" value="{{ app.request.get('q') }}" >
+        </form>
 
+    </div>
     <table class="table">
         <thead>
             <tr>

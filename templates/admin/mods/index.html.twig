@@ -1,0 +1,43 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Mods index{% endblock %}
+
+{% block body %}
+    <h1>Mods index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Certified</th>
+                <th>Withouterrors</th>
+                <th>Approuved</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for mod in mods %}
+            <tr>
+                <td>{{ mod.id }}</td>
+                <td>{{ mod.name }}</td>
+
+                <td>{{ mod.approuved ? 'Yes' : 'No' }}</td>
+                <td>{{ mod.certified ? 'Yes' : 'No' }}</td>
+                <td>{{ mod.withouterrors ? 'Yes' : 'No' }}</td>
+
+                <td>
+                    <a href="{{ path('mods_show', {'id': mod.id}) }}">show</a>
+                    <a href="{{ path('mods_edit', {'id': mod.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="18">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('mods_new') }}">Create new</a>
+{% endblock %}

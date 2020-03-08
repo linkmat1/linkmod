@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\User2Type;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,14 +19,41 @@ class UserController extends AbstractController
 {
     private string $adminPath = 'admin/';
     /**
+     * @var UserRepository
+     */
+    private UserRepository $em;
+    /**
+     * @var PaginatorInterface
+     */
+    private PaginatorInterface $paginator;
+
+    public function __construct(UserRepository $em, PaginatorInterface $paginator)
+    {
+        $this->em = $em;
+        $this->paginator = $paginator;
+    }
+
+    /**
      * @Route("/", name="user_index", methods={"GET"})
-     * @param UserRepository $userRepository
+
      * @return Response
      */
-    public function index(UserRepository $userRepository): Response
+    public function index(Request $request): Response
     {
+        $query = $this->em->createQueryBuilder('u')
+            ->orderBy('u.id', 'DESC');
+        if($request->get('q')){
+            $query = $query->where('u.username LIKE :username')
+                ->setParameter('username', "%" . $request->get('q') . "%");
+        }
+        $page = $request->query->getInt('page', 1);
+        $paginator = $this->paginator->paginate(
+            $query->getQuery(),
+            $page,
+            12
+        );
         return $this->render($this->adminPath . 'user/index.html.twig', [
-            'users' => $userRepository->findAll(),
+            'users' => $paginator
         ]);
     }
 
