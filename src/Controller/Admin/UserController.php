@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Form\User2Type;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,8 +24,6 @@ class UserController extends AbstractController
      */
     public function index(UserRepository $userRepository): Response
     {
-
-
         return $this->render($this->adminPath . 'user/index.html.twig', [
             'users' => $userRepository->findAll(),
         ]);
@@ -48,7 +47,6 @@ class UserController extends AbstractController
 
             return $this->redirectToRoute('user_index');
         }
-
         return $this->render($this->adminPath . 'user/new.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
@@ -77,6 +75,21 @@ class UserController extends AbstractController
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('user_index');
+        }
+
+        $form2 = $this->createForm(User2Type::class, $user);
+        $form2->handleRequest($request);
+
+        if ($form2->isSubmitted() && $form2->isValid()){
+
+            $this->getDoctrine()->getManager()->flush();
+            return  $this->redirectToRoute('user_index');
+        }
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
@@ -87,6 +100,7 @@ class UserController extends AbstractController
         return $this->render($this->adminPath . 'user/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
+            'form2' => $form2->createView(),
         ]);
     }
 

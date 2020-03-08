@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserType extends AbstractType
+class User2Type extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -25,8 +25,7 @@ class UserType extends AbstractType
                     'Utilisateur' => "ROLE_USER",
                     'Editor' => "ROLE_EDITOR",
                     'Moderateur' => "ROLE_MODO",
-                    'Administrateur' => "ROLE_ADMIN",
-                    'Fondateur' => "ROLE_SUPERADMIN"
+
                 ],
                 'expanded' => true,
                 'multiple' => true

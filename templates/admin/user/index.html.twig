@@ -21,12 +21,29 @@
                 <td>{{ user.id }}</td>
                 <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+
+                <td> {% for role in user.roles %}
+                        {% if role == "ROLE_USER" %}
+                           <div class="role_user">Utilisateur</div>
+                        {% elseif role  == "ROLE_EDITOR"%}
+                        <div class="role_editor">Editor</div>
+                        {% elseif role == "ROLE_ADMIN" %}
+                          <div class="role_admin">Administrateur</div>
+                        {% elseif role == "ROLE_SUPERADMIN" %}
+                          <div class="role_fondateur">Fondateur</div>
+                        {% elseif role == "ROLE_MODO" %}
+                           <div class="role_modo">Moderateur </div>
+                        {% endif %}
+                    {% endfor %}</td>
 
                 <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
-                    <a href="{{ path('switch_user', {'usernameL': user.username}) }}">Ninja</a>
+                    <div class="dashboard-actions">
+                    <a href="{{ path('user_show', {'id': user.id}) }}">{{ icon('clone')}}</a>
+                    <a href="{{ path('user_edit', {'id': user.id}) }}">{{ icon('edit')}}</a>
+                    {% if is_granted('ROLE_SUPERADMIN') %}
+                        <a href="{{ app.request.baseUrl }}/?_switch_user={{ user.username }}">{{ icon('camera')}}</a>
+                {% endif %}
+                    </div>
                 </td>
             </tr>
         {% else %}

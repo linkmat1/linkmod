@@ -22,7 +22,11 @@
   --green: #41CF7C;
   --yellow: #FEB32B;
 }
-
+//21B546
+//02E85C
+//#0AFF8D
+//#02E89D
+//#02C29F
 @import "tools/typographie";
 @import "tools/reset";
 @import "tools/mixins";
@@ -37,6 +41,7 @@ body {
   color: var(--color);
   line-height: 1.6;
   background: var(--background);
+  color: #354649;
 }
 
 body.light {

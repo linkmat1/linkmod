@@ -82,6 +82,7 @@
 .contentToApprouve{
   width: 22%;
   border: var(--border-light);
+  margin-top: space(3);
 }
 .contentToApprouve a svg{
   width: 16px;
@@ -101,11 +102,15 @@
   padding: space(1);
 
 }
+//21B546
+//02E85C
+//#0AFF8D
+//#02E89D
+//#02C29F
 .header__dashboard {
-  background:#4869EE;
-  height: 200px;
+  height: 300px;
   position: absolute;
-  z-index: 0;
+  z-index: -1;
   top: 0;
   left: 0;
   right: 0;
@@ -118,7 +123,10 @@
 }
 .content__dashboard{
   display: block;
-
+  background: var(--background-light);
+  padding: space(2);
+  border-radius: 3px  ;
+  box-shadow: var(--shadow);
   z-index: 999;
 }
 .contentToApprouve ul li {
@@ -128,4 +136,16 @@
 
 .contentToApprouve ul {
   width: 100%;
+}
+
+.right-align {
+  display: flex;
+  margin-left: 70%;
+  margin-bottom: space(3);
+}
+.right-align a {
+  margin-left: space(3);
+}
+checkbox {
+  display: inline-flex;
 }

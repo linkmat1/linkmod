@@ -8,9 +8,7 @@ use App\Entity\User;
 use App\Type\DateTimeType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -24,15 +22,16 @@ class ContentType extends AbstractType
             ->add('title', TextType::class)
             ->add('slug', TextType::class)
             ->add('content', TextareaType::class)
-            ->add('created_at', DateTimeType::class)
-            ->add('updated_at', DateTimeType::class)
+            ->add('created_at', DateTimeType::class, [
+                'data' => new \DateTime('now'),
+                'disabled' => true
+            ])
             ->add('isOnline', CheckboxType::class, [
                 'required' => false
             ])
             ->add('isOk', CheckboxType::class, [
                 'required' => false,
                 'data' => true
-
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,

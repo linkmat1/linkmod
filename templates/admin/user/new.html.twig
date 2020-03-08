@@ -1,11 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
 {% block title %}New User{% endblock %}
 
 {% block body %}
     <h1>Create new User</h1>
 
-    {{ include('user/_form.html.twig') }}
+    {% if is_granted('ROLE_SUPERADMIN') %}
+        {{  include('admin/user/_form.html.twig') }}
+    {% elseif is_granted('ROLE_ADMIN') %}
+        {{  include('admin/user/_form2.html.twig') }}
+    {% endif %}
 
     <a href="{{ path('user_index') }}">back to list</a>
 {% endblock %}

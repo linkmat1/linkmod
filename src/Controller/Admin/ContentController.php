@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Controller\Admin;
+
+
 
 use App\Entity\Content;
 use App\Form\ApprouveType;
@@ -50,18 +51,18 @@ class ContentController extends AbstractController
      */
     public function index( Request $request): Response
     {
-            $query = $this->em->createQueryBuilder('c')
-                ->orderBy('c.id', 'DESC');
-            if($request->get('q')){
-                $query = $query->where('c.title LIKE :title')
-                    ->setParameter('title', "%" . $request->get('q') . "%");
-            }
-            $page = $request->query->getInt('page', 1);
-            $content = $this->paginator->paginate(
-                $query->getQuery(),
-                $page,
-                12
-            );
+        $query = $this->em->createQueryBuilder('c')
+            ->orderBy('c.id', 'DESC');
+        if($request->get('q')){
+            $query = $query->where('c.title LIKE :title')
+                ->setParameter('title', "%" . $request->get('q') . "%");
+        }
+        $page = $request->query->getInt('page', 1);
+        $content = $this->paginator->paginate(
+            $query->getQuery(),
+            $page,
+            12
+        );
 
         return $this->render($this->adminPath.'content/index.html.twig', [
             'contents' => $content,
@@ -73,6 +74,7 @@ class ContentController extends AbstractController
      * @Route("/new", name="content_new", methods={"GET","POST"})
      * @param Request $request
      * @return Response
+     * @throws \Exception
      */
     public function new(Request $request): Response
     {
@@ -81,6 +83,7 @@ class ContentController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($content);
             $entityManager->flush();
@@ -101,6 +104,7 @@ class ContentController extends AbstractController
      * @param Content $content
      * @param string $slug
      * @return Response
+     * @throws \Exception
      */
     public function edit(Request $request, Content $content, string $slug): Response
     {
@@ -112,8 +116,9 @@ class ContentController extends AbstractController
         }
         $form = $this->createForm(ContentType::class, $content);
         $form->handleRequest($request);
-
+        $update = new \DateTime('now');
         if ($form->isSubmitted() && $form->isValid()) {
+            $content->setUpdatedAt($update);
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('success', 'Le contenu a bien été Modifier');
 
@@ -144,12 +149,6 @@ class ContentController extends AbstractController
         return $this->redirectToRoute('content_index');
     }
 
-    /**
-     * @Route("/{id}", name="content_delete", methods={"DELETE"})
-     * @param Request $request
-     * @param Content $content
-     * @return Response
-     */
 
 
 }

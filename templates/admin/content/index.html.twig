@@ -3,13 +3,17 @@
 {% block title %}Content index{% endblock %}
 
 {% block body %}
-    <a href="{{ path('content_new') }}" class="dashboard-btn">Ajouter un article</a>
     <div class="dashboard-title">
         <h2>Liste des Articles</h2>
     </div>
+
+
+<div class="right-align">
     <form class="form-group dashboard-search">
         <input name="q" type="text" placeholder="Rechercher un article" value="{{ app.request.get('q') }}" >
     </form>
+    <a href="{{ path('content_new') }}" class="dashboard-btn">Ajouter un article</a>
+</div>
     <table class="table">
         <thead>
             <tr>
