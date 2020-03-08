@@ -24,14 +24,33 @@ class ModsType extends AbstractType
             ->add('chevaux',TextType::class)
             ->add('model',TextType::class)
             ->add('price', TextType::class)
-            ->add('option1', TextType::class)
-            ->add('option2',TextType::class)
-            ->add('option3',TextType::class)
-            ->add('certified', CheckboxType::class)
-            ->add('withouterrors',CheckboxType::class)
-            ->add('colorrims',CheckboxType::class)
-            ->add('colorchoice',CheckboxType::class)
+            ->add('option1', TextType::class, [
+                'required' => false,
+                'label'=> 'Optionelle : Option 1'
+            ])
+            ->add('option2',TextType::class, [
+                'required' => false
+            ])
+            ->add('option3',TextType::class, [
+                'required' => false
+            ])
+            ->add('certified', CheckboxType::class, [
+                'required' => false
+            ])
+            ->add('withouterrors',CheckboxType::class, [
+                'required' => false
+            ])
+            ->add('colorrims',CheckboxType::class, [
+                'required' => false
+            ])
+            ->add('colorchoice',CheckboxType::class, [
+                'required' => false
+            ])
             ->add('author',EntityType::class, [
+                'class' => User::class,
+                'choice_label' => 'username',
+            ])
+            ->add('testedby',EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'username',
             ])
