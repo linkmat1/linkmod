@@ -31,9 +31,8 @@ services:
     ports:
       - 8080:8080
   db:
-    image: mariadb:latest
+    image: mysql:latest
     restart: always
-    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0
     environment:
       MYSQL_USER: linkmat
       MYSQL_PASSWORD: linkmat
@@ -42,7 +41,7 @@ services:
     ports:
       - 3307:3306
     volumes:
-      - ../mysql/data:/var/lib/mysql
+      - ./mysql/data:/var/lib/mysql
   adminer:
     image: adminer
     environment:

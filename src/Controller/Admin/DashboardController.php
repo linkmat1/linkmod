@@ -42,12 +42,14 @@ class DashboardController extends AbstractController
     {
         $count = $this->cr->countCategory();
         $count2 = $this->content->CountContentToBeApprouved();
+        $countContent = $this->content->CountContent();
 
         $toApps =  $this->content->getContentToApprouve();
         return $this->render($this->adminPath.'dashboard.html.twig', [
             'count' => $count,
             'approuves' => $toApps,
-            'count2' => $count2
+            'count2' => $count2,
+            'countContent' => $countContent
 
         ]);
     }

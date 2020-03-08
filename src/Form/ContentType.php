@@ -22,14 +22,13 @@ class ContentType extends AbstractType
             ->add('title', TextType::class)
             ->add('slug', TextType::class)
             ->add('content', TextareaType::class)
-            ->add('created_at', DateTimeType::class, [
-                'data' => new \DateTime('now'),
-                'disabled' => true
-            ])
+            ->add('created_at', DateTimeType::class)
             ->add('isOnline', CheckboxType::class, [
+                'label' => 'Publication Public',
                 'required' => false
             ])
             ->add('isOk', CheckboxType::class, [
+                'label' => 'Validée par un Admin',
                 'required' => false,
                 'data' => true
             ])
@@ -40,6 +39,15 @@ class ContentType extends AbstractType
             ->add('author', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'username',
+            ])
+            ->add('publish_at', DateTimeType::class)
+            ->add('reference', TextType::class, [
+                'required' => false,
+                'label' => 'Ajoutée une reference'
+            ])
+            ->add('upnews', CheckboxType::class, [
+                'label' => 'A la unes !',
+                'required' => false
             ])
         ;
     }

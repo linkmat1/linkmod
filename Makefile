@@ -2,6 +2,7 @@ user := $(shell id -u)
 group := $(shell id -g)
 dc :=  docker-compose
 dr := $(dc) run --rm
+sy := $(dc) php bin/console
 dexec := docker-compose exec
 drtest := $(dc) -f docker-compose.test.yml run --rm
 
@@ -60,7 +61,7 @@ seed: vendor/autoload.php ## Génère des données
 
 .PHONY: clear ## Nettoie les containers
 clear: vendor/autoload.php
-	php bin/console cache:clear
+	$(sy) cache:clear
 
 .PHONY: bash
 bash: ## Ouvre un Terminal dans que container php
@@ -85,6 +86,7 @@ public/assets: node_modules/time
 .PHONY: phpcs
 phpcs: vendor/autoload.php ## Nettoie les code  en direct!
 	vendor/bin/php-cs-fixer fix src/  --rules=@PSR2
+
 .PHONY: db
 db: #Lance un Terminal Interactif sur la base de donnée docker
 	$(dexec) db mysql -ulinkmat -plinkmat

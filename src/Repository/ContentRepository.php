@@ -19,13 +19,6 @@ class ContentRepository extends ServiceEntityRepository
         parent::__construct($registry, Content::class);
     }
 
-    public function collectAdminView()
-    {
-        return $this->createQueryBuilder('c')
-            ->orderBy('c.id', 'DESC')
-            ->getQuery()
-            ->getResult();
-    }
     public function getContentToApprouve(){
         return $this->createQueryBuilder('c')->orderBy('c.id', 'DESC')
             ->andwhere('c.isOK != true')
@@ -40,8 +33,28 @@ class ContentRepository extends ServiceEntityRepository
             ->andwhere('c.isOK != true')
             ->getQuery()
             ->useQueryCache(true)
-            ->enableResultCache(true, 3600)
+            ->enableResultCache(true, 8600)
             ->getSingleScalarResult();
+    }
+    public function CountContent()
+    {
+        return $this->createQueryBuilder('c')
+            ->select('count(c.id)')
+            ->getQuery()
+            ->useQueryCache(true)
+            ->enableResultCache(true, 8600)
+            ->getSingleScalarResult();
+    }
+    public function getContentALaUnes()
+    {
+        return $this->createQueryBuilder('c')
+            ->andwhere('c.upnews = true AND c.isOK = true')
+            ->andwhere('c.publish_at >= :now')
+            ->orderBy('c.created_at', 'DESC')
+            ->setParameter('now', new \DateTime('now'))
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
     }
     // /**
     //  * @return Content[] Returns an array of Content objects

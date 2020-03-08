@@ -40,3 +40,6 @@ yarn-error.log
 ###< squizlabs/php_codesniffer ###
 .idea
 /mysql/data/
+/mysql/
+mysql
+/mysql

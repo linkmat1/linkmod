@@ -2,40 +2,48 @@
 
 {% block body %}
 
+
     <div class="count_bar">
         <div class="count__category inline__count">
 
-        <a href="{{ path('content_index') }}"> <span>Category</span>{{ count }}</a>
+            <a href="{{ path('content_index') }}"> <span>Category</span>{{ count }}</a>
 
 
         </div>
-    </div>
+        <div class="count__category inline__count">
 
+            <a href="{{ path('content_index') }}"> <span>Content</span>{{ countContent }}</a>
+
+
+        </div>
+
+    </div>
+<div class="contenue a la une">
+
+</div>
     {% if is_granted('ROLE_ADMIN') %}
-{%   if count2  >  0 %}
-    <div class="contentToApprouve">
-        <div class="title_approuve">
-            <h3>Contenue a Approuvée -<span> {{ count2 }}</span></h3>
-        </div>
-        <ul>
+        {%   if count2  >  0 %}
+            <div class="contentToApprouve">
+                <div class="title_approuve">
+                    <h3>Contenue a Approuvée -<span> {{ count2 }}</span></h3>
+                </div>
+                <ul>
 
-        {% for approuve in approuves %}
+                    {% for approuve in approuves %}
 
-           <li>{{ approuve.id }} -
-            {{ approuve.title | excerpt(17)}} -
-               <a href="{{ path('content_edit', {slug: approuve.slug, id: approuve.id}) }}">{{ icon('edit') }}</a>
+                        <li>{{ approuve.id }} -
+                            {{ approuve.title | excerpt(17)}} -
+                            <a href="{{ path('content_edit', {slug: approuve.slug, id: approuve.id}) }}">{{ icon('edit') }}</a>
 
-           </li>
+                        </li>
 
-        {% endfor %}
-        </ul>
-        <a href="#">Voir</a>
-    </div>
-{% endif %}
+                    {% endfor %}
+                </ul>
+                <a href="#">Voir</a>
+            </div>
+        {% endif %}
 
     {% endif %}
-
-
 
 
 {% endblock %}

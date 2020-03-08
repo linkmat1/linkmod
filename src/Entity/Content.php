@@ -66,12 +66,17 @@ class Content
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $reference;
+    private ?string $reference = "";
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $publish_at;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $upnews;
 
     public function getId(): ?int
     {
@@ -226,6 +231,18 @@ class Content
     public function setPublishAt(?\DateTimeInterface $publish_at): self
     {
         $this->publish_at = $publish_at;
+
+        return $this;
+    }
+
+    public function getUpnews(): ?bool
+    {
+        return $this->upnews;
+    }
+
+    public function setUpnews(?bool $upnews): self
+    {
+        $this->upnews = $upnews;
 
         return $this;
     }
