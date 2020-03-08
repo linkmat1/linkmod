@@ -36,7 +36,7 @@ body {
   font-size: 16px;
   color: var(--color);
   line-height: 1.6;
-  background: url(../images/wave.svg) top left / 100% 100% no-repeat var(--background);
+  background: url(../images/wave.svg) top left / 100% 40% no-repeat;
 }
 
 body.light {
@@ -63,7 +63,11 @@ body::after {
   color: #FFF;
 }
 
-
+//21B546
+//02E85C
+//#0AFF8D
+//#02E89D
+//#02C29F
 // Modules
 // ==================
 @import "modules/header";

@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Category index</h1>
-
+    <a href="{{ path('category_new') }}">Create new</a>
     <table class="table">
         <thead>
             <tr>
@@ -26,7 +26,7 @@
                 <td>{{ category.title }}</td>
                 <td><span class="bullet {% if category.isOnline == false %}bullet--danger{% endif %}"></span></td>
 
-                <td>{{ category.shortdesc }}</td>
+                <td>{{ category.shortdesc | excerpt(60) }}</td>
                 <td>
                     {% if is_granted('ROLE_SUPERADMIN') %}
                         <a href="{{ path('category_edit', {slug: category.slug, id: category.id})  }}">{{icon('edit')}}</a>
@@ -41,5 +41,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('category_new') }}">Create new</a>
+
 {% endblock %}

@@ -63,6 +63,16 @@ class Content
      */
     private ?bool $isOK = false;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $reference;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $publish_at;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -194,6 +204,30 @@ class Content
     public function getIsOK(): ?bool
     {
         return $this->isOK;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(?string $reference): self
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    public function getPublishAt(): ?\DateTimeInterface
+    {
+        return $this->publish_at;
+    }
+
+    public function setPublishAt(?\DateTimeInterface $publish_at): self
+    {
+        $this->publish_at = $publish_at;
+
+        return $this;
     }
 
 

@@ -7,11 +7,10 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700|Roboto:300,400&display=swap" rel="stylesheet">
     {% block stylesheets %}
         {{ encore_entry_link_tags('admin') }}
-        {{ encore_entry_link_tags('app') }}
+
     {% endblock %}
     {% block javascripts %}
         {{ encore_entry_script_tags('admin') | replace({'<script': '<script defer'}) | raw }}
-        {{ encore_entry_script_tags('app') | replace({'<script': '<script defer'}) | raw }}
     {% endblock %}
     <link rel="manifest" href="/manifest.webmanifest">
     <meta name="turbolinks-cache-control" content="no-cache" />
