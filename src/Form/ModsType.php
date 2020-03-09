@@ -8,6 +8,7 @@ use App\Entity\Mods;
 
 use App\Entity\User;
 use App\Type\EditorType;
+use App\Type\UserChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -55,10 +56,7 @@ class ModsType extends AbstractType
                 'class' => Brand::class,
                 'choice_label' => 'name',
             ])
-            ->add('testedby', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'username',
-            ])
+            ->add('testedby', UserChoiceType::class)
             ->add('modCategory', EntityType::class, [
                 'class' => ModCategory::class,
                 'choice_label' => 'name',

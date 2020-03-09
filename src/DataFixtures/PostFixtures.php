@@ -28,6 +28,7 @@ class PostFixtures extends Fixture
             $post->setIsOK(true);
             $post->setCreatedAt($faker->dateTime);
             $post->setUpdatedAt($faker->dateTime);
+            $post->setPublishAt($faker->dateTime);
             $manager->persist($post);
         }
 

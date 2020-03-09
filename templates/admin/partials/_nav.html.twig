@@ -3,7 +3,7 @@
         <li class="header__home"><a href="{{ path('admin_dashboard') }}">{{ icon('home') }}</a></li>
         <li><a href="{{ path('content_index') }}">{{ icon('video') }}Gestion du Contenu</a></li>
         <li><a href="{{ path('user_index') }}">{{ icon('video') }}Gestion des Utilisateurs</a></li>
-        <li><a href="{{ path('mods_index') }}">{{ icon('video') }}Gestion du Forum</a></li>
+        <li><a href="{{ path('admin_forum_gestion') }}">{{ icon('video') }}Gestion du Forum</a></li>
         <li><a href="{{ path('mods_index') }}">{{ icon('video') }}Gestion des Mods</a></li>
         {% if app.user %}
             <li class="header__account"><a href="{{ path('home') }}">{{ icon('user') }} {{ app.user.username }}</a>

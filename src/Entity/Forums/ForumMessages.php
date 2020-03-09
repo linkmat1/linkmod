@@ -5,7 +5,7 @@ namespace App\Entity\Forums;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ForumMessagesRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\Forums\ForumMessagesRepository")
  */
 class ForumMessages
 {

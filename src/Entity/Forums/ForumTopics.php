@@ -5,9 +5,10 @@ namespace App\Entity\Forums;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Faker\Provider\DateTime;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ForumTopicsRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\Forums\ForumTopicsRepository")
  */
 class ForumTopics
 {
@@ -16,27 +17,27 @@ class ForumTopics
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private int $id;
+    private ?int $id = 0;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private string $title;
+    private string $title = "";
 
     /**
      * @ORM\Column(type="text")
      */
-    private string $content;
+    private string $content = "";
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $created_at;
+    private \DateTimeInterface $created_at;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updated_at;
+    private \DateTimeInterface $updated_at;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Forums\ForumForums", inversedBy="forumTopics")
@@ -58,11 +59,13 @@ class ForumTopics
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private ?bool $sticky;
+    private ?bool $sticky = false;
 
     public function __construct()
     {
         $this->forumMessages = new ArrayCollection();
+        $this->created_at = new \DateTimeImmutable();
+        $this->updated_at = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

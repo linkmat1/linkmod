@@ -2,6 +2,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Content;
+use App\Entity\User;
 use App\Form\ContentType;
 use App\Repository\ContentRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -10,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/admin/content")
@@ -36,6 +38,7 @@ class ContentController extends AbstractController
     {
         $this->em = $em;
         $this->paginator = $paginator;
+
     }
 
     /**
@@ -72,11 +75,15 @@ class ContentController extends AbstractController
      */
     public function new(Request $request): Response
     {
+
+        $user = $this->getUser();
         $content = new Content();
         $form = $this->createForm(ContentType::class, $content);
         $form->handleRequest($request);
-
+        $content->setCreatedAt(new \DateTime('now'));
         if ($form->isSubmitted() && $form->isValid()) {
+            $content->setCreatedAt(new \DateTime('now'));
+            $content->setAuthor($user);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($content);
             $entityManager->flush();

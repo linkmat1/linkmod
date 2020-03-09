@@ -38,7 +38,7 @@ html{
 }
 body {
   font-family: $font;
-  font-size: 16px;
+  font-size: 14px;
   color: var(--color);
   line-height: 1.6;
 
@@ -89,10 +89,12 @@ body::after {
 // ==================
 //@import "pages/homepage";
 @import "pages/dashboard";
+@import "pages/forums/forum";
+@import "pages/admin/mods";
 // @import "pages/single";
 // @import "pages/single";
 
-.form-check{
+.form-check {
   display: inline-block;
   width: inherit;
   margin-left: space(3);

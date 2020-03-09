@@ -120,7 +120,15 @@ class User implements UserInterface
      */
     private $forumMessages;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Brand", mappedBy="created_by")
+     */
+    private $brands;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Category", mappedBy="created_by")
+     */
+    private $categories;
 
 
     public function __construct()
@@ -129,6 +137,8 @@ class User implements UserInterface
         $this->mods = new ArrayCollection();
         $this->forumTopics = new ArrayCollection();
         $this->forumMessages = new ArrayCollection();
+        $this->brands = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -474,6 +484,68 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($forumMessage->getUserId() === $this) {
                 $forumMessage->setUserId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Brand[]
+     */
+    public function getBrands(): Collection
+    {
+        return $this->brands;
+    }
+
+    public function addBrand(Brand $brand): self
+    {
+        if (!$this->brands->contains($brand)) {
+            $this->brands[] = $brand;
+            $brand->setCreatedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBrand(Brand $brand): self
+    {
+        if ($this->brands->contains($brand)) {
+            $this->brands->removeElement($brand);
+            // set the owning side to null (unless already changed)
+            if ($brand->getCreatedBy() === $this) {
+                $brand->setCreatedBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->setCreatedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->categories->contains($category)) {
+            $this->categories->removeElement($category);
+            // set the owning side to null (unless already changed)
+            if ($category->getCreatedBy() === $this) {
+                $category->setCreatedBy(null);
             }
         }
 

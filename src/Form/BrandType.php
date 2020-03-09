@@ -4,7 +4,9 @@ namespace App\Form;
 
 use App\Entity\Brand;
 
+use App\Type\UserChoiceType;
 use Symfony\Component\Form\AbstractType;
+use App\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,6 +18,7 @@ class BrandType extends AbstractType
         $builder
             ->add('name', TextType::class)
             ->add('slug', TextType::class)
+            ->add('createdBy', UserChoiceType::class)
         ;
     }
 

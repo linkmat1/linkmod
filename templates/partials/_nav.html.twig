@@ -1,0 +1,22 @@
+<nav class="header">
+    <ul class="header__nav">
+        <li class="header__home"><a href="{{ path('home') }}">{{ icon('home') }}</a></li>
+        <li><a href="#">{{ icon('video') }}Forum</a></li>
+        <li><a href="#">{{ icon('video') }}Mods</a></li>
+        <li><a href="#">{{ icon('video') }}Tutoriels</a></li>
+        <li><a href="#">{{ icon('video') }}A Propos</a></li>
+        {% if app.user %}
+            <li class="header__account"><a
+                        href="{{ path('app_logout') }}">{{ icon('user') }} {{ app.user.username }}</a>
+            </li>
+        {% else %}
+            <li class="header__account"><a href="{{ path('app_login') }}">{{ icon('user') }} Se connecter</a></li>
+        {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <li><a href="{{ path('admin_dashboard') }}">Admin</a></li>
+        {% endif %}
+        {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+            <a href="{{ path('home', {'_switch_user': '_exit'}) }}">Sortir Ninja</a>
+        {% endif %}
+    </ul>
+</nav>

@@ -32,9 +32,10 @@ class ModCategoryController extends AbstractController
     /**
      * @Route("/new", name="mod_category_new", methods={"GET","POST"})
      * @param Request $request
+     * @param \Swift_Mailer $mailer
      * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request, \Swift_Mailer $mailer): Response
     {
         $modCategory = new ModCategory();
         $form = $this->createForm(ModCategoryType::class, $modCategory);
@@ -45,7 +46,9 @@ class ModCategoryController extends AbstractController
             $entityManager->persist($modCategory);
             $entityManager->flush();
 
+
             return $this->redirectToRoute('mod_category_index');
+
         }
 
         return $this->render('mod_category/new.html.twig', [

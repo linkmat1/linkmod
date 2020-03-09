@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Faker\Provider\DateTime;
+use Monolog\DateTimeImmutable;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ContentRepository")
@@ -35,12 +37,12 @@ class Content
     /**
      * @ORM\Column(type="datetime")
      */
-    private $created_at ;
+    private ?DateTimeInterface $created_at;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updated_at ;
+    private ?DateTimeInterface $updated_at;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -54,7 +56,7 @@ class Content
     private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="contents")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="contents", cascade={"persist"})
      */
     private $author;
 
@@ -78,10 +80,16 @@ class Content
      */
     private $upnews;
 
+    public function __construct()
+    {
+        $this->created_at = new \DateTimeImmutable();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
     }
+
     public function setId(?int $id): self
     {
         $this->id = $id;
@@ -134,12 +142,15 @@ class Content
         return $this->created_at;
     }
 
+
     /**
      * @param DateTimeInterface $created_at
      * @return $this
+     * @throws \Exception
      */
     public function setCreatedAt(DateTimeInterface $created_at): self
     {
+        $created_at = new \DateTime('now');
         $this->created_at = $created_at;
 
         return $this;

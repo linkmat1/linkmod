@@ -46,7 +46,8 @@ class ModsFixtures extends Fixture
         for ($i = 0; $i < 50; ++$i) {
             $brand = (new Brand())
                 ->setName($faker->company)
-                ->setSlug($faker->slug);
+                ->setSlug($faker->slug)
+                ->setCreatedAt($faker->dateTime);
             $manager->persist($brand);
         }
 

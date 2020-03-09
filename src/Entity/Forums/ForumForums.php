@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ForumForumsRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\Forums\ForumForumsRepository")
  */
 class ForumForums
 {
@@ -16,17 +16,17 @@ class ForumForums
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private int $id;
+    private ?int $id = 0;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private string $title;
+    private string $title = "";
 
     /**
      * @ORM\Column(type="text")
      */
-    private string $description;
+    private string $description = "";
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Forums\ForumCategory", inversedBy="forumForums")

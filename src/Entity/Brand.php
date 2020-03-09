@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BrandRepository")
  */
@@ -21,21 +22,32 @@ class Brand
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private string $name;
+    private string $name = "";
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private string $slug;
+    private string $slug = "";
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Mods", mappedBy="brand")
      */
     private $mods;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private \DateTimeInterface $created_at;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="brands")
+     */
+    private $created_by;
+
     public function __construct()
     {
         $this->mods = new ArrayCollection();
+        $this->created_at = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -94,6 +106,30 @@ class Brand
                 $mod->setBrand(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getCreatedBy(): ?User
+    {
+        return $this->created_by;
+    }
+
+    public function setCreatedBy(?User $created_by): self
+    {
+        $this->created_by = $created_by;
 
         return $this;
     }

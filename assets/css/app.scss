@@ -37,7 +37,7 @@
 // ==================
 body {
   font-family: $font;
-  font-size: 16px;
+  font-size: 14px;
   color: var(--color);
   line-height: 1.6;
   background: var(--background);
@@ -76,10 +76,16 @@ body::after {
 @import "modules/card";
 @import "modules/btn";
 @import "modules/alert";
+@import "modules/table";
+@import "modules/pagination";
+@import "modules/attachments";
+@import "modules/choices";
+@import "modules/footer";
 @import "modules/formated";
 // Pages
 // ==================
 @import "pages/homepage";
 @import "pages/dashboard";
+@import "pages/blog";
 // @import "pages/single";
 // @import "pages/single";

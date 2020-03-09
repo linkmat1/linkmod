@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Forums;
 
-use App\Entity\Forums\ForumCategory;
+use App\Entity\Forums\ForumTopics;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method ForumCategory|null find($id, $lockMode = null, $lockVersion = null)
- * @method ForumCategory|null findOneBy(array $criteria, array $orderBy = null)
- * @method ForumCategory[]    findAll()
- * @method ForumCategory[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ForumTopics|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ForumTopics|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ForumTopics[]    findAll()
+ * @method ForumTopics[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ForumCategoryRepository extends ServiceEntityRepository
+class ForumTopicsRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, ForumCategory::class);
+        parent::__construct($registry, ForumTopics::class);
     }
 
     // /**
-    //  * @return ForumCategory[] Returns an array of ForumCategory objects
+    //  * @return ForumTopics[] Returns an array of ForumTopics objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class ForumCategoryRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?ForumCategory
+    public function findOneBySomeField($value): ?ForumTopics
     {
         return $this->createQueryBuilder('f')
             ->andWhere('f.exampleField = :val')

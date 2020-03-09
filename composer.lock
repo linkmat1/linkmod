@@ -1,20 +1,20 @@
 {
-    "_readme": [
-        "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
-        "This file is @generated automatically"
-    ],
-    "content-hash": "8051defea4f551f7f6efb2b8b85b0247",
-    "packages": [
-        {
-            "name": "beberlei/doctrineextensions",
-            "version": "v1.2.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/beberlei/DoctrineExtensions.git",
-                "reference": "af72c4a136b744f1268ca8bb4da47a2f8af78f86"
-            },
-            "dist": {
+  "_readme": [
+    "This file locks the dependencies of your project to a known state",
+    "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+    "This file is @generated automatically"
+  ],
+  "content-hash": "ebaa7ead1970968cf9f06e4092648ea8",
+  "packages": [
+    {
+      "name": "beberlei/doctrineextensions",
+      "version": "v1.2.6",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/beberlei/DoctrineExtensions.git",
+        "reference": "af72c4a136b744f1268ca8bb4da47a2f8af78f86"
+      },
+      "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/beberlei/DoctrineExtensions/zipball/af72c4a136b744f1268ca8bb4da47a2f8af78f86",
                 "reference": "af72c4a136b744f1268ca8bb4da47a2f8af78f86",
@@ -2245,37 +2245,37 @@
             ],
             "time": "2019-12-20T14:22:59+00:00"
         },
-        {
-            "name": "ocramius/package-versions",
-            "version": "1.5.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Ocramius/PackageVersions.git",
-                "reference": "1d32342b8c1eb27353c8887c366147b4c2da673c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Ocramius/PackageVersions/zipball/1d32342b8c1eb27353c8887c366147b4c2da673c",
-                "reference": "1d32342b8c1eb27353c8887c366147b4c2da673c",
-                "shasum": ""
-            },
+    {
+      "name": "ocramius/package-versions",
+      "version": "1.7.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/Ocramius/PackageVersions.git",
+        "reference": "651c372efc914aea8223e049f85afaf65e09ba23"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/Ocramius/PackageVersions/zipball/651c372efc914aea8223e049f85afaf65e09ba23",
+        "reference": "651c372efc914aea8223e049f85afaf65e09ba23",
+        "shasum": ""
+      },
             "require": {
-                "composer-plugin-api": "^1.0.0",
-                "php": "^7.3.0"
+              "composer-plugin-api": "^1.1.0",
+              "php": "^7.4.0"
             },
             "require-dev": {
-                "composer/composer": "^1.8.6",
-                "doctrine/coding-standard": "^6.0.0",
-                "ext-zip": "*",
-                "infection/infection": "^0.13.4",
-                "phpunit/phpunit": "^8.2.5",
-                "vimeo/psalm": "^3.4.9"
+              "composer/composer": "^1.9.3",
+              "doctrine/coding-standard": "^7.0.2",
+              "ext-zip": "^1.15.0",
+              "infection/infection": "^0.15.3",
+              "phpunit/phpunit": "^9.0.1",
+              "vimeo/psalm": "^3.9.3"
             },
             "type": "composer-plugin",
             "extra": {
                 "class": "PackageVersions\\Installer",
                 "branch-alias": {
-                    "dev-master": "1.6.x-dev"
+                  "dev-master": "1.99.x-dev"
                 }
             },
             "autoload": {
@@ -2294,7 +2294,7 @@
                 }
             ],
             "description": "Composer plugin that provides efficient querying for installed package versions (no runtime IO)",
-            "time": "2019-07-17T15:49:50+00:00"
+      "time": "2020-03-06T11:34:16+00:00"
         },
         {
             "name": "ocramius/proxy-manager",
@@ -3011,24 +3011,86 @@
                     "email": "fabien@symfony.com"
                 }
             ],
-            "description": "This bundle provides a way to configure your controllers with annotations",
-            "keywords": [
-                "annotations",
-                "controllers"
-            ],
-            "time": "2019-12-27T08:57:19+00:00"
+          "description": "This bundle provides a way to configure your controllers with annotations",
+          "keywords": [
+            "annotations",
+            "controllers"
+          ],
+          "time": "2019-12-27T08:57:19+00:00"
+        },
+    {
+      "name": "swiftmailer/swiftmailer",
+      "version": "v6.2.3",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/swiftmailer/swiftmailer.git",
+        "reference": "149cfdf118b169f7840bbe3ef0d4bc795d1780c9"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/149cfdf118b169f7840bbe3ef0d4bc795d1780c9",
+        "reference": "149cfdf118b169f7840bbe3ef0d4bc795d1780c9",
+        "shasum": ""
+      },
+      "require": {
+        "egulias/email-validator": "~2.0",
+        "php": ">=7.0.0",
+        "symfony/polyfill-iconv": "^1.0",
+        "symfony/polyfill-intl-idn": "^1.10",
+        "symfony/polyfill-mbstring": "^1.0"
+      },
+      "require-dev": {
+        "mockery/mockery": "~0.9.1",
+        "symfony/phpunit-bridge": "^3.4.19|^4.1.8"
+      },
+      "suggest": {
+        "ext-intl": "Needed to support internationalized email addresses",
+        "true/punycode": "Needed to support internationalized email addresses, if ext-intl is not installed"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "6.2-dev"
+        }
+      },
+      "autoload": {
+        "files": [
+          "lib/swift_required.php"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Chris Corbyn"
         },
         {
-            "name": "symfony/apache-pack",
-            "version": "v1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/apache-pack.git",
-                "reference": "3aa5818d73ad2551281fc58a75afd9ca82622e6c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/apache-pack/zipball/3aa5818d73ad2551281fc58a75afd9ca82622e6c",
+          "name": "Fabien Potencier",
+          "email": "fabien@symfony.com"
+        }
+      ],
+      "description": "Swiftmailer, free feature-rich PHP mailer",
+      "homepage": "https://swiftmailer.symfony.com",
+      "keywords": [
+        "email",
+        "mail",
+        "mailer"
+      ],
+      "time": "2019-11-12T09:31:26+00:00"
+    },
+    {
+      "name": "symfony/apache-pack",
+      "version": "v1.0.1",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/symfony/apache-pack.git",
+        "reference": "3aa5818d73ad2551281fc58a75afd9ca82622e6c"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/apache-pack/zipball/3aa5818d73ad2551281fc58a75afd9ca82622e6c",
                 "reference": "3aa5818d73ad2551281fc58a75afd9ca82622e6c",
                 "shasum": ""
             },
@@ -6237,26 +6299,91 @@
             "description": "Symfony String component",
             "homepage": "https://symfony.com",
             "keywords": [
-                "grapheme",
-                "i18n",
-                "string",
-                "unicode",
-                "utf-8",
-                "utf8"
+              "grapheme",
+              "i18n",
+              "string",
+              "unicode",
+              "utf-8",
+              "utf8"
             ],
-            "time": "2020-02-26T22:30:10+00:00"
+          "time": "2020-02-26T22:30:10+00:00"
+        },
+    {
+      "name": "symfony/swiftmailer-bundle",
+      "version": "v3.4.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/symfony/swiftmailer-bundle.git",
+        "reference": "553d2474288349faed873da8ab7c1551a00d26ae"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/swiftmailer-bundle/zipball/553d2474288349faed873da8ab7c1551a00d26ae",
+        "reference": "553d2474288349faed873da8ab7c1551a00d26ae",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=7.1",
+        "swiftmailer/swiftmailer": "^6.1.3",
+        "symfony/config": "^4.3.8|^5.0",
+        "symfony/dependency-injection": "^4.3.8|^5.0",
+        "symfony/http-kernel": "^4.3.8|^5.0"
+      },
+      "conflict": {
+        "twig/twig": "<1.41|<2.10"
+      },
+      "require-dev": {
+        "symfony/console": "^4.3.8|^5.0",
+        "symfony/framework-bundle": "^4.3.8|^5.0",
+        "symfony/phpunit-bridge": "^4.3.8|^5.0",
+        "symfony/yaml": "^4.3.8|^5.0"
+      },
+      "suggest": {
+        "psr/log": "Allows logging"
+      },
+      "type": "symfony-bundle",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "3.4-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Symfony\\Bundle\\SwiftmailerBundle\\": ""
+        },
+        "exclude-from-classmap": [
+          "/Tests/"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Fabien Potencier",
+          "email": "fabien@symfony.com"
         },
         {
-            "name": "symfony/translation",
-            "version": "v5.0.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/translation.git",
-                "reference": "e9b93f42a1fd6aec6a0872d59ee5c8219a7d584b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/e9b93f42a1fd6aec6a0872d59ee5c8219a7d584b",
+          "name": "Symfony Community",
+          "homepage": "http://symfony.com/contributors"
+        }
+      ],
+      "description": "Symfony SwiftmailerBundle",
+      "homepage": "http://symfony.com",
+      "time": "2019-11-14T16:18:31+00:00"
+    },
+    {
+      "name": "symfony/translation",
+      "version": "v5.0.5",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/symfony/translation.git",
+        "reference": "e9b93f42a1fd6aec6a0872d59ee5c8219a7d584b"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/symfony/translation/zipball/e9b93f42a1fd6aec6a0872d59ee5c8219a7d584b",
                 "reference": "e9b93f42a1fd6aec6a0872d59ee5c8219a7d584b",
                 "shasum": ""
             },
@@ -8147,38 +8274,38 @@
             ],
             "time": "2020-01-17T21:11:47+00:00"
         },
-        {
-            "name": "nelmio/alice",
-            "version": "v3.5.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nelmio/alice.git",
-                "reference": "4a8d15ea1b70869a8b5eaaf3bf6d68b228322bc4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nelmio/alice/zipball/4a8d15ea1b70869a8b5eaaf3bf6d68b228322bc4",
-                "reference": "4a8d15ea1b70869a8b5eaaf3bf6d68b228322bc4",
-                "shasum": ""
-            },
+      {
+        "name": "nelmio/alice",
+        "version": "v3.6.0",
+        "source": {
+          "type": "git",
+          "url": "https://github.com/nelmio/alice.git",
+          "reference": "1cfaca8e8c798796b3dfe1f55e4e25dee965ffb6"
+        },
+        "dist": {
+          "type": "zip",
+          "url": "https://api.github.com/repos/nelmio/alice/zipball/1cfaca8e8c798796b3dfe1f55e4e25dee965ffb6",
+          "reference": "1cfaca8e8c798796b3dfe1f55e4e25dee965ffb6",
+          "shasum": ""
+        },
             "require": {
-                "fzaninotto/faker": "^1.6",
-                "myclabs/deep-copy": "^1.5.2",
-                "php": "^7.1",
-                "sebastian/comparator": "^3.0",
-                "symfony/property-access": "^2.8 || ^3.4 || ^4.0 || ^5.0",
-                "symfony/yaml": "^2.8 || ^3.4 || ^4.0 || ^5.0"
+              "fzaninotto/faker": "^1.6",
+              "myclabs/deep-copy": "^1.5.2",
+              "php": "^7.1",
+              "sebastian/comparator": "^3.0 || ^4.0",
+              "symfony/property-access": "^2.8 || ^3.4 || ^4.0 || ^5.0",
+              "symfony/yaml": "^2.8 || ^3.4 || ^4.0 || ^5.0"
             },
             "conflict": {
                 "symfony/framework-bundle": "<3.4"
             },
             "require-dev": {
-                "bamarni/composer-bin-plugin": "^1.1.0",
-                "php-mock/php-mock": "^2.0",
-                "phpspec/prophecy": "^1.6",
-                "phpunit/phpunit": "^7.0",
-                "symfony/phpunit-bridge": "^3.4.5 || ^4.0.5 || ^5.0",
-                "symfony/var-dumper": "^3.4 || ^4.0 || ^5.0"
+              "bamarni/composer-bin-plugin": "^1.1.0",
+              "php-mock/php-mock": "^2.0",
+              "phpspec/prophecy": "^1.6",
+              "phpunit/phpunit": "^7.0 || ^8.5",
+              "symfony/phpunit-bridge": "^3.4.5 || ^4.0.5 || ^5.0",
+              "symfony/var-dumper": "^3.4 || ^4.0 || ^5.0"
             },
             "suggest": {
                 "theofidry/alice-data-fixtures": "Wrapper for Alice to provide a persistence layer."
@@ -8225,7 +8352,7 @@
                 "faker",
                 "test"
             ],
-            "time": "2019-12-04T08:34:42+00:00"
+        "time": "2020-03-08T23:24:35+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -8432,20 +8559,20 @@
             ],
             "time": "2018-02-15T16:58:55+00:00"
         },
-        {
-            "name": "phpspec/prophecy",
-            "version": "v1.10.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "b4400efc9d206e83138e2bb97ed7f5b14b831cd9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/b4400efc9d206e83138e2bb97ed7f5b14b831cd9",
-                "reference": "b4400efc9d206e83138e2bb97ed7f5b14b831cd9",
-                "shasum": ""
-            },
+      {
+        "name": "phpspec/prophecy",
+        "version": "v1.10.3",
+        "source": {
+          "type": "git",
+          "url": "https://github.com/phpspec/prophecy.git",
+          "reference": "451c3cd1418cf640de218914901e51b064abb093"
+        },
+        "dist": {
+          "type": "zip",
+          "url": "https://api.github.com/repos/phpspec/prophecy/zipball/451c3cd1418cf640de218914901e51b064abb093",
+          "reference": "451c3cd1418cf640de218914901e51b064abb093",
+          "shasum": ""
+        },
             "require": {
                 "doctrine/instantiator": "^1.0.2",
                 "php": "^5.3|^7.0",
@@ -8493,22 +8620,22 @@
                 "spy",
                 "stub"
             ],
-            "time": "2020-01-20T15:57:02+00:00"
+        "time": "2020-03-05T15:02:03+00:00"
         },
-        {
-            "name": "phpstan/phpstan",
-            "version": "0.12.12",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "aa7877f4240a92bdd51524b4305c380df0e73a83"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/aa7877f4240a92bdd51524b4305c380df0e73a83",
-                "reference": "aa7877f4240a92bdd51524b4305c380df0e73a83",
-                "shasum": ""
-            },
+      {
+        "name": "phpstan/phpstan",
+        "version": "0.12.14",
+        "source": {
+          "type": "git",
+          "url": "https://github.com/phpstan/phpstan.git",
+          "reference": "37bdd26a80235d0f9045b49f4151102b7831cbe2"
+        },
+        "dist": {
+          "type": "zip",
+          "url": "https://api.github.com/repos/phpstan/phpstan/zipball/37bdd26a80235d0f9045b49f4151102b7831cbe2",
+          "reference": "37bdd26a80235d0f9045b49f4151102b7831cbe2",
+          "shasum": ""
+        },
             "require": {
                 "php": "^7.1"
             },
@@ -8532,7 +8659,7 @@
                 "MIT"
             ],
             "description": "PHPStan - PHP Static Analysis Tool",
-            "time": "2020-03-01T22:09:42+00:00"
+        "time": "2020-03-02T22:29:43+00:00"
         },
         {
             "name": "phpstan/phpstan-doctrine",
@@ -10124,20 +10251,20 @@
             "homepage": "https://symfony.com",
             "time": "2020-02-29T10:07:09+00:00"
         },
-        {
-            "name": "symfony/maker-bundle",
-            "version": "v1.14.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/maker-bundle.git",
-                "reference": "c864e7f9b8d1e1f5f60acc3beda11299f637aded"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/c864e7f9b8d1e1f5f60acc3beda11299f637aded",
-                "reference": "c864e7f9b8d1e1f5f60acc3beda11299f637aded",
-                "shasum": ""
-            },
+      {
+        "name": "symfony/maker-bundle",
+        "version": "v1.14.6",
+        "source": {
+          "type": "git",
+          "url": "https://github.com/symfony/maker-bundle.git",
+          "reference": "bc4df88792fbaaeb275167101dc714218475db5f"
+        },
+        "dist": {
+          "type": "zip",
+          "url": "https://api.github.com/repos/symfony/maker-bundle/zipball/bc4df88792fbaaeb275167101dc714218475db5f",
+          "reference": "bc4df88792fbaaeb275167101dc714218475db5f",
+          "shasum": ""
+        },
             "require": {
                 "doctrine/inflector": "^1.2",
                 "nikic/php-parser": "^4.0",
@@ -10190,7 +10317,7 @@
                 "scaffold",
                 "scaffolding"
             ],
-            "time": "2019-11-07T00:56:03+00:00"
+        "time": "2020-03-04T13:57:29+00:00"
         },
         {
             "name": "symfony/phpunit-bridge",

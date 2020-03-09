@@ -77,3 +77,8 @@ $font-alt: "Montserrat", "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe 
 .reader-only {
   display: none;
 }
+
+.space02 {
+  display: block;
+  padding-top: space(2) !important;
+}

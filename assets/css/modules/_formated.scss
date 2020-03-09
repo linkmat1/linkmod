@@ -1,7 +1,11 @@
 .formatted {
-  font-size: 20px;
+  font-size: 18px;
 
-  details > summary{
+  strong {
+    font-weight: bold;
+  }
+
+  details > summary {
     list-style: none;
   }
 

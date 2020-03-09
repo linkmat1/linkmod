@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Category;
 
+use App\Type\EditorType;
+use App\Type\SwitchType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -17,9 +19,11 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('title', TextType::class)
-            ->add('isOnline', CheckboxType::class)
+            ->add('isOnline', SwitchType::class)
             ->add('slug', TextType::class)
-            ->add('shortdesc', TextareaType::class)
+            ->add('shortdesc', EditorType::class, [
+                'label' => 'Petite description (max 255 charactere)'
+            ])
 
         ;
     }

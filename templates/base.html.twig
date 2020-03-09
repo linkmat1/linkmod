@@ -1,44 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui"/>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700|Roboto:300,400&display=swap"
-          rel="stylesheet">
-    {% block stylesheets %}
-        {{ encore_entry_link_tags('app') }}
-    {% endblock %}
-    {% block javascripts %}
-        {{ encore_entry_script_tags('app') }}
-    {% endblock %}
-    <link rel="manifest" href="/manifest.webmanifest">
-    <meta name="turbolinks-cache-control" content="no-cache"/>
-</head>
-<body>
-<nav class="header">
-    <ul class="header__nav">
-        <li class="header__home"><a href="{{path('home') }}">{{ icon('home') }}</a></li>
-        <li><a href="#">{{ icon('video') }}Forum</a></li>
-        <li><a href="#">{{ icon('video') }}Mods</a></li>
-        <li><a href="#">{{ icon('video') }}Tutoriels</a></li>
-        <li><a href="#">{{ icon('video') }}A Propos</a></li>
-        {% if app.user %}
-            <li class="header__account"><a href="{{ path('app_logout') }}">{{ icon('user') }} {{ app.user.username }}</a>
-            </li>
-        {% else %}
-            <li class="header__account"><a href="{{ path('app_login') }}">{{ icon('user') }} Se connecter</a></li>
-        {% endif %}
-        {% if is_granted('ROLE_ADMIN') %}
-            <li><a href="{{ path('admin_dashboard') }}">Admin</a></li>
-        {% endif %}
-        {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
-            <a href="{{ path('home', {'_switch_user': '_exit'}) }}">Sortir Ninja</a>
-        {% endif %}
-    </ul>
-</nav>
+{% include 'partials/_headers.html.twig' %}
+{% include 'partials/_nav.html.twig' %}
 {% include 'partials/flash.html.twig' %}
 {% block body %}{% endblock %}
-
-</body>
-</html>

@@ -4,7 +4,25 @@
 
 {% block body %}
 
+    <div class="container">
+
+        {% for content in contents %}
+            <div class="blog-single">
+
+                <div class="blog-single__body formatted ">
+                    <div class="blog-post__title"> {{ content.title }}</div>
+                    <div class="blog-post__meta">
+                        {% if content.author == null %} Inconue {% else %}
+                            {{ content.author.username }} {% endif %} - Posté le
+                        {{ content.createdAt | date('j F Y') }}
+                        dans {{ content.category.title }}</div>
+                    {{ content.content | markdown }}
+                </div>
+            </div>
 
 
+        {% endfor %}
+    </div>
+    {{ knp_pagination_render(contents) }}
 
 {% endblock %}

@@ -47,14 +47,26 @@ class ContentRepository extends ServiceEntityRepository
             ->enableResultCache(true, 8600)
             ->getSingleScalarResult();
     }
+
     public function getContentALaUnes()
     {
         return $this->createQueryBuilder('c')
             ->andwhere('c.upnews = true AND c.isOK = true')
-            ->andwhere('c.publish_at >= :now')
+            ->andwhere('c.publish_at <= :now')
             ->orderBy('c.created_at', 'DESC')
             ->setParameter('now', new \DateTime('now'))
             ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getContentPublish()
+    {
+        return $this->createQueryBuilder('c')
+            ->andwhere('c.isOK = true')
+            ->andwhere('c.publish_at < :now')
+            ->orderBy('c.created_at', 'DESC')
+            ->setParameter('now', new \DateTime('now'))
             ->getQuery()
             ->getResult();
     }
