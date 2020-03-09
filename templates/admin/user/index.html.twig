@@ -10,19 +10,20 @@
 
         {% endif %}
         <form class="form-group dashboard-search">
-            <input name="q" type="text" placeholder="Rechercher un article" value="{{ app.request.get('q') }}" >
+            <input name="q" type="text" placeholder="Rechercher un article" value="{{ app.request.get('q') }}">
         </form>
 
     </div>
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Inscrit le</th>
+            <th>Roles</th>
+            <th>actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for user in users %}
@@ -30,16 +31,17 @@
                 <td>{{ user.id }}</td>
                 <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
+                <td>{{ user.createdat | date('j F yy') }}</td>
 
                 <td> {% for role in user.roles %}
                         {% if role == "ROLE_USER" %}
-                           <div class="role_user">Utilisateur</div>
-                        {% elseif role  == "ROLE_EDITOR"%}
-                        <div class="role_editor">Editor</div>
+                            <div class="role_user">Utilisateur</div>
+                        {% elseif role  == "ROLE_EDITOR" %}
+                            <div class="role_editor">Editor</div>
                         {% elseif role == "ROLE_ADMIN" %}
-                          <div class="role_admin">Administrateur</div>
+                            <div class="role_admin">Administrateur</div>
                         {% elseif role == "ROLE_SUPERADMIN" %}
-                          <div class="role_fondateur">Fondateur</div>
+                            <div class="role_fondateur">Fondateur</div>
                         {% elseif role == "ROLE_MODO" %}
                            <div class="role_modo">Moderateur </div>
                         {% endif %}

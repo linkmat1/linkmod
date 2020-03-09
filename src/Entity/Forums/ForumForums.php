@@ -29,13 +29,13 @@ class ForumForums
     private string $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ForumCategory", inversedBy="forumForums")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Forums\ForumCategory", inversedBy="forumForums")
      * @ORM\JoinColumn(nullable=false)
      */
     private $category_id;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ForumTopics", mappedBy="forum_id")
+     * @ORM\OneToMany(targetEntity="App\Entity\Forums\ForumTopics", mappedBy="forum_id")
      */
     private $forumTopics;
 

@@ -17,7 +17,7 @@ class ForumMessages
     private int $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ForumTopics", inversedBy="forumMessages")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Forums\ForumTopics", inversedBy="forumMessages")
      * @ORM\JoinColumn(nullable=false)
      */
     private $topic_id;
