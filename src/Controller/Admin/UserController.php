@@ -42,7 +42,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("/", name="user_index", methods={"GET"})
-
+     * @param Request $request
      * @return Response
      */
     public function index(Request $request): Response

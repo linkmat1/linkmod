@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Faker\Provider\DateTime;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -37,9 +38,9 @@ class User implements UserInterface
 
     /**
      * @var string The hashed password
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
-    private string $password = "";
+    private ?string $password = "";
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -86,6 +87,28 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $realName ="";
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private bool $term = false;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $accept_at;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $created_at;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updated_at;
+
+
 
 
     public function __construct()
@@ -335,6 +358,57 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getTerm(): ?bool
+    {
+        return $this->term;
+    }
+
+    public function setTerm(bool $term): self
+    {
+        $this->term = $term;
+
+        return $this;
+    }
+
+    public function getAcceptAt(): ?\DateTimeInterface
+    {
+        return $this->accept_at;
+    }
+
+    public function setAcceptAt(?\DateTimeInterface $accept_at): self
+    {
+        $accept_at =  new \DateTime('now');
+        $this->accept_at = $accept_at;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+
 
 
 
