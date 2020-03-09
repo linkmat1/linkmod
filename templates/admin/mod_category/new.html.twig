@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ModCategory{% endblock %}
+
+{% block body %}
+    <h1>Create new ModCategory</h1>
+
+    {{ include('mod_category/_form.html.twig') }}
+
+    <a href="{{ path('mod_category_index') }}">back to list</a>
+{% endblock %}

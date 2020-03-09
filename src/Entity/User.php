@@ -67,6 +67,26 @@ class User implements UserInterface
      */
     private $mods;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private ?string $bio ="";
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $instagram = "";
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $snapshat = "";
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $realName ="";
+
 
     public function __construct()
     {
@@ -264,6 +284,54 @@ class User implements UserInterface
             }
 
         }
+
+        return $this;
+    }
+
+    public function getBio(): ?string
+    {
+        return $this->bio;
+    }
+
+    public function setBio(?string $bio): self
+    {
+        $this->bio = $bio;
+
+        return $this;
+    }
+
+    public function getInstagram(): ?string
+    {
+        return $this->instagram;
+    }
+
+    public function setInstagram(?string $instagram): self
+    {
+        $this->instagram = $instagram;
+
+        return $this;
+    }
+
+    public function getSnapshat(): ?string
+    {
+        return $this->snapshat;
+    }
+
+    public function setSnapshat(?string $snapshat): self
+    {
+        $this->snapshat = $snapshat;
+
+        return $this;
+    }
+
+    public function getRealName(): ?string
+    {
+        return $this->realName;
+    }
+
+    public function setRealName(?string $realName): self
+    {
+        $this->realName = $realName;
 
         return $this;
     }

@@ -86,3 +86,9 @@ body::after {
 @import "pages/dashboard";
 // @import "pages/single";
 // @import "pages/single";
+
+.form-check{
+  display: inline-block;
+  width: inherit;
+  margin-left: space(3);
+}

@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Type\EditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -34,6 +35,10 @@ class UserType extends AbstractType
             ->add('facebook', TextType::class)
             ->add('github', TextType::class)
             ->add('website', TextType::class)
+            ->add('instagram', TextType::class)
+            ->add('snapshat', TextType::class)
+            ->add('bio', EditorType::class)
+
         ;
     }
 

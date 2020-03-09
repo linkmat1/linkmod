@@ -4,7 +4,11 @@
 
 {% block body %}
     <h1>User index</h1>
-    <div class="right-align">
+    <div class="right-align2">
+        {% if is_granted('ROLE_SUPERADMIN') %}
+            <a href="{{ path('user_new') }}" class="btn-gradient">Nouveau Utilisateur</a>
+
+        {% endif %}
         <form class="form-group dashboard-search">
             <input name="q" type="text" placeholder="Rechercher un article" value="{{ app.request.get('q') }}" >
         </form>

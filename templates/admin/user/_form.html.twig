@@ -1,5 +1,22 @@
-{{ form_start(form) }}
-{{ form_widget(form) }}
-<button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, {attr: {class: 'stacked'}}) }}
+<div class="grid">
+    {{ form_row(form.username) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.snapshat) }}
+    {{ form_row(form.facebook) }}
+    {{ form_row(form.website) }}
+    {{ form_row(form.github) }}
+    {{ form_row(form.instagram) }}
+
+</div>
+<div class="full">
+    {{ form_row(form.roles) }}
+    {{ form_row(form.bio) }}
+
+</div>
+<div class="full">
+    <button class="btn-big">{{ button_label|default('Save') }}</button>
+</div>
+
 
 {{ form_end(form) }}
