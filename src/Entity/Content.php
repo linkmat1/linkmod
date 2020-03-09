@@ -188,6 +188,7 @@ class Content
 
     public function setAuthor(?User $author): Content
     {
+
         $this->author = $author;
 
         return $this;

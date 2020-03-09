@@ -6,6 +6,9 @@ use App\Entity\Category;
 use App\Entity\Content;
 use App\Entity\User;
 use App\Type\DateTimeType;
+use App\Type\EditorType;
+use App\Type\SwitchType;
+use App\Type\UserChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -21,14 +24,14 @@ class ContentType extends AbstractType
         $builder
             ->add('title', TextType::class)
             ->add('slug', TextType::class)
-            ->add('content', TextareaType::class)
+
             ->add('created_at', DateTimeType::class)
-            ->add('isOnline', CheckboxType::class, [
+            ->add('isOnline', SwitchType::class, [
                 'label' => 'Publication Public',
                 'required' => false
             ])
-            ->add('isOk', CheckboxType::class, [
-                'label' => 'Validée par un Admin',
+            ->add('isOk', SwitchType::class, [
+                'label' => 'Validée par Admin',
                 'required' => false,
                 'data' => true
             ])
@@ -36,19 +39,21 @@ class ContentType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'title',
             ])
-            ->add('author', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'username',
-            ])
+            ->add('author', UserChoiceType::class)
             ->add('publish_at', DateTimeType::class)
             ->add('reference', TextType::class, [
                 'required' => false,
-                'label' => 'Ajoutée une reference'
+                'label' => 'Ajoutée une reference',
+                'attr' => [
+                    'placeholder' => 'http://liendusite.fr'
+                ]
+
             ])
-            ->add('upnews', CheckboxType::class, [
+            ->add('upnews', SwitchType::class, [
                 'label' => 'A la unes !',
                 'required' => false
             ])
+            ->add('content', EditorType::class)
         ;
     }
 

@@ -145,9 +145,26 @@
   width: 100%;
 }
 
+.left__align{
+  display: inline-flex;
+  width: 68%;
+}
+.left__align a{
+  display: inline-flex;
+  width: 30%;
+  text-align: center;
+  justify-content: center;
+  justify-items: baseline;
+  border-bottom: #41CF7C 2px solid;
+}
+.left__align a:hover{
+ border-bottom: 2px solid #000;
+
+
+}
 .right-align {
-  display: flex;
-  margin-left: 70%;
+  display: inline-flex;
+  width: 30%;
   margin-bottom: space(3);
 }
 .right-align a {

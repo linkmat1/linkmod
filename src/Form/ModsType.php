@@ -2,9 +2,12 @@
 
 namespace App\Form;
 
+use App\Entity\Brand;
+use App\Entity\ModCategory;
 use App\Entity\Mods;
 
 use App\Entity\User;
+use App\Type\EditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -19,11 +22,13 @@ class ModsType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('description',TextType::class)
+
             ->add('credit',TextType::class)
             ->add('chevaux',TextType::class)
+            ->add('slug',TextType::class)
             ->add('model',TextType::class)
             ->add('price', TextType::class)
+            ->add('url', TextType::class)
             ->add('option1', TextType::class, [
                 'required' => false,
                 'label'=> 'Optionelle : Option 1'
@@ -46,13 +51,17 @@ class ModsType extends AbstractType
             ->add('colorchoice',CheckboxType::class, [
                 'required' => false
             ])
-            ->add('author',EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'username',
+            ->add('brand',EntityType::class, [
+                'class' => Brand::class,
+                'choice_label' => 'name',
             ])
             ->add('testedby',EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'username',
+            ])
+            ->add('modCategory',EntityType::class, [
+                'class' => ModCategory::class,
+                'choice_label' => 'name',
             ])
             ->add('support', ChoiceType::class, [
                 'choices' =>[
@@ -83,6 +92,9 @@ class ModsType extends AbstractType
                 ],
                 'expanded' => true,
                 'multiple' => true
+            ])
+            ->add('description',EditorType::class, [
+                'label' => 'Description'
             ])
         ;
     }

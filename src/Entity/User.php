@@ -248,7 +248,7 @@ class User implements UserInterface
         if (!$this->mods->contains($mod)) {
             $this->mods[] = $mod;
             $mod->setTestedby($this);
-            $mod->setAuthor($this);
+
         }
 
         return $this;
@@ -262,9 +262,7 @@ class User implements UserInterface
             if ($mod->getTestedby() === $this) {
                 $mod->setTestedby(null);
             }
-            if ($mod->getAuthor() === $this) {
-                $mod->setAuthor(null);
-            }
+
         }
 
         return $this;

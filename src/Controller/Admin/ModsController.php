@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Mods;
 use App\Form\ModsType;
 use App\Repository\ModsRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,14 +18,48 @@ class ModsController extends AbstractController
 {
     private string $adminPath = 'admin/';
     /**
+     * @var ModsRepository
+     */
+    private ModsRepository $em;
+    /**
+     * @var PaginatorInterface
+     */
+    private PaginatorInterface $paginator;
+
+    /**
+     * ModsController constructor.
+     * @param ModsRepository $em
+     * @param PaginatorInterface $paginator
+     */
+    public function __construct(ModsRepository $em, PaginatorInterface $paginator)
+    {
+        $this->em = $em;
+        $this->paginator = $paginator;
+    }
+
+    /**
      * @Route("/", name="mods_index", methods={"GET"})
-     * @param ModsRepository $modsRepository
+     * @param Request $request
      * @return Response
      */
-    public function index(ModsRepository $modsRepository): Response
+    public function index(Request $request): Response
     {
+        $query = $this->em->createQueryBuilder('m')
+            ->orderBy('m.id', 'DESC');
+        if($request->get('q')){
+            $query = $query->where('m.name LIKE :name')
+                ->setParameter('name', "%" . $request->get('q') . "%");
+        }
+        $page = $request->query->getInt('page', 1);
+        $mods = $this->paginator->paginate(
+            $query->getQuery(),
+            $page,
+            12
+        );
+
         return $this->render($this->adminPath.'mods/index.html.twig', [
-            'mods' => $modsRepository->findAll(),
+            'mods' => $mods,
+            'page' => $page
         ]);
     }
 
@@ -32,6 +67,7 @@ class ModsController extends AbstractController
      * @Route("/new", name="mods_new", methods={"GET","POST"})
      * @param Request $request
      * @return Response
+     * @throws \Exception
      */
     public function new(Request $request): Response
     {
@@ -40,7 +76,10 @@ class ModsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $entityManager = $this->getDoctrine()->getManager();
+            $mod->setCreatedAt(new \DateTime('now'));
+            $mod->setSlug($mod->slugyfy());
             $entityManager->persist($mod);
             $entityManager->flush();
 
@@ -66,13 +105,14 @@ class ModsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="mods_edit", methods={"GET","POST"})
+     * @Route("/{id<\d+>}/edit", name="mods_edit", methods={"GET","POST"})
      * @param Request $request
      * @param Mods $mod
      * @return Response
      */
     public function edit(Request $request, Mods $mod): Response
     {
+
         $form = $this->createForm(ModsType::class, $mod);
         $form->handleRequest($request);
 
@@ -104,4 +144,5 @@ class ModsController extends AbstractController
 
         return $this->redirectToRoute('mods_index');
     }
+
 }

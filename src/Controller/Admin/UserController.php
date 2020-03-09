@@ -6,8 +6,10 @@ use App\Entity\User;
 use App\Form\User2Type;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,11 +28,16 @@ class UserController extends AbstractController
      * @var PaginatorInterface
      */
     private PaginatorInterface $paginator;
+    /**
+     * @var EntityManagerInterface
+     */
+    private EntityManagerInterface $manager;
 
-    public function __construct(UserRepository $em, PaginatorInterface $paginator)
+    public function __construct(UserRepository $em, PaginatorInterface $paginator, EntityManagerInterface $manager)
     {
         $this->em = $em;
         $this->paginator = $paginator;
+        $this->manager = $manager;
     }
 
     /**
@@ -147,6 +154,25 @@ class UserController extends AbstractController
         }
 
         return $this->redirectToRoute('user_index');
+    }
+    /**
+     * @Route("/users/search/{q?}", name="admin_user_autocomplete")
+     */
+    public function search(string $q): JsonResponse
+    {
+        /** @var UserRepository $repository */
+        $repository = $this->manager->getRepository(User::class);
+        $q = strtolower($q);
+        $users = $repository
+            ->createQueryBuilder('u')
+            ->select('u.id', 'u.username')
+            ->where('LOWER(u.username) LIKE :username')
+            ->setParameter('username', "%$q%")
+            ->setMaxResults(25)
+            ->getQuery()
+            ->getResult();
+        return new JsonResponse($users);
+
     }
 
 }

@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 /**
  * @Route("/admin/content")
  * @IsGranted("ROLE_ADMIN")
@@ -50,6 +51,7 @@ class ContentController extends AbstractController
      */
     public function index( Request $request): Response
     {
+
         $query = $this->em->createQueryBuilder('c')
             ->orderBy('c.id', 'DESC');
         if($request->get('q')){
@@ -147,7 +149,6 @@ class ContentController extends AbstractController
 
         return $this->redirectToRoute('content_index');
     }
-
 
 
 }

@@ -129,9 +129,19 @@ class Mods
     private $testedby;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="mods")
+     * @ORM\Column(type="string", length=255)
      */
-    private $author;
+    private string $slug = "";
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Brand", inversedBy="mods")
+     */
+    private $brand;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\ModCategory", inversedBy="Mods")
+     */
+    private $modCategory;
 
 
     public function getId(): ?int
@@ -403,14 +413,43 @@ class Mods
         return $this;
     }
 
-    public function getAuthor(): ?User
-    {
-        return $this->author;
+    public function slugyfy(){
+        $output = preg_replace('!\s+!', ' ', $this->name);
+        return str_replace(' ', '-', $output);
     }
 
-    public function setAuthor(?User $author): self
+    public function getSlug(): ?string
     {
-        $this->author = $author;
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $this->slugyfy();
+
+        return $this;
+    }
+
+    public function getBrand(): ?Brand
+    {
+        return $this->brand;
+    }
+
+    public function setBrand(?Brand $brand): self
+    {
+        $this->brand = $brand;
+
+        return $this;
+    }
+
+    public function getModCategory(): ?ModCategory
+    {
+        return $this->modCategory;
+    }
+
+    public function setModCategory(?ModCategory $modCategory): self
+    {
+        $this->modCategory = $modCategory;
 
         return $this;
     }

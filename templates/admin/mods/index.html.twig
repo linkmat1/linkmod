@@ -3,7 +3,15 @@
 {% block title %}Mods index{% endblock %}
 
 {% block body %}
-    <h1>Mods index</h1>
+    <div class="dashboard-title">
+        <h2>Gestion des Mods</h2>
+    </div>
+    <div class="right-align">
+        <form class="form-group dashboard-search">
+            <input name="q" type="text" placeholder="Rechercher un mods" value="{{ app.request.get('q') }}" >
+        </form>
+        <a href="{{ path('mods_new') }}" class="dashboard-btn">Create new</a>
+    </div>
 
     <table class="table">
         <thead>
@@ -21,14 +29,14 @@
             <tr>
                 <td>{{ mod.id }}</td>
                 <td>{{ mod.name }}</td>
-
-                <td>{{ mod.approuved ? 'Yes' : 'No' }}</td>
-                <td>{{ mod.certified ? 'Yes' : 'No' }}</td>
-                <td>{{ mod.withouterrors ? 'Yes' : 'No' }}</td>
+                <td><span class="bullet {% if mod.approuved == false %}bullet--danger{% endif %}"></span></td>
+                <td><span class="bullet {% if mod.certified == false %}bullet--danger{% endif %}"></span></td>
+                <td><span class="bullet {% if mod.withouterrors == false %}bullet--danger{% endif %}"></span></td>
 
                 <td>
                     <a href="{{ path('mods_show', {'id': mod.id}) }}">show</a>
-                    <a href="{{ path('mods_edit', {'id': mod.id}) }}">edit</a>
+                    <a href="{{ path('mods_edit', {slug: mod.slug, id: mod.id}) }}">{{ icon('edit') }}</a>
+
                 </td>
             </tr>
         {% else %}
@@ -39,5 +47,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('mods_new') }}">Create new</a>
+
+    {{ knp_pagination_render(mods) }}
 {% endblock %}

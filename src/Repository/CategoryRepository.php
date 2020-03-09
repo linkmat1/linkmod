@@ -29,6 +29,7 @@ class CategoryRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+
     // /**
     //  * @return Category[] Returns an array of Category objects
     //  */

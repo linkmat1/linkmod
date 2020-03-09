@@ -2,7 +2,9 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Brand;
 use App\Entity\Category;
+use App\Entity\ModCategory;
 use App\Entity\Mods;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -20,6 +22,7 @@ class ModsFixtures extends Fixture
             '2' => 'ps4',
             '3' => 'pc'
         ];
+        $slug = new Mods();
 
         for ($i = 0; $i < 150; ++$i) {
          $mods = (new Mods())
@@ -35,8 +38,24 @@ class ModsFixtures extends Fixture
              ->setColorrims($faker->boolean)
              ->setcolorchoice($faker->boolean)
              ->setCreatedAt($faker->dateTime)
-             ->setUrl($faker->url);
+             ->setUrl($faker->url)
+             ->setSlug($slug->slugyfy());
             $manager->persist($mods);
+        }
+
+        for ($i = 0; $i < 50; ++$i) {
+            $brand = (new Brand())
+                ->setName($faker->company)
+                ->setSlug($faker->slug);
+            $manager->persist($brand);
+
+            }
+
+        for ($i = 0; $i < 25; ++$i) {
+            $type = (new ModCategory())
+                ->setName($faker->lastName);
+            $manager->persist($type);
+
         }
         $manager->flush();
     }

@@ -20,7 +20,8 @@ class ContentRepository extends ServiceEntityRepository
     }
 
     public function getContentToApprouve(){
-        return $this->createQueryBuilder('c')->orderBy('c.id', 'DESC')
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.id', 'DESC')
             ->andwhere('c.isOK != true')
             ->setMaxResults(5)
             ->getQuery()
