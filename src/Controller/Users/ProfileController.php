@@ -17,7 +17,7 @@ class ProfileController extends AbstractController
 
 
     /**
-     * @Route("/profil/{username}-{id}", name="user_profil", methods={"GET"})
+     * @Route("/profil/", name="user_profil", methods={"GET"})
      */
     public function getProfil()
     {
