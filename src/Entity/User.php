@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Forums\ForumMessages;
+use App\Entity\Forums\ForumTopics;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -109,12 +111,12 @@ class User implements UserInterface
     private $updated_at;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ForumTopics", mappedBy="user_id")
+     * @ORM\OneToMany(targetEntity="App\Entity\Forums\ForumTopics", mappedBy="user_id")
      */
     private $forumTopics;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ForumMessages", mappedBy="user_id")
+     * @ORM\OneToMany(targetEntity="App\Entity\Forums\ForumMessages", mappedBy="user_id")
      */
     private $forumMessages;
 

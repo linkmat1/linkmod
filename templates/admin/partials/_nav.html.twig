@@ -1,21 +1,24 @@
 <nav class="header">
     <ul class="header__nav">
         <li class="header__home"><a href="{{ path('admin_dashboard') }}">{{ icon('home') }}</a></li>
-        <li><a href="{{path('content_index')}}">{{ icon('video') }}Gestion du Contenu</a></li>
-        <li><a href="{{path('user_index') }}">{{ icon('video') }}Gestion des Utilisateurs</a></li>
+        <li><a href="{{ path('content_index') }}">{{ icon('video') }}Gestion du Contenu</a></li>
+        <li><a href="{{ path('user_index') }}">{{ icon('video') }}Gestion des Utilisateurs</a></li>
+        <li><a href="{{ path('mods_index') }}">{{ icon('video') }}Gestion du Forum</a></li>
         <li><a href="{{ path('mods_index') }}">{{ icon('video') }}Gestion des Mods</a></li>
         {% if app.user %}
-            <li class="header__account"><a href="{{ path('app_logout') }}">{{ icon('user') }} {{ app.user.username }}</a>
+            <li class="header__account"><a href="{{ path('home') }}">{{ icon('user') }} {{ app.user.username }}</a>
             </li>
         {% else %}
             <li class="header__account"><a href="{{ path('app_login') }}">{{ icon('user') }} Se connecter</a></li>
+            <li class="header__account"><a href="{{ path('app_logout') }}">{{ icon('user') }} Se Deconectée</a></li>
         {% endif %}
-        {% if is_granted('ROLE_SUPERADMIN') %}
-            <li><a href="{{ path('superadmin_index') }}">Gestion SuperAdmin</a></li>
-        {% endif %}
+
         {% if is_granted('ROLE_ADMIN') %}
             <li><a href="{{ path('home') }}">Retour au site</a></li>
         {% endif %}
 
     </ul>
 </nav>
+{% if is_granted('ROLE_SUPERADMIN') %}
+    <li><a href="{{ path('superadmin_index') }}">Gestion SuperAdmin</a></li>
+{% endif %}

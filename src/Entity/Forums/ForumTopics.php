@@ -39,7 +39,7 @@ class ForumTopics
     private $updated_at;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ForumForums", inversedBy="forumTopics")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Forums\ForumForums", inversedBy="forumTopics")
      * @ORM\JoinColumn(nullable=false)
      */
     private $forum_id;
@@ -51,7 +51,7 @@ class ForumTopics
     private $user_id;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ForumMessages", mappedBy="topic_id")
+     * @ORM\OneToMany(targetEntity="App\Entity\Forums\ForumMessages", mappedBy="topic_id")
      */
     private $forumMessages;
 

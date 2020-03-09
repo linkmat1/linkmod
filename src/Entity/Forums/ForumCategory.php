@@ -29,7 +29,7 @@ class ForumCategory
     private int $position = 0;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ForumForums", mappedBy="category_id")
+     * @ORM\OneToMany(targetEntity="App\Entity\Forums\ForumForums", mappedBy="category_id")
      */
     private $forumForums;
 
