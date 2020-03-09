@@ -43,10 +43,15 @@
 
                 <td>
                     <div class="dashboard-actions">
-                    <a href="{{ path('user_show', {'id': user.id}) }}">{{ icon('clone')}}</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">{{ icon('edit')}}</a>
+                    <a title="Edition de l'article" href="{{ path('user_edit', {'id': user.id}) }}">{{ icon('edit')}}</a>
                     {% if is_granted('ROLE_SUPERADMIN') %}
-                        <a href="{{ app.request.baseUrl }}/?_switch_user={{ user.username }}">{{ icon('camera')}}</a>
+
+                        <form method="post" action="{{ path('user_delete', {'id': user.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                            <button class="btn">{{ icon('cross') }}</button>
+                        </form>
+                        <a title="Permet d'allez en Mode Ninja" href="{{ app.request.baseUrl }}/?_switch_user={{ user.username }}" >{{ icon('camera')}}</a>
                 {% endif %}
                     </div>
                 </td>
