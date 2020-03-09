@@ -19,7 +19,8 @@ class ContentRepository extends ServiceEntityRepository
         parent::__construct($registry, Content::class);
     }
 
-    public function getContentToApprouve(){
+    public function getContentToApprouve()
+    {
         return $this->createQueryBuilder('c')
             ->orderBy('c.id', 'DESC')
             ->andwhere('c.isOK != true')

@@ -7,7 +7,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class EditorType extends TextareaType
 {
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);

@@ -1,8 +1,6 @@
 <?php
 namespace App\Controller\Admin;
 
-
-
 use App\Entity\Content;
 use App\Form\ContentType;
 use App\Repository\ContentRepository;
@@ -13,16 +11,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 /**
  * @Route("/admin/content")
  * @IsGranted("ROLE_ADMIN")
  */
 class ContentController extends AbstractController
 {
-
-
-
     private string $adminPath = 'admin/';
     /**
      * @var ContentRepository
@@ -49,12 +43,11 @@ class ContentController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function index( Request $request): Response
+    public function index(Request $request): Response
     {
-
         $query = $this->em->createQueryBuilder('c')
             ->orderBy('c.id', 'DESC');
-        if($request->get('q')){
+        if ($request->get('q')) {
             $query = $query->where('c.title LIKE :title')
                 ->setParameter('title', "%" . $request->get('q') . "%");
         }
@@ -84,7 +77,6 @@ class ContentController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($content);
             $entityManager->flush();
@@ -149,6 +141,4 @@ class ContentController extends AbstractController
 
         return $this->redirectToRoute('content_index');
     }
-
-
 }

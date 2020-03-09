@@ -85,7 +85,7 @@ public/assets: node_modules/time
 
 .PHONY: phpcs
 phpcs: vendor/autoload.php ## Nettoie les code  en direct!
-	vendor/bin/php-cs-fixer fix src/  --rules=@PSR2
+	php vendor/bin/php-cs-fixer fix src/  --rules=@PSR2
 
 .PHONY: db
 db: #Lance un Terminal Interactif sur la base de donnée docker

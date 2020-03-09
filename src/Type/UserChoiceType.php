@@ -2,7 +2,6 @@
 
 namespace App\Type;
 
-
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
@@ -16,7 +15,6 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class UserChoiceType extends AbstractType implements DataTransformerInterface
 {
-
     private EntityManagerInterface $em;
     private UrlGeneratorInterface $url;
 

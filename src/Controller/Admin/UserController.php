@@ -49,7 +49,7 @@ class UserController extends AbstractController
     {
         $query = $this->em->createQueryBuilder('u')
             ->orderBy('u.id', 'DESC');
-        if($request->get('q')){
+        if ($request->get('q')) {
             $query = $query->where('u.username LIKE :username')
                 ->setParameter('username', "%" . $request->get('q') . "%");
         }
@@ -119,8 +119,7 @@ class UserController extends AbstractController
         $form2 = $this->createForm(User2Type::class, $user);
         $form2->handleRequest($request);
 
-        if ($form2->isSubmitted() && $form2->isValid()){
-
+        if ($form2->isSubmitted() && $form2->isValid()) {
             $this->getDoctrine()->getManager()->flush();
             return  $this->redirectToRoute('user_index');
         }
@@ -172,7 +171,5 @@ class UserController extends AbstractController
             ->getQuery()
             ->getResult();
         return new JsonResponse($users);
-
     }
-
 }

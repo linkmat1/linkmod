@@ -46,7 +46,7 @@ class ModsController extends AbstractController
     {
         $query = $this->em->createQueryBuilder('m')
             ->orderBy('m.id', 'DESC');
-        if($request->get('q')){
+        if ($request->get('q')) {
             $query = $query->where('m.name LIKE :name')
                 ->setParameter('name', "%" . $request->get('q') . "%");
         }
@@ -76,7 +76,6 @@ class ModsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $entityManager = $this->getDoctrine()->getManager();
             $mod->setCreatedAt(new \DateTime('now'));
             $mod->setSlug($mod->slugyfy());
@@ -112,7 +111,6 @@ class ModsController extends AbstractController
      */
     public function edit(Request $request, Mods $mod): Response
     {
-
         $form = $this->createForm(ModsType::class, $mod);
         $form->handleRequest($request);
 
@@ -144,5 +142,4 @@ class ModsController extends AbstractController
 
         return $this->redirectToRoute('mods_index');
     }
-
 }

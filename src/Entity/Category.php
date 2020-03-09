@@ -49,7 +49,6 @@ class Category
     public function __construct()
     {
         $this->Content = new ArrayCollection();
-
     }
 
     public function getId(): ?int
@@ -135,6 +134,4 @@ class Category
 
         return $this;
     }
-
-
 }

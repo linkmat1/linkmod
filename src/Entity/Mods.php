@@ -413,7 +413,8 @@ class Mods
         return $this;
     }
 
-    public function slugyfy(){
+    public function slugyfy()
+    {
         $output = preg_replace('!\s+!', ' ', $this->name);
         return str_replace(' ', '-', $output);
     }
@@ -453,5 +454,4 @@ class Mods
 
         return $this;
     }
-
 }

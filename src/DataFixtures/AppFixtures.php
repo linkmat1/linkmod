@@ -27,8 +27,7 @@ class AppFixtures extends Fixture
      */
     public function load(ObjectManager $manager)
     {
-        for ($i = 0; $i < 200; ++$i)
-        {
+        for ($i = 0; $i < 200; ++$i) {
             $faker = Factory::create();
             $test = new User();
             $test->setUsername($faker->userName);

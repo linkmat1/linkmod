@@ -23,43 +23,43 @@ class ModsType extends AbstractType
         $builder
             ->add('name', TextType::class)
 
-            ->add('credit',TextType::class)
-            ->add('chevaux',TextType::class)
-            ->add('slug',TextType::class)
-            ->add('model',TextType::class)
+            ->add('credit', TextType::class)
+            ->add('chevaux', TextType::class)
+            ->add('slug', TextType::class)
+            ->add('model', TextType::class)
             ->add('price', TextType::class)
             ->add('url', TextType::class)
             ->add('option1', TextType::class, [
                 'required' => false,
                 'label'=> 'Optionelle : Option 1'
             ])
-            ->add('option2',TextType::class, [
+            ->add('option2', TextType::class, [
                 'required' => false
             ])
-            ->add('option3',TextType::class, [
+            ->add('option3', TextType::class, [
                 'required' => false
             ])
             ->add('certified', CheckboxType::class, [
                 'required' => false
             ])
-            ->add('withouterrors',CheckboxType::class, [
+            ->add('withouterrors', CheckboxType::class, [
                 'required' => false
             ])
-            ->add('colorrims',CheckboxType::class, [
+            ->add('colorrims', CheckboxType::class, [
                 'required' => false
             ])
-            ->add('colorchoice',CheckboxType::class, [
+            ->add('colorchoice', CheckboxType::class, [
                 'required' => false
             ])
-            ->add('brand',EntityType::class, [
+            ->add('brand', EntityType::class, [
                 'class' => Brand::class,
                 'choice_label' => 'name',
             ])
-            ->add('testedby',EntityType::class, [
+            ->add('testedby', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'username',
             ])
-            ->add('modCategory',EntityType::class, [
+            ->add('modCategory', EntityType::class, [
                 'class' => ModCategory::class,
                 'choice_label' => 'name',
             ])
@@ -74,7 +74,7 @@ class ModsType extends AbstractType
                 'multiple' => true
             ])
 
-            ->add('chargeuravant',ChoiceType::class, [
+            ->add('chargeuravant', ChoiceType::class, [
                 'choices' =>[
                     'Oui' => "YES",
                    'non' => "no"
@@ -83,7 +83,7 @@ class ModsType extends AbstractType
                 'multiple' => true
 
             ])
-            ->add('wheels',ChoiceType::class, [
+            ->add('wheels', ChoiceType::class, [
                 'choices' =>[
                     'Michelin' => "michelin",
                     'trellborg' => "trellborg",
@@ -93,7 +93,7 @@ class ModsType extends AbstractType
                 'expanded' => true,
                 'multiple' => true
             ])
-            ->add('description',EditorType::class, [
+            ->add('description', EditorType::class, [
                 'label' => 'Description'
             ])
         ;

@@ -25,7 +25,7 @@ class ModsFixtures extends Fixture
         $slug = new Mods();
 
         for ($i = 0; $i < 150; ++$i) {
-         $mods = (new Mods())
+            $mods = (new Mods())
              ->setName($faker->sentence(3))
              ->setDescription($faker->text(300))
              ->setCredit($faker->name('M'))
@@ -48,14 +48,12 @@ class ModsFixtures extends Fixture
                 ->setName($faker->company)
                 ->setSlug($faker->slug);
             $manager->persist($brand);
-
-            }
+        }
 
         for ($i = 0; $i < 25; ++$i) {
             $type = (new ModCategory())
                 ->setName($faker->lastName);
             $manager->persist($type);
-
         }
         $manager->flush();
     }

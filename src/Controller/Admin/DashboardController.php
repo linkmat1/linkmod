@@ -2,7 +2,6 @@
 
 namespace App\Controller\Admin;
 
-
 use App\Repository\CategoryRepository;
 use App\Repository\ContentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,7 +26,7 @@ class DashboardController extends AbstractController
     private ContentRepository $content;
 
 
-    public function __construct(CategoryRepository $cr,ContentRepository $content)
+    public function __construct(CategoryRepository $cr, ContentRepository $content)
     {
         $this->cr = $cr;
 
@@ -52,8 +51,4 @@ class DashboardController extends AbstractController
 
         ]);
     }
-
-
-
-
 }

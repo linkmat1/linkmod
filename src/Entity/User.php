@@ -108,6 +108,16 @@ class User implements UserInterface
      */
     private $updated_at;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ForumTopics", mappedBy="user_id")
+     */
+    private $forumTopics;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ForumMessages", mappedBy="user_id")
+     */
+    private $forumMessages;
+
 
 
 
@@ -115,8 +125,8 @@ class User implements UserInterface
     {
         $this->contents = new ArrayCollection();
         $this->mods = new ArrayCollection();
-
-
+        $this->forumTopics = new ArrayCollection();
+        $this->forumMessages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -291,7 +301,6 @@ class User implements UserInterface
         if (!$this->mods->contains($mod)) {
             $this->mods[] = $mod;
             $mod->setTestedby($this);
-
         }
 
         return $this;
@@ -305,7 +314,6 @@ class User implements UserInterface
             if ($mod->getTestedby() === $this) {
                 $mod->setTestedby(null);
             }
-
         }
 
         return $this;
@@ -408,9 +416,65 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return Collection|ForumTopics[]
+     */
+    public function getForumTopics(): Collection
+    {
+        return $this->forumTopics;
+    }
 
+    public function addForumTopic(ForumTopics $forumTopic): self
+    {
+        if (!$this->forumTopics->contains($forumTopic)) {
+            $this->forumTopics[] = $forumTopic;
+            $forumTopic->setUserId($this);
+        }
 
+        return $this;
+    }
 
+    public function removeForumTopic(ForumTopics $forumTopic): self
+    {
+        if ($this->forumTopics->contains($forumTopic)) {
+            $this->forumTopics->removeElement($forumTopic);
+            // set the owning side to null (unless already changed)
+            if ($forumTopic->getUserId() === $this) {
+                $forumTopic->setUserId(null);
+            }
+        }
 
+        return $this;
+    }
 
+    /**
+     * @return Collection|ForumMessages[]
+     */
+    public function getForumMessages(): Collection
+    {
+        return $this->forumMessages;
+    }
+
+    public function addForumMessage(ForumMessages $forumMessage): self
+    {
+        if (!$this->forumMessages->contains($forumMessage)) {
+            $this->forumMessages[] = $forumMessage;
+            $forumMessage->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeForumMessage(ForumMessages $forumMessage): self
+    {
+        if ($this->forumMessages->contains($forumMessage)) {
+            $this->forumMessages->removeElement($forumMessage);
+            // set the owning side to null (unless already changed)
+            if ($forumMessage->getUserId() === $this) {
+                $forumMessage->setUserId(null);
+            }
+        }
+
+        return $this;
+    }
 }

@@ -18,7 +18,7 @@ class CategoryType extends AbstractType
         $builder
             ->add('title', TextType::class)
             ->add('isOnline', CheckboxType::class)
-            ->add('slug',TextType::class)
+            ->add('slug', TextType::class)
             ->add('shortdesc', TextareaType::class)
 
         ;

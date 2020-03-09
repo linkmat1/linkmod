@@ -27,7 +27,7 @@ class ModCategory
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Mods", mappedBy="modCategory")
      */
-    private  $Mods;
+    private $Mods;
 
     /**
      * @ORM\Column(type="string", length=255)
