@@ -55,6 +55,7 @@ $font-alt: "Montserrat", "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe 
   font-size: 22px;
   line-height: 1.1;
 }
+
 %underlined {
   border-bottom: 1px solid var(--border);
   padding-bottom: space(1);
@@ -66,14 +67,17 @@ $font-alt: "Montserrat", "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe 
 // Alignements
 // ==================
 .text-right {
-  text-align: right!important;
+  text-align: right !important;
 }
+
 .text-center {
-  text-align: center!important;
+  text-align: center !important;
 }
+
 .text-inversed {
   color: var(--color-inversed);
 }
+
 .reader-only {
   display: none;
 }

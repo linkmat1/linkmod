@@ -14,11 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @Route("/admin/content")
+ * @Route("/blog", name="admin_blog_")
  * @IsGranted("ROLE_ADMIN")
  */
 class ContentController extends AbstractController
 {
+    private string $menuitem = "blog";
     private string $adminPath = 'admin/';
     /**
      * @var ContentRepository
@@ -42,7 +43,7 @@ class ContentController extends AbstractController
     }
 
     /**
-     * @Route("/", name="content_index", methods={"GET"})
+     * @Route("/", name="index", methods={"GET"})
      * @param Request $request
      * @return Response
      */
@@ -63,12 +64,13 @@ class ContentController extends AbstractController
 
         return $this->render($this->adminPath.'content/index.html.twig', [
             'contents' => $content,
-            'page' => $page
+            'page' => $page,
+            'menu' => $this->menuitem
         ]);
     }
 
     /**
-     * @Route("/new", name="content_new", methods={"GET","POST"})
+     * @Route("/new", name="new", methods={"GET","POST"})
      * @param Request $request
      * @return Response
      * @throws \Exception
@@ -99,7 +101,7 @@ class ContentController extends AbstractController
     }
 
     /**
-     * @Route("/{slug<[a-z0-9\-]+>}-{id<\d+>}/edit", name="content_edit", methods={"GET","POST"})
+     * @Route("/{slug<[a-z0-9\-]+>}-{id<\d+>}/edit", name="edit", methods={"GET","POST"})
      * @param Request $request
      * @param Content $content
      * @param string $slug
@@ -132,7 +134,7 @@ class ContentController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="content_delete", methods={"DELETE"})
+     * @Route("/{id}", name="delete", methods={"DELETE"})
      * @param Request $request
      * @param Content $content
      * @return Response

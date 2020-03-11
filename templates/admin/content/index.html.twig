@@ -1,25 +1,26 @@
-{% extends 'admin/base.html.twig' %}
+{% extends 'admin/layout/card.html.twig' %}
 
-{% block title %} - Gestion du blog{% endblock %}
+{% block title %}
+    {{ icon('pen') }}
+    Gestion des articles
+{% endblock %}
 
 {% block body %}
-    <div class="dashboard-title">
-        <h2>Gestion des Articles</h2>
-    </div>
-    <div class="colto__action">
-        <div class="left__align">
-            <a href="{{ path('category_index') }}">Gestion des Category</a>
-            <a href="{{ path('category_index') }}">Gestion des Image</a>
-            <a href="{{ path('category_index') }}">Gestion des Commentaires</a>
-        </div>
-        <div class="right-align">
-            <form class="form-group dashboard-search">
-                <input name="q" type="text" placeholder="Rechercher un article" value="{{ app.request.get('q') }}" >
-            </form>
-            <a href="{{ path('content_new') }}" class="dashboard-btn">Ajouter un article</a>
-        </div>
-    </div>
 
+    <div class="dashboard-title">
+        {{ icon('pen') }}
+        Gestion des articles
+    </div>
+    <div class="flex">
+
+
+        <form class="form-group dashboard-search">
+            <input name="q" type="text" placeholder="Rechercher un article" value="{{ app.request.get('q') }}">
+        </form>
+        <a href="{{ path('admin_blog_new') }}" class="dashboard-btn">Ajouter un article</a>
+
+
+    </div>
     <table class="table">
         <thead>
         <tr>
@@ -42,8 +43,9 @@
                 <td>
                     <div class="dashboard-actions">
 
-                        <a href="{{ path('content_edit', {slug: content.slug, id: content.id}) }}">{{ icon('edit') }}</a>
-                        <form method="post" action="{{ path('content_delete', {'id': content.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                        <a href="{{ path('admin_blog_edit', {slug: content.slug, id: content.id}) }}">{{ icon('edit') }}</a>
+                        <form method="post" action="{{ path('admin_blog_delete', {'id': content.id}) }}"
+                              onsubmit="return confirm('Are you sure you want to delete this item?');">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ content.id) }}">
                             <button class="btn">{{ icon('cross') }}</button>
@@ -62,4 +64,5 @@
     </table>
 
     {{ knp_pagination_render(contents) }}
+
 {% endblock %}

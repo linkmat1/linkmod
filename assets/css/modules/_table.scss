@@ -3,14 +3,11 @@
   line-height: 1.2;
 }
 .table thead th {
-  font-weight: 600;
+  font-weight: 300;
   text-transform: uppercase;
   opacity: .6;
   font-size: .9em;
   text-align: left;
-  height: 25px;
-  padding: space(2);
-  color: #1D1D1D;
 }
 .table thead th:last-child {
   text-align: right;
@@ -19,7 +16,6 @@
   vertical-align: middle;
   padding: space(2) space(2) space(2) 0;
 }
-
 .table td:last-child {
   padding-right: 0 !important;
 }
@@ -42,8 +38,4 @@
 }
 .table tbody > a {
   display: table-row;
-}
-.dashboard .table thead  {
-  background:#77B162;
-
 }

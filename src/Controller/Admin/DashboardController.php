@@ -34,7 +34,7 @@ class DashboardController extends AbstractController
     }
 
     /**
-     * @Route("/", name="admin_dashboard", methods={"GET"})
+     * @Route("/", name="admin_home", methods={"GET"})
      */
     public function index(): Response
     {

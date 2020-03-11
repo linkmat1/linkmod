@@ -2,6 +2,8 @@
 // ==================
 :root {
   --color: #121C42;
+  --color-light: #121C4299;
+  --color-inversed: #EFFBEC;
   --color-transparent: #{rgba(#121C42, 0)};
   --color-btn: #EFFBEC;
   --contrast: #4869EE;
@@ -22,26 +24,41 @@
   --green: #41CF7C;
   --yellow: #FEB32B;
 }
-//21B546
-//02E85C
-//#0AFF8D
-//#02E89D
-//#02C29F
-@import "tools/typographie";
+
+.dark {
+  --color: #EFFBEC;
+  --color-light: #EFFBEC99;
+  --color-inversed: #121C42;
+  --contrast: #61a0f6;
+  --gap: 20px;
+  --space: 8px;
+  --border: #122c45;
+  --background: #11172e;
+  --background-light: #202248;
+  --shadow: #0b0c1a;
+  --play: #1d1d3a;
+  --list-hover: #282a5a;
+  --card-footer: #{darken(#202248, 3)};
+}
+
+// Outils
+// ==================
 @import "tools/reset";
-@import "tools/mixins";
 @import "tools/functions";
+@import "tools/mixins";
 @import "tools/layout";
+@import "tools/typography";
+@import "tools/animations";
 
 // Generic
 // ==================
 body {
   font-family: $font;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--color);
   line-height: 1.6;
   background: var(--background);
-  color: #354649;
+  scroll-margin: 100px 0 0 0;
 }
 
 body.light {
@@ -68,24 +85,30 @@ body::after {
   color: #FFF;
 }
 
-
 // Modules
 // ==================
 @import "modules/header";
-@import "modules/form";
 @import "modules/card";
+@import "modules/scrollbar";
 @import "modules/btn";
-@import "modules/alert";
-@import "modules/table";
 @import "modules/pagination";
-@import "modules/attachments";
-@import "modules/choices";
-@import "modules/footer";
-@import "modules/formated";
+@import "modules/form";
+@import "modules/alert";
+@import "modules/formatted";
+@import "modules/table";
+@import "modules/modal";
+@import "modules/list";
+//@import "modules/comments";
+@import "modules/page";
+@import "modules/breadcrumb";
+@import "modules/hero";
+@import "modules/nav";
+
 // Pages
 // ==================
-@import "pages/homepage";
-@import "pages/dashboard";
+
 @import "pages/blog";
+@import "pages/dashboard";
+// @import "pages/single";
 // @import "pages/single";
 // @import "pages/single";

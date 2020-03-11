@@ -1,5 +1,5 @@
 // Conteneur
-  // ==================
+// ==================
 :root {
   --container-padding: 20px;
   --container-width: calc(100vw - var(--container-padding) * 2);
@@ -27,6 +27,12 @@
   margin-left: auto;
   margin-right: auto;
   width: var(--container-width);
+}
+
+.container-narrow {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media only screen and (min-width: 1370px) {
@@ -60,8 +66,14 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.flex.start {
+  justify-content: flex-start;
+}
+
 .inline-1 {
   display: flex;
+
   & > * + * {
     margin-left: space(1);
   }
@@ -74,15 +86,7 @@
   display: grid;
   grid-gap: space(2);
   align-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(var(--col, 375px), 1fr));
-}
-.grid-small {
-  width: 100%;
-  display: grid;
-  grid-gap: space(2);
-  align-items: center;
-  margin-top: space(2);
-  grid-template-columns: repeat(auto-fill, minmax(var(--col, 175px), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(var(--col, 275px), 1fr));
 }
 
 .grid .full {
@@ -98,13 +102,23 @@
 .stack > * + * {
   margin-top: space(2);
 }
+
 .stack-large > * + * {
   margin-top: space(4);
 }
-.stack-separated > * +* {
+
+.stack-separated > * + * {
   margin-top: space(3);
   border-top: 1px solid var(--border-light);
   padding-top: space(3);
+}
+
+.hstack > * + * {
+  margin-left: space(2);
+}
+
+.hstack-large > * + * {
+  margin-left: space(4);
 }
 
 // Layout

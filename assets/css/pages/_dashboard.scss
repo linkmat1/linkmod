@@ -1,8 +1,5 @@
 .dashboard {
   @extend %container;
-  z-index: 999;
-  position: relative;
-
 }
 .dashboard-title {
   font-weight: 600;
@@ -26,6 +23,7 @@
 }
 .dashboard-search input {
   max-width: 300px;
+  background: url(../../images/input-search.svg) right 16px center / 12px 12px no-repeat;
 }
 .dashboard-actions {
   width: 100%;
@@ -39,9 +37,6 @@
 .dashboard-btn {
   @extend .btn-gradient;
   font-size: .9em;
-}
-.edit_bar {
-  font-size: 16px;
 }
 
 
@@ -64,112 +59,4 @@
 
 .form-switch {
   align-self: flex-end;
-}
-
-.count__category{
-  height: 140px;
-  width: 140px;
-  background: #4869EE;
-  text-align: center;
-  font-size: 25px;
-  color: var(--color-btn);
-  border-radius: 140px;
-  border: #000 3px solid;
-}
-.count__category span{
-  display: block;
-  padding-top: 25px;
-}
-.contentToApprouve{
-  width: 22%;
-  border: var(--border-light);
-  margin-top: space(3);
-}
-.contentToApprouve a svg{
-  width: 16px;
-  height: 16px;
-  margin-left: space(1);
-  text-align: right!important;
-
-}
-.contentToApprouve h3{
-  @extend %h3;
-  color: var(--color-btn);
-}
-.title_approuve {
-  background: #4869EE;
-  height: 40px;
-  line-height: 1.4!important;
-  padding: space(1);
-
-}
-//21B546
-//02E85C
-//#0AFF8D
-//#02E89D
-//#02C29F
-.header__dashboard {
-  height: 300px;
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: 0;
-  padding: 0;
-  background: url(../../images/wave.svg) top left / 100% 100% no-repeat!important;
-}
-.count_bar{
-  z-index: 999;
-  position: relative;
-  display: inline-flex;
-
-}
-.count_bar div {
-  margin-left: space(3);
-}
-.content__dashboard{
-  display: block;
-  background: var(--background-light);
-  padding: space(2);
-  border-radius: 3px  ;
-  box-shadow: var(--shadow);
-  z-index: 999;
-}
-.contentToApprouve ul li {
-   border-bottom: 1px solid var(--border-light);
-   width: 100%;
- }
-
-.contentToApprouve ul {
-  width: 100%;
-}
-
-.left__align{
-  display: inline-flex;
-  width: 68%;
-}
-.left__align a{
-  display: inline-flex;
-  width: 30%;
-  text-align: center;
-  justify-content: center;
-  justify-items: baseline;
-  border-bottom: #41CF7C 2px solid;
-}
-.left__align a:hover{
- border-bottom: 2px solid #000;
-
-
-}
-.right-align {
-  display: inline-flex;
-  width: 30%;
-  margin-bottom: space(3);
-}
-.right-align a {
-  margin-left: space(3);
-}
-checkbox {
-  display: inline-flex;
 }
