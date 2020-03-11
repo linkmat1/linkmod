@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Attachment;
 
 use App\Entity\Attachment\Attachment;
@@ -9,7 +8,6 @@ use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 class AttachmentUrlGenerator
 {
-
     private UploaderHelper $helper;
 
     public function __construct(UploaderHelper $helper)
@@ -19,12 +17,10 @@ class AttachmentUrlGenerator
 
     public function generate(?Attachment $attachment): ?string
     {
-        if ($attachment === null || $attachment instanceof NonExistingAttachment) {
+        if (null === $attachment || $attachment instanceof NonExistingAttachment) {
             return null;
         }
+
         return $this->helper->asset($attachment);
     }
 }
-
-
-

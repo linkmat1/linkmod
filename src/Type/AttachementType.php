@@ -16,8 +16,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AttachmentType extends TextType implements DataTransformerInterface
 {
-
-
     /**
      * @var AttachmentUrlGenerator
      */
@@ -54,8 +52,8 @@ class AttachmentType extends TextType implements DataTransformerInterface
                 'is' => 'input-attachment',
             ],
             'constraints' => [
-                new AttachmentExist()
-            ]
+                new AttachmentExist(),
+            ],
         ]);
         parent::configureOptions($resolver);
     }
@@ -69,6 +67,7 @@ class AttachmentType extends TextType implements DataTransformerInterface
         if ($attachment instanceof Attachment) {
             return $attachment->getId();
         }
+
         return null;
     }
 
@@ -81,9 +80,7 @@ class AttachmentType extends TextType implements DataTransformerInterface
         if (empty($value)) {
             return null;
         }
+
         return $this->em->getRepository(Attachment::class)->find($value) ?: new NonExistingAttachment($value);
     }
 }
-
-
-

@@ -38,6 +38,7 @@ services:
       MYSQL_PASSWORD: linkmat
       MYSQL_DATABASE: linkmat
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: = %
     ports:
       - 3307:3306
     volumes:

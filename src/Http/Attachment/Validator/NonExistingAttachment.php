@@ -3,7 +3,6 @@
 
 namespace App\Http\Attachment\Validator;
 
-
 use App\Entity\Attachment\Attachment;
 
 class NonExistingAttachment extends Attachment
@@ -13,6 +12,3 @@ class NonExistingAttachment extends Attachment
         $this->id = $expectedId;
     }
 }
-
-
-
