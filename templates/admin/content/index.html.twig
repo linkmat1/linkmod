@@ -5,12 +5,9 @@
     Gestion des articles
 {% endblock %}
 
-{% block body %}
+{% block content %}
 
-    <div class="dashboard-title">
-        {{ icon('pen') }}
-        Gestion des articles
-    </div>
+
     <div class="flex">
 
 
@@ -26,7 +23,6 @@
         <tr>
             <th>Id</th>
             <th>Titre</th>
-            <th>Crée le</th>
             <th>Public</th>
             <th>Approuvée</th>
             <th>actions</th>
@@ -37,7 +33,6 @@
             <tr>
                 <td>{{ content.id }}</td>
                 <td>{{ content.title }}</td>
-                <td>{{ content.createdAt ? content.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td><span class="bullet {% if content.isOnline == false %}bullet--danger{% endif %}"></span></td>
                 <td><span class="bullet {% if content.isOk == false %}bullet--danger{% endif %}"></span></td>
                 <td>

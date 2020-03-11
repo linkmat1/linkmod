@@ -91,7 +91,7 @@ class ContentController extends AbstractController
             $entityManager->flush();
             $this->addFlash('success', 'Le contenu a bien été Crée');
 
-            return $this->redirectToRoute('content_index');
+            return $this->redirectToRoute('admin_blog_index');
         }
 
         return $this->render($this->adminPath.'content/new.html.twig', [
@@ -111,7 +111,7 @@ class ContentController extends AbstractController
     public function edit(Request $request, Content $content, string $slug): Response
     {
         if ($content->getSlug() !== $slug) {
-            return $this->redirectToRoute('content_edit', [
+            return $this->redirectToRoute('admin_blog_edit', [
                 'id' => $content->getId(),
                 'slug' => $content->getSlug(),
             ], 301);
@@ -124,7 +124,7 @@ class ContentController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('success', 'Le contenu a bien été Modifier');
 
-            return $this->redirectToRoute('content_index');
+            return $this->redirectToRoute('admin_blog_edit');
         }
 
         return $this->render($this->adminPath.'content/edit.html.twig', [
@@ -148,6 +148,6 @@ class ContentController extends AbstractController
         }
         $this->addFlash('success', 'Le contenu a bien été Suprimée');
 
-        return $this->redirectToRoute('content_index');
+        return $this->redirectToRoute('admin_blog_index');
     }
 }

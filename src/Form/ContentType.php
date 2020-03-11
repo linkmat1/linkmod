@@ -25,7 +25,6 @@ class ContentType extends AbstractType
             ->add('title', TextType::class)
             ->add('slug', TextType::class)
 
-            ->add('created_at', DateTimeType::class)
             ->add('isOnline', SwitchType::class, [
                 'label' => 'Publication Public',
                 'required' => false
