@@ -25,8 +25,7 @@
             <th>Title</th>
             <th>IsOnline</th>
 
-            <th>Crée le</th>
-            <th>Crée par</th>
+
             {% if is_granted('ROLE_SUPERADMIN') %}
                     <th>actions</th>
                 {% endif %}
@@ -39,9 +38,6 @@
                 <td>{{ category.id }}</td>
                 <td>{{ category.title }}</td>
                 <td><span class="bullet {% if category.isOnline == false %}bullet--danger{% endif %}"></span></td>
-
-                <td>{{ category.createdat | date('j F Y') }}</td>
-                <td>{% if category.createdby == null %} Visiteur {% endif %}{{ category.createdby.username }} </td>
 
                 <td>
                     {% if is_granted('ROLE_SUPERADMIN') %}

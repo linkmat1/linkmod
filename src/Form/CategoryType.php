@@ -22,7 +22,7 @@ class CategoryType extends AbstractType
             ->add('title', TextType::class)
             ->add('isOnline', SwitchType::class)
             ->add('slug', TextType::class)
-            ->add('image', AttachmentType::class)
+           // ->add('image', AttachmentType::class)
             ->add('shortdesc', EditorType::class, [
                 'label' => 'Petite description (max 255 charactere)'
             ]);
