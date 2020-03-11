@@ -25,6 +25,10 @@ class ModsController extends AbstractController
      * @var PaginatorInterface
      */
     private PaginatorInterface $paginator;
+    /**
+     * @var Mods
+     */
+    private Mods $mods;
 
     /**
      * ModsController constructor.
@@ -35,6 +39,7 @@ class ModsController extends AbstractController
     {
         $this->em = $em;
         $this->paginator = $paginator;
+        $this->mods = new Mods();
     }
 
     /**
@@ -78,7 +83,6 @@ class ModsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $mod->setCreatedAt(new \DateTime('now'));
-            $mod->setSlug($mod->slugyfy());
             $entityManager->persist($mod);
             $entityManager->flush();
 
@@ -134,7 +138,7 @@ class ModsController extends AbstractController
      */
     public function delete(Request $request, Mods $mod): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$mod->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $mod->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($mod);
             $entityManager->flush();
@@ -142,4 +146,13 @@ class ModsController extends AbstractController
 
         return $this->redirectToRoute('mods_index');
     }
+
+    public function slugyfy()
+    {
+        $output = preg_replace('!\s+!', ' ', $this->mods->getName());
+        $lower = strtolower($output);
+        return str_replace(' ', '-', $output);
+    }
+
+
 }

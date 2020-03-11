@@ -26,7 +26,6 @@ class ModsType extends AbstractType
 
             ->add('credit', TextType::class)
             ->add('chevaux', TextType::class)
-            ->add('slug', TextType::class)
             ->add('model', TextType::class)
             ->add('price', TextType::class)
             ->add('url', TextType::class)

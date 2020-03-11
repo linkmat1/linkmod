@@ -3,13 +3,12 @@
  *
  * @param {HTMLElement} element
  */
-export function offsetTop(element)
-{
-    let top = element.offsetTop
-    while (element = element.offsetParent) {
-        top += element.offsetTop
-    }
-    return top
+export function offsetTop (element) {
+  let top = element.offsetTop
+  while (element = element.offsetParent) {
+    top += element.offsetTop
+  }
+  return top
 }
 
 /**
@@ -19,13 +18,12 @@ export function offsetTop(element)
  * @param {object} attributes
  * @return HTMLElement
  */
-export function createElement(tagName, attributes = {})
-{
-    const e = document.createElement(tagName)
-    for (const k of Object.keys(attributes)) {
-        e.setAttribute(k, attributes[k])
-    }
-    return e
+export function createElement (tagName, attributes = {}) {
+  const e = document.createElement(tagName)
+  for (const k of Object.keys(attributes)) {
+    e.setAttribute(k, attributes[k])
+  }
+  return e
 }
 
 /**
@@ -33,7 +31,6 @@ export function createElement(tagName, attributes = {})
  * @param {string} str
  * @return {DocumentFragment}
  */
-export function strToDom(str)
-{
-    return document.createRange().createContextualFragment(str).firstChild
+export function strToDom (str) {
+  return document.createRange().createContextualFragment(str).firstChild
 }

@@ -1,23 +1,23 @@
 <script>
-  /**
-   * Fichier (retour d'api)
-   * @typedef {{id: number, createdAt: number, name: string, size: number, url: string}} ApiFile
-   */
+    /**
+     * Fichier (retour d'api)
+     * @typedef {{id: number, createdAt: number, name: string, size: number, url: string}} ApiFile
+     */
 
-  import { pathsToTree } from '@el/filemanager/helpers'
-  import {human} from '@fn/size'
-  import {jsonFetch} from '@fn/api'
-  import {objToSearchParams} from '@fn/url'
-  import Folder from './Folder.svelte'
+    import { pathsToTree } from '../filemanager/helpers'
+    import { human } from '../../functions/size'
+    import { jsonFetch } from '../../functions/api'
+    import { objToSearchParams } from '../../functions/url'
+    import Folder from './Folder.svelte'
 
-  export let apiEndpoint
-  export let dragOver
-  export let onSelectFile
+    export let apiEndpoint
+    export let dragOver
+    export let onSelectFile
 
-  /** @var {ApiFile[]} file **/
-  let files = []
-  let folders = []
-  let error = null
+    /** @var {ApiFile[]} file **/
+    let files = []
+    let folders = []
+    let error = null
   let filesLoading = true
   let foldersLoading
   let currentFolder = null

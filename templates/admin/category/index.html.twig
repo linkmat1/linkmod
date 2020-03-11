@@ -41,7 +41,8 @@
                 <td><span class="bullet {% if category.isOnline == false %}bullet--danger{% endif %}"></span></td>
 
                 <td>{{ category.createdat | date('j F Y') }}</td>
-                <td>{{ category.createdby.username }}</td>
+                <td>{% if category.createdby == null %} Visiteur {% endif %}{{ category.createdby.username }} </td>
+
                 <td>
                     {% if is_granted('ROLE_SUPERADMIN') %}
                         <div class="dashboard-actions">

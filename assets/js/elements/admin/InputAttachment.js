@@ -1,6 +1,6 @@
 import Alert from '../Alert'
 import SpinningDots from '@grafikart/spinning-dots-element'
-import FileManager from '@el/filemanager'
+import FileManager from '../filemanager/index'
 import { Modal } from '../Modal'
 
 /**
@@ -57,7 +57,7 @@ export default class InputAttachment extends HTMLInputElement {
     if (this.attachmentId !== '' && this.overwrite) {
       url = `${url}/${this.attachmentId}`
     }
-    const response = await fetch(url, {
+    const response = fetch(url, {
       method: 'POST',
       body: data
     })

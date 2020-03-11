@@ -6,7 +6,6 @@ use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Helper\UserHelperTrait;
 use App\Repository\CategoryRepository;
-use App\Repository\ContentRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -61,7 +60,7 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="category_new", methods={"GET","POST"})
+     * @Route("/new", name="category_new", methods={"POST", "GET"})
      * @param Request $request
      * @return Response
      */
@@ -69,6 +68,7 @@ class CategoryController extends AbstractController
     {
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

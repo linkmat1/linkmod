@@ -28,18 +28,17 @@ class ModsFixtures extends Fixture
             $mods = (new Mods())
              ->setName($faker->sentence(3))
              ->setDescription($faker->text(300))
-             ->setCredit($faker->name('M'))
-             ->setChevaux($random)
-             ->setModel($faker->company)
-             ->setPrice($price)
-             ->setCertified($faker->boolean)
-             ->setWithouterrors($faker->boolean)
-             ->setSupport($support)
-             ->setColorrims($faker->boolean)
-             ->setcolorchoice($faker->boolean)
-             ->setCreatedAt($faker->dateTime)
-             ->setUrl($faker->url)
-             ->setSlug($slug->slugyfy());
+                ->setCredit($faker->name('M'))
+                ->setChevaux($random)
+                ->setModel($faker->company)
+                ->setPrice($price)
+                ->setCertified($faker->boolean)
+                ->setWithouterrors($faker->boolean)
+                ->setSupport($support)
+                ->setColorrims($faker->boolean)
+                ->setcolorchoice($faker->boolean)
+                ->setCreatedAt($faker->dateTime)
+                ->setUrl($faker->url);
             $manager->persist($mods);
         }
 

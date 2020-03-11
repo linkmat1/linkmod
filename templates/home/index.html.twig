@@ -15,7 +15,7 @@
                         {% if content.author == null %} Inconue {% else %}
                             {{ content.author.username }} {% endif %} - Posté le
                         {{ content.createdAt | date('j F Y') }}
-                        dans {{ content.category.title }}</div>
+                        dans {% if content.author == null %} Inconue {% else %} {{ content.category.title }} {% endif %}</div>
                     {{ content.content | markdown }}
                 </div>
             </div>

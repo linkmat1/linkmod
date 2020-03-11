@@ -116,7 +116,7 @@ class Mods
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $url;
+    private ?string $url = "";
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -128,10 +128,6 @@ class Mods
      */
     private $testedby;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private string $slug = "";
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Brand", inversedBy="mods")
@@ -409,24 +405,6 @@ class Mods
     public function setTestedby(?User $testedby): self
     {
         $this->testedby = $testedby;
-
-        return $this;
-    }
-
-    public function slugyfy()
-    {
-        $output = preg_replace('!\s+!', ' ', $this->name);
-        return str_replace(' ', '-', $output);
-    }
-
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $this->slugyfy();
 
         return $this;
     }

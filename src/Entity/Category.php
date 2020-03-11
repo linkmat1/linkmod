@@ -2,12 +2,15 @@
 
 namespace App\Entity;
 
+use App\Entity\Attachment\Attachment;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
+ * @Vich\Uploadable
  */
 class Category
 {
@@ -16,7 +19,7 @@ class Category
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private ?int $id = 0;
+    private ?int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -40,7 +43,7 @@ class Category
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Content", mappedBy="category")
-     * @var Collection<int, content>
+     * @var Collection<int, Content>
      */
     private $Content;
 
@@ -53,6 +56,11 @@ class Category
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="categories")
      */
     private $created_by;
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Attachment\Attachment", cascade={"persist"})
+     * @ORM\JoinColumn(name="attachment_id", referencedColumnName="id")
+     */
+    private ?Attachment $image;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -65,6 +73,7 @@ class Category
         $this->Content = new ArrayCollection();
         $this->created_at = new \DateTimeImmutable();
         $this->updated_at = new \DateTimeImmutable();
+        $this->image = new Attachment();
     }
 
     public function getId(): ?int
@@ -184,6 +193,17 @@ class Category
     {
         $this->updated_at = $updated_at;
 
+        return $this;
+    }
+
+    public function getImage(): ?Attachment
+    {
+        return $this->image;
+    }
+
+    public function setImage(?Attachment $image): Category
+    {
+        $this->image = $image;
         return $this;
     }
 }

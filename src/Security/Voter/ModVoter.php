@@ -68,5 +68,6 @@ class ModVoter extends Voter
             case self::EDIT:
                 return $this->canEdit($mods, $user);
         }
+        return null;
     }
 }
