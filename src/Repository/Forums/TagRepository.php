@@ -2,7 +2,6 @@
 
 namespace App\Repository\Forums;
 
-
 use App\Entity\Forums\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -20,8 +19,21 @@ class TagRepository extends ServiceEntityRepository
         parent::__construct($registry, Tag::class);
     }
 
+    /**
+     * @return array
+     */
+    public function findTree(): array
+    {
+        $query = $this->createQueryBuilder('t')
+            ->addSelect('p')
+            ->leftJoin('t.parent', 'p')
+            ->orderBy('t.position', 'ASC');
 
-
+        return array_values(array_filter(
+            $query->getQuery()->getResult(),
+            fn (Tag $tag) => null === $tag->getParent()
+        ));
+    }
 
     /*
      *     public function getforumList(){
@@ -33,5 +45,4 @@ class TagRepository extends ServiceEntityRepository
     }
 
      */
-
 }

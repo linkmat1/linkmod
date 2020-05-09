@@ -20,7 +20,8 @@ Encore
   .addAliases({
     svelte: path.resolve('node_modules', 'svelte'),
     '@fn': path.resolve('assets', 'js', 'functions'),
-    '@el': path.resolve('assets', 'js', 'elements')
+    '@el': path.resolve('assets', 'js', 'elements'),
+    '@comp': path.resolve('assets', 'js', 'components')
   })
   .addLoader(
     {
@@ -52,6 +53,7 @@ Encore
 
   // enables Sass/SCSS support
   .enableSassLoader()
+  .enablePreactPreset({ preactCompat: true })
 
 // uncomment if you use TypeScript
 // .enableTypeScriptLoader()
@@ -75,5 +77,19 @@ const config = Encore.getWebpackConfig()
 config.resolve.extensions.push('.svelte')
 config.resolve.mainFields = ['svelte', 'browser', 'module', 'main']
 config.output.globalObject = 'self'
+
+// Patch style loader parceque symfony ne supporte pas la version 1 à l'heure actuelle
+config.module.rules.forEach(function (rule) {
+  if (rule.oneOf === undefined) {
+    return
+  }
+  rule.oneOf.forEach(function (rule) {
+    rule.use.forEach(function (rule) {
+      if (rule.loader === 'style-loader') {
+        rule.options = {}
+      }
+    })
+  })
+})
 
 module.exports = config

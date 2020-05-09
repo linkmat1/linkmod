@@ -30,14 +30,16 @@ class ForumFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        for ($i = 0; $i < 8; ++$i) {
+        for ($i = 0; $i < 28; ++$i) {
             $faker = Factory::create();
             $tag = (new Tag())
                 ->setName($faker->sentence(1))
                 ->setDescription($faker->sentence(3))
                 ->setCreatedAt(new \DateTime())
                 ->setSlug($faker->slug(2))
-                ->setColor($faker->hexColor);
+                ->setColor($faker->hexColor)
+                ->setParent(null)
+                ->setPosition(1);
 
             $manager->persist($tag);
         }

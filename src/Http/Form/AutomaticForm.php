@@ -3,9 +3,12 @@
 namespace App\Http\Form;
 
 
+use App\Entity\Forums\Tag;
 use App\Entity\User;
+use App\Type\CategoryChoiceType;
 use App\Type\DateTimeType;
 use App\Type\EditorType;
+use App\Type\ForumTagChoiceType;
 use App\Type\SwitchType;
 use App\Type\UserChoiceType;
 use DateTimeInterface;
@@ -33,16 +36,21 @@ class AutomaticForm extends AbstractType
         'int'                    => NumberType::class,
         'float'                    => NumberType::class,
         User::class              => UserChoiceType::class,
+        Tag::class                 => ForumTagChoiceType::class,
         DateTimeInterface::class => DateTimeType::class,
         UploadedFile::class      => FileType::class,
         'text' => EditorType::class,
+
     ];
 
     const NAMES = [
 
         'short' => TextareaType::class,
         'color' => ColorType::class,
-        'category' => EntityType::class,
+        'category' => CategoryChoiceType::class,
+        'description' => EditorType::class,
+        'position' => NumberType::class
+
     ];
 
     public function buildForm(FormBuilderInterface $builder, array $options): void

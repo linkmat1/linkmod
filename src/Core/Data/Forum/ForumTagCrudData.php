@@ -8,14 +8,17 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @property Tag $entity
  */
-final class TagCrudData extends AutomaticCrudData
+final class ForumTagCrudData extends AutomaticCrudData
 {
 
-    public ?int $id = null;
     /**
      * @Assert\NotBlank()
      */
     public ?string $name = null;
+    /**
+     * @Assert\NotBlank()
+     */
+    public ?string $slug = null;
 
     public ?\DateTimeInterface $createdAt;
 
@@ -32,7 +35,9 @@ final class TagCrudData extends AutomaticCrudData
     public function hydrate(): void
     {
         parent::hydrate();
-        $this->entity->setUpdatedAt(new \DateTime());
+        $this->entity
+            ->setUpdatedAt(new \DateTime())
+            ->setUpdatedAt(new \DateTime());
 
     }
 }

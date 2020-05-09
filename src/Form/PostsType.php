@@ -6,6 +6,7 @@ namespace App\Form;
 
 use App\Core\Data\PostCrudData;
 use App\Entity\Category;
+use App\Type\CategoryChoiceType;
 use App\Type\DateTimeType;
 use App\Type\EditorType;
 use App\Type\SwitchType;
@@ -36,10 +37,7 @@ class PostsType extends AbstractType
             ->add('publishAt', DateTimeType::class)
             ->add('source' )
             ->add('deprecated')
-            ->add('category', EntityType::class, [
-                'class' => Category::class,
-                'choice_label' => 'name'
-            ])
+            ->add('category', CategoryChoiceType::class)
             ->add('isDepre', SwitchType::class)
             ->add('author', UserChoiceType::class)
         ;
