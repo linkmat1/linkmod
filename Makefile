@@ -69,7 +69,7 @@ bash: ## Ouvre un Terminal dans que container php
 
 PHONY: clean
 clean: ## Nettoie les containers
-	$(dc) -f docker-compose.yml -f docker-compose.test.yml -f docker-compose.import.yml down --volumes
+	$(dc) -f docker-compose.yml -f docker-compose.test.yml down --volumes
 
 
 vendor/autoload.php: composer.lock # installation
