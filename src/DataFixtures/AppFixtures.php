@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Category;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -20,7 +21,6 @@ class AppFixtures extends Fixture
     {
         $this->encoder = $encoder;
     }
-
     /**
      * @param ObjectManager $manager
      *
@@ -33,6 +33,7 @@ class AppFixtures extends Fixture
             $test->setUsername($faker->userName);
             $test->setEmail($faker->email);
             $test->setRoles(['ROLE_USER']);
+            $test->setCreatedAt(new \DateTime());
             $plain2 = "admin";
             $encode2 = $this->encoder->encodePassword($test, $plain2);
             $test->setPassword($encode2);
@@ -41,6 +42,7 @@ class AppFixtures extends Fixture
         $user = (new User())
         ->setUsername('linkmat')
         ->setEmail('admin@admin.com')
+            ->setCreatedAt(new \DateTime())
         ->setRoles(['ROLE_SUPERADMIN']);
         $plain = "admin";
         $encode = $this->encoder->encodePassword($user, $plain);
@@ -50,6 +52,7 @@ class AppFixtures extends Fixture
 
         $user2 = (new User())
             ->setUsername('user')
+            ->setCreatedAt(new \DateTime())
             ->setEmail('admi2n@admin.com')
             ->setRoles(['ROLE_USER']);
         $plain2 = "admin";
@@ -60,35 +63,46 @@ class AppFixtures extends Fixture
         $user3 = (new User())
             ->setUsername('editeur')
             ->setEmail('admiQWQn@admin.com')
+            ->setCreatedAt(new \DateTime())
             ->setRoles(['ROLE_EDITOR']);
         $plain3 = "admin";
         $encode3 = $this->encoder->encodePassword($user3, $plain3);
         $user2->setPassword($encode3);
         $manager->persist($user3);
 
-
-
         $user4 = (new User())
             ->setUsername('modo')
             ->setEmail('DSdwadadS@admin.com')
+            ->setCreatedAt(new \DateTime())
             ->setRoles(['ROLE_MODO']);
         $plain4 = "admin";
         $encode4 = $this->encoder->encodePassword($user4, $plain4);
         $user4->setPassword($encode4);
         $manager->persist($user4);
 
-
-
         $user5 = (new User())
             ->setUsername('admin')
             ->setEmail('DSdadS@admin.com')
+            ->setCreatedAt(new \DateTime())
             ->setRoles(['ROLE_ADMIN']);
         $plain5 = "admin";
-        $encode5 = $this->encoder->encodePassword($user4, $plain5);
+        $encode5 = $this->encoder->encodePassword($user5, $plain5);
         $user5->setPassword($encode5);
         $manager->persist($user5);
+        $manager->flush();
+        $faker = Factory::create();
 
+        for ($i = 0; $i < 10; ++$i) {
+            $category = (new Category())
+                ->setName($faker->sentence(3))
+                ->setIsOnline($faker->boolean)
+                ->setCreatedAt(new \DateTime())
+                ->setUpdatedAt(new \DateTime())
+                ->setAuthor($user)
+                ->setIsOnline(true);
 
+            $manager->persist($category);
+        }
         $manager->flush();
     }
 }

@@ -19,13 +19,12 @@
 </head>
 <body>
 {% include 'admin/partials/_nav.html.twig' %}
+<div class="dashboard">
 
+    {% include 'partials/flash.html.twig' %}
 
-<div class="dashboard ">
-
-    {% block body %}{% endblock %}
+    {% block body '' %}
 </div>
-
 
 </body>
 </html>

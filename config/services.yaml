@@ -25,5 +25,11 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+
+    App\Core\Helper\Paginator\PaginatorInterface:
+        class: App\Core\Helper\Paginator\KnpPaginator
+
+    Knp\Bundle\PaginatorBundle\Helper\Processor:
+        class: Knp\Bundle\PaginatorBundle\Helper\Processor
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

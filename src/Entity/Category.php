@@ -2,78 +2,62 @@
 
 namespace App\Entity;
 
-use App\Entity\Attachment\Attachment;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
- * @Vich\Uploadable
+ * @ORM\Table("blog_category")
  */
 class Category
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      * @ORM\Column(type="integer")
      */
-    private ?int $id;
+    private ?int $id = null;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private string $title = "" ;
+    private ?string $name = "";
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $content = "";
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private bool $isOnline = false;
+    private ?bool $isOnline = false;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="datetime")
      */
-    private string $slug = "";
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private string $shortdesc = "";
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Content", mappedBy="category")
-     * @var Collection<int, Content>
-     */
-    private $Content;
+    private ?\DateTimeInterface $createdAt = null;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private ?\DateTimeInterface $created_at;
+    private ?\DateTimeInterface $updatedAt =  null;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="categories")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $created_by;
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Attachment\Attachment", cascade={"persist"})
-     * @ORM\JoinColumn(name="attachment_id", referencedColumnName="id")
-     */
-    private ?Attachment $image;
+    private ?User $author = null;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Posts", mappedBy="category")
      */
-    private ?\DateTimeInterface $updated_at;
-
+    private $posts;
 
     public function __construct()
     {
-        $this->Content = new ArrayCollection();
-        $this->created_at = new \DateTimeImmutable();
-        $this->updated_at = new \DateTimeImmutable();
-        $this->image = new Attachment();
+        $this->posts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -81,14 +65,26 @@ class Category
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getName(): ?string
     {
-        return $this->title;
+        return $this->name;
     }
 
-    public function setTitle(string $title): self
+    public function setName(?string $name): self
     {
-        $this->title = $title;
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(?string $content): self
+    {
+        $this->content = $content;
 
         return $this;
     }
@@ -105,105 +101,70 @@ class Category
         return $this;
     }
 
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    public function getShortdesc(): ?string
-    {
-        return $this->shortdesc;
-    }
-
-    public function setShortdesc(string $shortdesc): self
-    {
-        $this->shortdesc = $shortdesc;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Content[]
-     */
-    public function getContent(): Collection
-    {
-        return $this->Content;
-    }
-
-    public function addContent(Content $content): self
-    {
-        if (!$this->Content->contains($content)) {
-            $this->Content[] = $content;
-            $content->setCategory($this);
-        }
-
-        return $this;
-    }
-
-    public function removeContent(Content $content): self
-    {
-        if ($this->Content->contains($content)) {
-            $this->Content->removeElement($content);
-            // set the owning side to null (unless already changed)
-            if ($content->getCategory() === $this) {
-                $content->setCategory(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
 
-    public function setCreatedAt(?\DateTimeInterface $created_at): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->created_at = $created_at;
-
-        return $this;
-    }
-
-    public function getCreatedBy(): ?User
-    {
-        return $this->created_by;
-    }
-
-    public function setCreatedBy(?User $created_by): self
-    {
-        $this->created_by = $created_by;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->updated_at;
+        return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updated_at): self
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
-        $this->updated_at = $updated_at;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
-    public function getImage(): ?Attachment
+    public function getAuthor(): ?User
     {
-        return $this->image;
+        return $this->author;
     }
 
-    public function setImage(?Attachment $image): Category
+    public function setAuthor(?User $author): self
     {
-        $this->image = $image;
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Posts[]
+     */
+    public function getPosts(): Collection
+    {
+        return $this->posts;
+    }
+
+    public function addPost(Posts $post): self
+    {
+        if (!$this->posts->contains($post)) {
+            $this->posts[] = $post;
+            $post->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removePost(Posts $post): self
+    {
+        if ($this->posts->contains($post)) {
+            $this->posts->removeElement($post);
+            // set the owning side to null (unless already changed)
+            if ($post->getCategory() === $this) {
+                $post->setCategory(null);
+            }
+        }
+
         return $this;
     }
 }
