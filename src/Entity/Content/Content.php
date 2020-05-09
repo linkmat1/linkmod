@@ -38,7 +38,8 @@ abstract class Content
     private ?bool $isOnline = false;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="contents")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="contents" )
+     * @ORM\JoinColumn(nullable=true)
      */
     private ?User $author = null;
 

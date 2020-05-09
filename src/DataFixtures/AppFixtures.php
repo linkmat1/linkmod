@@ -12,6 +12,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
+
     /**
      * @var UserPasswordEncoderInterface
      */
@@ -25,6 +26,8 @@ class AppFixtures extends Fixture
      * @param ObjectManager $manager
      *
      */
+
+
     public function load(ObjectManager $manager)
     {
         for ($i = 0; $i < 200; ++$i) {
@@ -39,17 +42,6 @@ class AppFixtures extends Fixture
             $test->setPassword($encode2);
             $manager->persist($test);
         }
-        $user = (new User())
-        ->setUsername('linkmat')
-        ->setEmail('admin@admin.com')
-            ->setCreatedAt(new \DateTime())
-        ->setRoles(['ROLE_SUPERADMIN']);
-        $plain = "admin";
-        $encode = $this->encoder->encodePassword($user, $plain);
-        $user->setPassword($encode);
-
-        $manager->persist($user);
-
         $user2 = (new User())
             ->setUsername('user')
             ->setCreatedAt(new \DateTime())
@@ -92,17 +84,8 @@ class AppFixtures extends Fixture
         $manager->flush();
         $faker = Factory::create();
 
-        for ($i = 0; $i < 10; ++$i) {
-            $category = (new Category())
-                ->setName($faker->sentence(3))
-                ->setIsOnline($faker->boolean)
-                ->setCreatedAt(new \DateTime())
-                ->setUpdatedAt(new \DateTime())
-                ->setAuthor($user)
-                ->setIsOnline(true);
-
-            $manager->persist($category);
-        }
         $manager->flush();
+
     }
+
 }

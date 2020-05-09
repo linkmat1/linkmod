@@ -33,8 +33,6 @@ class PostsType extends AbstractType
             ->add('isOnline', SwitchType::class)
             ->add('isInfo', SwitchType::class)
             ->add('Info')
-            ->add('createdAt', DateTimeType::class)
-            ->add('updatedAt', DateTimeType::class)
             ->add('publishAt', DateTimeType::class)
             ->add('source' )
             ->add('deprecated')
