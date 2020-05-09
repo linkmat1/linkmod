@@ -45,3 +45,10 @@
   margin-right: space(2);
   padding-right: space(1);
 }
+.header-nav a:hover,
+.header-nav a[aria-current] {
+  color: var(--contrast);
+}
+.header-nav > * + * {
+  margin-left: space(6);
+}

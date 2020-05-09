@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PostsRepository")
+ * @ORM\Table("blog_post")
 */
 
 class Posts extends Content
@@ -14,17 +15,17 @@ class Posts extends Content
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private ?\DateTimeInterface $publishAt;
+    private ?\DateTimeInterface $publishAt = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $source;
+    private ?string $source = " ";
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $deprecated;
+    private ?string $deprecated = " ";
 
     /**
      * @ORM\Column(type="boolean")

@@ -1,13 +1,12 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Edit Posts{% endblock %}
+{% extends 'admin/layout/card.html.twig' %}
 
-{% block body %}
-    <h1>Edit Posts</h1>
+{% block title %}
+    {{ icon('pen') }}
+    Editer l'article
+{% endblock %}
 
-    {{ include('blog/_form.html.twig', {'button_label': 'Update'}) }}
+{% block content %}
+  {{ include('admin/blog/_form.html.twig', {'button_label': 'Modifiée'}) }}
 
-    <a href="{{ path('posts_index') }}">back to list</a>
-
-    {{ include('blog/_delete_form.html.twig') }}
 {% endblock %}

@@ -5,6 +5,7 @@ namespace App\Controller\Admin\Content;
 use App\Controller\Admin\Core\BaseController;
 use App\Controller\Admin\Core\CrudController;
 use App\Core\Data\PostCrudData;
+use App\Core\Helper\Cloner\BlogCloner;
 use App\Entity\Posts;
 use App\Form\PostsType;
 use App\Repository\PostsRepository;
@@ -25,7 +26,7 @@ class PostsController extends CrudController
     protected string $templatePath = 'blog';
     protected string $menuItem = 'blog';
     protected string $routePrefix = 'posts';
-    //protected string $searchField = 'title';
+    protected string $searchField = 'title';
     protected array $events = [
         'update' => null,
         'delete' => null,
@@ -46,23 +47,20 @@ class PostsController extends CrudController
  */
     public function new(): Response
     {
-        $data = new PostCrudData();
-        $data->author = $this->getUser();
-        $data->entity = new Posts();
 
-       return  $this->crudNew($data);
+        $entity = (new Posts())->setAuthor($this->getUser())->setCreatedAt(new \DateTime());
+        $data = new PostCrudData($entity);
+        return  $this->crudNew($data);
     }
-
-
-
     /**
      * @Route("/{id}/edit", name="_edit", methods={"GET","POST"})
      * @param Posts $post
      * @return Response
      */
-    public function edit( Posts $post): Response
+    public function edit(Posts $post): Response
     {
-        $data = PostCrudData::makeFromPost($post);
+
+        $data = (new PostCrudData($post))->setEntityManager($this->em);
         return $this->crudEdit($data);
     }
 
@@ -75,6 +73,18 @@ class PostsController extends CrudController
     {
 
         return $this->crudDelete($post);
+    }
+
+    /**
+     * @Route("/{id}/clone", name="_clone", methods={"GET","POST"})
+     * @param Posts $posts
+     * @return Response
+     */
+    public function clone(Posts $posts): Response
+    {
+        $posts = BlogCloner::clone($posts);
+        $data = new PostCrudData($posts);
+        return $this->crudNew($data);
     }
 
 }

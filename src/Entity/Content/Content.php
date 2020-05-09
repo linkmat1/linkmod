@@ -10,7 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({
- *      "blog" = "App\Entity\Posts"
+      "posts" = "App\Entity\Posts",
+      "episode" = "App\Entity\Content\Episodes"
     })
  */
 abstract class Content
@@ -21,7 +22,6 @@ abstract class Content
      * @ORM\Column(type="integer")
      */
     private ?int $id = null;
-
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -40,7 +40,7 @@ abstract class Content
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="contents")
      */
-    private ?User $author;
+    private ?User $author = null;
 
     use ContentAdd;
     use CreatedTimeTrait;
@@ -107,8 +107,4 @@ abstract class Content
 
         return $this;
     }
-
-
-
-
 }

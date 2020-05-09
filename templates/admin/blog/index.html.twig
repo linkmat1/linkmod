@@ -1,25 +1,23 @@
 {% extends 'admin/layout/card.html.twig' %}
 
-
-
-{% block body %}
-    {% block title %}
-        {{ icon('video') }}
-        Gestion des tutoriels
-    {% endblock %}
+  {% block title %}
+      {{ icon('pen') }}
+      Gestion du blog
+  {% endblock %}
+{% block content %}
     <div class="flex">
         <form class="form-group dashboard-search">
-            <input name="q" type="text" placeholder="Rechercher un tutoriel" value="{{ app.request.get('q') }}" >
+            <input name="q" type="text" placeholder="Rechercher un article" value="{{ app.request.get('q') }}" >
         </form>
-        <a href="{{ path(prefix ~ '_new') }}" class="dashboard-btn">Ajouter un tutoriel</a>
+        <a href="{{ path(prefix ~ '_new') }}" class="dashboard-btn">Ajoutée un article</a>
     </div>
     <table class="table">
         <thead>
         <tr>
             <th>{{ sort_by(rows, 'ID', 'row.id') }}</th>
-            <th>Titre</th>
+           <th> {{ sort_by(rows, 'Titre', 'row.title') }}</th>
             <th>Category</th>
-            <th class="text-center">{{ sort_by(rows, 'Status', 'row.online') }}</th>
+            <th class="text-center">{{ sort_by(rows, 'Status', 'row.isOnline') }}</th>
             <th class="text-right">Actions</th>
         </tr>
         </thead>
@@ -33,20 +31,21 @@
                 <td>
                     <a href="{{ link }}">{{ row.title }}</a>
                 </td>
+                <td>
+                    <a href="{{ link }}">{{ row.category.name }}</a>
+                </td>
                 <td><span class="bullet {% if row.isOnline == false %}bullet--danger{% endif %}"></span></td>
                 <td>
                     <div class="dashboard-actions">
 
                         <a href="{{ link }}">{{ icon('edit') }}</a>
-                        {# La suppresion d'un tutoriel n'est pas prévue pour le moment
-                          <a href="{{ path(prefix ~ '_clone', {id: row.id}) }}">{{ icon('clone') }}</a>
+                        <a href="{{ path(prefix ~ '_clone', {id: row.id}) }}">{{ icon('clone') }}</a>
                         <form action="{{ path(prefix ~ '_edit', {id: row.id}) }}" method="post" onsubmit="return confirm('Voulez vous vraiment supprimer ce contenu')">
-                          <input type="hidden" name="_method" value="DELETE" />
-                          <button type="submit">
-                            {{ icon('delete') }}
-                          </button>
+                            <input type="hidden" name="_method" value="DELETE" />
+                            <button type="submit">
+                                {{ icon('delete') }}
+                            </button>
                         </form>
-                        #}
                     </div>
                 </td>
             </tr>

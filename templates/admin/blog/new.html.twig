@@ -1,11 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/layout/card.html.twig' %}
 
-{% block title %}New Posts{% endblock %}
+{% block title %}
+    {{ icon('pen') }}
+    Ajoutée l'article
+{% endblock %}
 
-{% block body %}
-    <h1>Create new Posts</h1>
+{% block content %}
+    {{ include('admin/blog/_form.html.twig', {'button_label': 'Ajoutée un article'}) }}
 
-    {{ include('admin/blog/_form.html.twig') }}
-
-    <a href="{{ path('posts_index') }}">back to list</a>
 {% endblock %}

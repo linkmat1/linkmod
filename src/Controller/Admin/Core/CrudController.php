@@ -62,7 +62,7 @@ abstract class CrudController extends BaseController
         if ($request->get('q')) {
             $query = $this->applySearch($request->get('q'), $query);
         }
-        $this->paginator->allowSort('row.id', 'row.title');
+        $this->paginator->allowSort('row.id', 'row.title', 'row.isOnline');
         $rows = $this->paginator->paginate($query->getQuery());
         return $this->render("admin/{$this->templatePath}/index.html.twig", [
             'rows'   => $rows,
