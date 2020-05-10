@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Forums\Tag;
 use App\Entity\Forums\Topic;
 use App\Type\EditorType;
+use App\Type\ForumTagChoiceType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -18,7 +19,7 @@ class ForumTopicType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('tags', EntityType::class, [
+           ->add('tags', EntityType::class, [
                 'required' => false,
                 'multiple' => true,
                 'class' => Tag::class,
@@ -27,6 +28,7 @@ class ForumTopicType extends AbstractType
                 },
                 'choice_label' => 'name',
             ])
+      //    ->add('tags',ForumTagChoiceType::class)
             ->add('content', EditorType::class);
     }
 

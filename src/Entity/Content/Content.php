@@ -2,8 +2,10 @@
 
 namespace App\Entity\Content;
 
+use App\Entity\Attachment\Attachment;
 use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity()
@@ -13,6 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
       "posts" = "App\Entity\Posts",
       "episode" = "App\Entity\Content\Episodes"
     })
+ * @Vich\Uploadable()
  */
 abstract class Content
 {
@@ -25,12 +28,12 @@ abstract class Content
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $title = "";
+    private ?string $title = '';
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private ?string $content = "";
+    private ?string $content = '';
 
     /**
      * @ORM\Column(type="boolean")
@@ -43,6 +46,12 @@ abstract class Content
      */
     private ?User $author = null;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Attachment\Attachment", cascade={"persist"})
+     * @ORM\JoinColumn(name="attachment_id", referencedColumnName="id")
+     */
+    private ?Attachment $image = null;
+
     use ContentAdd;
     use CreatedTimeTrait;
 
@@ -50,8 +59,10 @@ abstract class Content
     {
         return $this->id;
     }
+
     /**
      * @param int $id
+     *
      * @return $this
      */
     public function setId(?int $id): self
@@ -105,6 +116,22 @@ abstract class Content
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function getImage(): ?Attachment
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param Attachment|null $image
+     * @return $this
+     */
+    public function setImage(?Attachment $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

@@ -21,8 +21,6 @@ class Attachment
 
     /**
      * @Vich\UploadableField(mapping="attachments", fileNameProperty="fileName", size="fileSize")
-     *
-     * @var File|null
      */
     private ?File $file = null;
 

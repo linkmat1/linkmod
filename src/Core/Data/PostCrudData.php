@@ -2,14 +2,18 @@
 
 namespace App\Core\Data;
 
+use App\Entity\Attachment\Attachment;
 use App\Entity\Category;
 use App\Entity\Posts;
 use App\Entity\User;
 use App\Form\PostsType;
-use App\Http\Form\AutomaticForm;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
+/**
+ * @Vich\Uploadable()
+ */
 final class PostCrudData implements CrudDataInterface
 {
     public ?int $id = null;
@@ -26,20 +30,20 @@ final class PostCrudData implements CrudDataInterface
 
     public ?bool  $isNews = false;
 
-    public ?bool  $isInfo =  false;
+    public ?bool  $isInfo = false;
 
-    public ?string $Info = " ";
+    public ?string $Info = ' ';
 
-    public ?string $source = " ";
+    public ?string $source = ' ';
 
     public ?\DateTimeInterface $publishAt = null;
 
     /**
      * @Assert\NotBlank()
      */
-    public ?User $author;
+    public ?User $author = null;
 
-    public ?string $deprecated = " ";
+    public ?string $deprecated = ' ';
 
     public ?bool $isDepre = false;
     /**
@@ -51,25 +55,35 @@ final class PostCrudData implements CrudDataInterface
 
     public Posts $entity;
 
+    public ?Attachment $image = null;
 
-    public function __construct(Posts $post)
+    public function __construct()
     {
-        $this->entity = $post;
-        $this->title = $post->getTitle();
-        $this->createdAt = $post->getCreatedAt();
-        $this->content = $post->getContent();
-        $this->author = $post->getAuthor();
-        $this->isInfo = $post->getIsInfo();
-        $this->isNews = $post->getIsNews();
-        $this->isOnline = $post->getIsOnline();
-        $this->updatedAt = $post->getUpdatedAt();
-        $this->category = $post->getCategory();
-        $this->Info =  $post->getInfo();
-        $this->source = $post->getSource();
-        $this->publishAt = $post->getPublishAt();
-        $this->isDepre = $post->getIsDepre();
-        $this->deprecated = $post->getDeprecated();
-        $this->id = $post->getId();
+        $this->createdAt = new \DateTime();
+    }
+
+    public static function makeFromPost(Posts $post): self
+    {
+        $data = new self();
+
+        $data->title = $post->getTitle();
+        $data->createdAt = $post->getCreatedAt();
+        $data->content = $post->getContent();
+        $data->author = $post->getAuthor();
+        $data->isInfo = $post->getIsInfo();
+        $data->isNews = $post->getIsNews();
+        $data->isOnline = $post->getIsOnline();
+        $data->updatedAt = $post->getUpdatedAt();
+        $data->category = $post->getCategory();
+        $data->Info = $post->getInfo();
+        $data->source = $post->getSource();
+        $data->publishAt = $post->getPublishAt();
+        $data->isDepre = $post->getIsDepre();
+        $data->deprecated = $post->getDeprecated();
+        $data->image =  $post->getImage();
+        $data->entity = $post;
+        return $data;
+
     }
 
     public function hydrate(): void
@@ -89,6 +103,7 @@ final class PostCrudData implements CrudDataInterface
             ->setIsInfo($this->isInfo)
             ->setDeprecated($this->deprecated)
             ->setPublishAt($this->publishAt)
+            ->setImage($this->image)
             ->setSource($this->source);
     }
 
@@ -110,8 +125,10 @@ final class PostCrudData implements CrudDataInterface
     public function setAuthor(User $author): PostCrudData
     {
         $this->author = $author;
+
         return $this;
     }
+
     public function setEntityManager(EntityManagerInterface $em): self
     {
         $this->em = $em;
