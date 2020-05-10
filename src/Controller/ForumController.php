@@ -26,9 +26,11 @@ class ForumController extends AbstractController
     /**
      * ForumController constructor.
      */
-    public function __construct(TagRepository $tagRepository,
-                                TopicRepository $topicRepository,
-                                PaginatorInterface $paginator)
+    public function __construct(
+        TagRepository $tagRepository,
+        TopicRepository $topicRepository,
+        PaginatorInterface $paginator
+    )
     {
         $this->tagRepository = $tagRepository;
         $this->topicRepository = $topicRepository;
@@ -99,6 +101,4 @@ class ForumController extends AbstractController
             'menu' => $this->menuItem,
         ]);
     }
-
-
 }

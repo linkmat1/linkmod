@@ -2,7 +2,6 @@
 
 namespace App\Core\Helper\Cloner;
 
-
 use App\Entity\Posts;
 
 /**
@@ -10,10 +9,8 @@ use App\Entity\Posts;
  */
 class BlogCloner
 {
-
     public static function clone(Posts $posts): Posts
     {
-
         $clone = clone $posts;
         $clone->setTitle($posts->getTitle());
         $clone->setInfo(null);

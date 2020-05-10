@@ -39,5 +39,4 @@ class PathEncoder implements EncoderInterface
     {
         return self::FORMAT === $format;
     }
-
 }

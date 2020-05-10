@@ -22,6 +22,14 @@ class TopicRepository extends ServiceEntityRepository
         parent::__construct($registry, Topic::class);
     }
 
+    public function countTopic()
+    {
+        $q = $this->createQueryBuilder('t')
+          ->select('count(t.id)')->getQuery()->useQueryCache(true);
+
+        return $q->getSingleScalarResult();
+    }
+
     public function queryAllForTag(?Tag $tag): Query
     {
         $query = $this->createQueryBuilder('t')
@@ -37,6 +45,7 @@ class TopicRepository extends ServiceEntityRepository
                 ->where('tag IN (:tags)')
                 ->setParameter('tags', $tags);
         }
+
         return $query->getQuery();
     }
 

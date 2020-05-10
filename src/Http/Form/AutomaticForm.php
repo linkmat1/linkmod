@@ -2,7 +2,6 @@
 
 namespace App\Http\Form;
 
-
 use App\Entity\Forums\Tag;
 use App\Entity\User;
 use App\Type\CategoryChoiceType;
@@ -29,7 +28,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class AutomaticForm extends AbstractType
 {
-
     const TYPES = [
         'string'                 => TextType::class,
         'bool'                   => SwitchType::class,
@@ -69,7 +67,7 @@ class AutomaticForm extends AbstractType
                 $builder->add($name, self::NAMES[$name], [
                     'required' => false
                 ]);
-            } else if (array_key_exists($type->getName(), self::TYPES)) {
+            } elseif (array_key_exists($type->getName(), self::TYPES)) {
                 $builder->add($name, self::TYPES[$type->getName()], [
                     'required' => !$type->allowsNull() && $type->getName() !== 'bool'
                 ]);
@@ -83,5 +81,4 @@ class AutomaticForm extends AbstractType
             }
         }
     }
-
 }

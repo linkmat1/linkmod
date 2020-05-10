@@ -3,8 +3,6 @@
 
 namespace App\DataFixtures;
 
-
-
 use App\Entity\Category;
 use App\Entity\Content\Episodes;
 use App\Entity\Posts;
@@ -14,7 +12,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-Class ContentFixtures extends Fixture
+class ContentFixtures extends Fixture
 {
     /**
      * @var UserPasswordEncoderInterface
@@ -76,6 +74,6 @@ Class ContentFixtures extends Fixture
         }
 
 
-            $manager->flush();
-       }
+        $manager->flush();
+    }
 }

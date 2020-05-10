@@ -25,5 +25,4 @@ abstract class AbstractController extends \Symfony\Bundle\FrameworkBundle\Contro
         }
         $this->addFlash('error', implode("\n", $messages));
     }
-
 }

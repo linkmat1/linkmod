@@ -9,10 +9,8 @@ use Symfony\Component\Cache\CacheItem;
 use Twig\Extension\AbstractExtension;
 use Twig\TokenParser\AbstractTokenParser;
 
-
 class TwigCacheExtension extends AbstractExtension
 {
-
     private AdapterInterface $cache;
 
     public function __construct(AdapterInterface $cache)
@@ -78,5 +76,4 @@ class TwigCacheExtension extends AbstractExtension
         $item->set($value);
         $this->cache->save($item);
     }
-
 }

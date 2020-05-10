@@ -1,10 +1,10 @@
 {% cache [topic, 'card'] %}
   <div class="forum-topic{% if topic.solved %} is-solved{% endif %}">
     <div class="forum-avatar">
-      <img src="{{ topic.author.username }}" alt="">
+      <img src="{{ topic.author | avatar }}" alt="">
     </div>
     <div class="forum-topic__body">
-      <a class="forum-topic__title" href="{{ path(topic) }}">{{ topic.name }}</a>
+      <a class="forum-topic__title" href="{{ path('forum_show',{id: topic.id} ) }}">{{ topic.name }}</a>
       <div class="forum-topic__meta">
         <div class="forum-topic__tags">
           {% for tag in topic.tags %}
@@ -16,10 +16,9 @@
         </div>
         {% if topic.lastMessage %}
           {{icon('reply')}} <a
-          href="{{ path(topic.lastMessage.author) }}">{{ topic.lastMessage.author.username }}</a>, {{ topic.lastMessage.createdAt | ago }}
+                href="{{ path(topic.lastMessage.author) }}">{{ topic.lastMessage.author.username }}</a>, {{ topic.lastMessage.createdAt | ago }}
         {% else %}
-          <a
-          href="{{ path(topic.author) }}">{{ topic.author.username }}</a>, {{ topic.createdAt | ago }}
+          <a href="{{ path('user_show',{username: topic.author.username} ) }}">{{ topic.author.username }}</a>, {{ topic.createdAt | ago }}
         {% endif %}
       </div>
     </div>

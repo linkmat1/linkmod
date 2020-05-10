@@ -2,8 +2,6 @@
 
 namespace App\Http\Normalizer;
 
-
-
 use App\Entity\Forums\Tag;
 use App\Entity\Forums\Topic;
 use App\Http\Encoder\PathEncoder;

@@ -85,7 +85,5 @@ class AppFixtures extends Fixture
         $faker = Factory::create();
 
         $manager->flush();
-
     }
-
 }

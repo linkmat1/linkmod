@@ -40,7 +40,7 @@ security:
     access_control:
         - { path: ^/superadmin, roles: ROLE_SUPERADMIN }
         #- { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/Users, roles: ROLE_USER }
+        - { path: ^/users, roles: ROLE_USER }
         - { path: ^/moderation, roles: ROLE_MODO }
         - { path: ^/upload, roles: ROLE_EDITOR }
 

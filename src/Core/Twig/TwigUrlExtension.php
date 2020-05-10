@@ -21,8 +21,8 @@ class TwigUrlExtension extends AbstractExtension
     public function __construct(
         UrlGeneratorInterface $urlGenerator,
         UploaderHelper $uploaderHelper,
-        SerializerInterface $serializer)
-    {
+        SerializerInterface $serializer
+    ) {
         $this->urlGenerator = $urlGenerator;
         $this->serializer = $serializer;
         $this->uploaderHelper = $uploaderHelper;
@@ -46,7 +46,7 @@ class TwigUrlExtension extends AbstractExtension
     public function contentPath(Content $content): ?string
     {
         if ($content instanceof Posts) {
-            return $this->urlGenerator->generate('blog_show', ['slug' => $content->getSlug()]);
+            return $this->urlGenerator->generate('blog_show', ['slug' => $content->getTitle()]);
         }
 
         return null;
@@ -63,7 +63,7 @@ class TwigUrlExtension extends AbstractExtension
 
     /**
      * @param string|object $path
-     *
+     * @param array $params
      * @return string
      */
     public function pathFor($path, array $params = []): string
@@ -72,6 +72,6 @@ class TwigUrlExtension extends AbstractExtension
             return $this->urlGenerator->generate($path, $params);
         }
 
-        return $this->serializer->serialize($path, 'path');
+        return  'hello'; //return $this->serializer->serialize($path, 'path');
     }
 }

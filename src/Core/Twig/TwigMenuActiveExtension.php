@@ -2,13 +2,11 @@
 
 namespace App\Core\Twig;
 
-
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 class TwigMenuActiveExtension extends AbstractExtension
 {
-
     public function getFunctions(): array
     {
         return [
@@ -31,5 +29,4 @@ class TwigMenuActiveExtension extends AbstractExtension
         }
         return '';
     }
-
 }

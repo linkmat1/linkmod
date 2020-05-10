@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Entity\Forums\Topic;
+
 use App\Events\PreTopicCreatedEvent;
 use App\Events\TopicCreatedEvent;
 use Doctrine\ORM\EntityManagerInterface;

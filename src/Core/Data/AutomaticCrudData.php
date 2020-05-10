@@ -2,7 +2,6 @@
 
 namespace App\Core\Data;
 
-
 use App\Http\Form\AutomaticForm;
 use Doctrine\Common\Annotations\Annotation\IgnoreAnnotation;
 use ReflectionClass;
@@ -17,7 +16,6 @@ use Symfony\Component\PropertyAccess\PropertyAccessor;
  */
 abstract class AutomaticCrudData implements CrudDataInterface
 {
-
     protected object $entity;
 
     public function __construct(object $entity)
@@ -26,7 +24,7 @@ abstract class AutomaticCrudData implements CrudDataInterface
         $reflexion = new ReflectionClass($this);
         $properties = $reflexion->getProperties(ReflectionProperty::IS_PUBLIC);
         $accessor = new PropertyAccessor();
-        foreach($properties as $property) {
+        foreach ($properties as $property) {
             $name = $property->getName();
             /** @var \ReflectionNamedType|null $type */
             $type = $property->getType();
@@ -49,7 +47,7 @@ abstract class AutomaticCrudData implements CrudDataInterface
         $reflexion = new ReflectionClass($this);
         $properties = $reflexion->getProperties(ReflectionProperty::IS_PUBLIC);
         $accessor = new PropertyAccessor();
-        foreach($properties as $property) {
+        foreach ($properties as $property) {
             $name = $property->getName();
             $value = $accessor->getValue($this, $name);
             $accessor->setValue($this->entity, $name, $value);
@@ -61,11 +59,11 @@ abstract class AutomaticCrudData implements CrudDataInterface
         return AutomaticForm::class;
     }
 
-    public function getId (): ?int {
+    public function getId(): ?int
+    {
         if (method_exists($this->entity, 'getId')) {
             return $this->entity->getId();
         }
         throw new \RuntimeException("L'entité doit avoir une méthode getId()");
     }
-
 }

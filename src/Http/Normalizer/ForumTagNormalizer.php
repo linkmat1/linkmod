@@ -8,7 +8,6 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class ForumTagNormalizer implements NormalizerInterface
 {
-
     private UrlGeneratorInterface $urlGenerator;
 
     public function __construct(UrlGeneratorInterface $urlGenerator)

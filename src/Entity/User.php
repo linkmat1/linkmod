@@ -8,13 +8,15 @@ use App\Entity\Content\CreatedTimeTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Faker\Provider\DateTime;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
+ * @Vich\Uploadable()
  */
 class User implements UserInterface, \Serializable
 {
@@ -64,7 +66,15 @@ class User implements UserInterface, \Serializable
      * @ORM\ManyToMany(targetEntity=Groupes::class, mappedBy="members")
      */
     private ?Collection $groupes;
+    /**
+     * @Vich\UploadableField(mapping="avatars", fileNameProperty="avatarName")
+     */
+    private ?File $avatarFile = null;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $avatarName = null;
 
     use ProfilTrait;
     use CreatedTimeTrait;
@@ -78,7 +88,6 @@ class User implements UserInterface, \Serializable
     public function getId(): ?int
     {
         return $this->id;
-
     }
 
     /**
@@ -244,21 +253,48 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function serialize()
+    public function serialize(): string
     {
-        return serialize(array(
+        return serialize([
             $this->id,
             $this->username,
             $this->password,
-        ));
+        ]);
     }
 
-    public function unserialize($serialized)
+    /**
+     * @param string $serialized
+     */
+    public function unserialize($serialized): void
     {
         [
             $this->id,
             $this->username,
             $this->password,
         ] = unserialize($serialized);
+    }
+
+    public function getAvatarFile(): ?File
+    {
+        return $this->avatarFile;
+    }
+
+    public function setAvatarFile(?File $avatarFile): User
+    {
+        $this->avatarFile = $avatarFile;
+
+        return $this;
+    }
+
+    public function getAvatarName(): ?string
+    {
+        return $this->avatarName;
+    }
+
+    public function setAvatarName(?string $avatarName): User
+    {
+        $this->avatarName = $avatarName;
+
+        return $this;
     }
 }

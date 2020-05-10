@@ -2,7 +2,6 @@
 
 namespace App\DataFixtures;
 
-
 use App\Entity\Forums\Tag;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -46,7 +45,5 @@ class ForumFixtures extends Fixture
 
 
         $manager->flush();
-
     }
-
 }

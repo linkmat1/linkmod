@@ -3,7 +3,6 @@
 
 namespace App\Http\Attachment\Validator;
 
-
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
@@ -32,5 +31,4 @@ class AttachmentExistValidator extends ConstraintValidator
             ->setParameter('{{ id }}', (string)$value->getId())
             ->addViolation();
     }
-
 }

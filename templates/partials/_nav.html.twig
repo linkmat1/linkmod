@@ -1,4 +1,4 @@
-<nav class="header">
+<nav class="header {% if headerWhite is defined %}is-white{% endif %}">
     <ul class="header__nav">
         <li class="header__home"><a href="{{ path('home') }}">{{ icon('home') }}</a></li>
         <li><a href="{{ path('forum') }}" {{ menu_active('forum') }}>{{ icon('comment') }}Forum</a></li>

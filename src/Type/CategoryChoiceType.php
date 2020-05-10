@@ -2,7 +2,6 @@
 
 namespace App\Type;
 
-
 use App\Entity\Category;
 use App\Entity\Forums\Tag;
 use Doctrine\ORM\EntityRepository;
@@ -11,7 +10,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CategoryChoiceType extends EntityType
 {
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
@@ -25,5 +23,4 @@ class CategoryChoiceType extends EntityType
             'choice_label' => 'name',
         ]);
     }
-
 }

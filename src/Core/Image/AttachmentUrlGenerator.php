@@ -2,7 +2,6 @@
 
 namespace App\Core\Image;
 
-
 use App\Entity\Attachment\Attachment;
 use App\Http\Attachment\Validator\NonExistingAttachment;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;

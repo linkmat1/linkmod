@@ -43,5 +43,4 @@ class ForumMessageController extends AbstractController
             'html' => $this->renderView('forum/_message.html.twig', ['message' => $message])
         ], 201);
     }
-
 }

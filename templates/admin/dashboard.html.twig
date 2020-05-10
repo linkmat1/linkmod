@@ -14,6 +14,7 @@
 
     {% if is_granted('ROLE_SUPERADMIN') %}
         <li><a href="{{ path('superadmin_index') }}">Gestion SuperAdmin</a></li>
+        {{ topic }}
     {% endif %}
 
 

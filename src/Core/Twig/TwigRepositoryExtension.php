@@ -8,7 +8,6 @@ use Twig\TwigFunction;
 
 class TwigRepositoryExtension extends AbstractExtension
 {
-
     private EntityManagerInterface $em;
 
     public function __construct(EntityManagerInterface $em)
@@ -35,8 +34,5 @@ class TwigRepositoryExtension extends AbstractExtension
         /** @var callable $callable */
         $callable = [$repository, $method];
         return call_user_func_array($callable, $params);
-
     }
-
-
 }

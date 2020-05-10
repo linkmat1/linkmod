@@ -20,6 +20,11 @@ services:
     links:
       - db
       - mail
+      - redis
+    depends_on:
+      - db
+    environment:
+      PHP_IDE_CONFIG: serverName=grafikart
   node:
     build:
       context: ./docker/node
@@ -58,7 +63,8 @@ services:
       - 1080:80
   redis:
     image: redis:5-alpine
-
 volumes:
   db-data:
+    driver: local
+  search-data:
     driver: local

@@ -10,9 +10,9 @@
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
     {% block javascripts %}
-        {{ encore_entry_script_tags('app') }}
+        {{ encore_entry_script_tags('app')  | replace({'<script': '<script defer'}) | raw }}
     {% endblock %}
     <link rel="manifest" href="/manifest.webmanifest">
     <meta name="turbolinks-cache-control" content="no-cache"/>
 </head>
-<body>
+<body {% if bodyClass is defined %}class="{{ bodyClass }}"{% endif %}>

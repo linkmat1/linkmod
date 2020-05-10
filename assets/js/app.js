@@ -1,7 +1,8 @@
 
 import '../css/app.scss'
-import './elements'
-import './pages'
+
+import "./elements/AutoSubmit"
+import "./elements/TimeAgo"
 
 import './elements/Switch'
 import './modules/scrollreveal'

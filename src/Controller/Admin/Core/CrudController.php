@@ -17,8 +17,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 
-
-
 abstract class CrudController extends BaseController
 {
 
@@ -69,7 +67,6 @@ abstract class CrudController extends BaseController
             'menu'   => $this->menuItem,
             'prefix' => $this->routePrefix
         ]);
-
     }
 
     public function crudEdit(CrudDataInterface $data): Response
@@ -144,6 +141,4 @@ abstract class CrudController extends BaseController
         return $query->where("LOWER(row.{$this->searchField}) LIKE :search")
             ->setParameter('search', "%" . strtolower($search) . "%");
     }
-
 }
-

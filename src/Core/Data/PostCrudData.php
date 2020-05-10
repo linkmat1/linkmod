@@ -12,7 +12,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 final class PostCrudData implements CrudDataInterface
 {
-
     public ?int $id = null;
     /**
      * @Assert\NotBlank()
@@ -91,7 +90,6 @@ final class PostCrudData implements CrudDataInterface
             ->setDeprecated($this->deprecated)
             ->setPublishAt($this->publishAt)
             ->setSource($this->source);
-
     }
 
     public function getEntity(): object

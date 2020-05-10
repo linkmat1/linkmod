@@ -2,8 +2,6 @@
 
 namespace App\Form;
 
-
-
 use App\Core\Data\PostCrudData;
 use App\Entity\Category;
 use App\Type\CategoryChoiceType;
@@ -19,7 +17,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PostsType extends AbstractType
 {
-
     private EntityManagerInterface $entityManager;
 
     public function __construct(EntityManagerInterface $entityManager)
@@ -35,7 +32,7 @@ class PostsType extends AbstractType
             ->add('isInfo', SwitchType::class)
             ->add('Info')
             ->add('publishAt', DateTimeType::class)
-            ->add('source' )
+            ->add('source')
             ->add('deprecated')
             ->add('category', CategoryChoiceType::class)
             ->add('isDepre', SwitchType::class)

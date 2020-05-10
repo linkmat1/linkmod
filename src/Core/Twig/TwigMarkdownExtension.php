@@ -10,9 +10,6 @@ use Twig\TwigFunction;
 
 class TwigMarkdownExtension extends AbstractExtension
 {
-
-
-
     public function getFilters(): array
     {
         return [
@@ -34,7 +31,8 @@ class TwigMarkdownExtension extends AbstractExtension
         $content = preg_replace(
             '/<p><a href\="(http|https):\/\/www.youtube.com\/watch\?v=([^\""]+)">[^<]*<\/a><\/p>/',
             '<div class="video"><div class="ratio"><iframe width="560" height="315" src="//www.youtube-nocookie.com/embed/$2" frameborder="0" allowfullscreen=""></iframe></div></div>',
-            $content);
+            $content
+        );
 
         return $content;
     }
@@ -48,5 +46,4 @@ class TwigMarkdownExtension extends AbstractExtension
     {
         return (new Parsedown())->setSafeMode(true)->text($content);
     }
-
 }

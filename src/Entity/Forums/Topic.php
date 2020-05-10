@@ -88,6 +88,7 @@ class Topic
     {
         $this->tags = new ArrayCollection();
         $this->messages = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -266,5 +267,4 @@ class Topic
 
         return $this;
     }
-
 }
