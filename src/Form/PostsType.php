@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Core\Data\PostCrudData;
 use App\Entity\Attachment\Attachment;
 use App\Entity\Category;
+use App\Type\AttachmentType;
 use App\Type\CategoryChoiceType;
 use App\Type\DateTimeType;
 use App\Type\EditorType;
@@ -39,7 +40,6 @@ class PostsType extends AbstractType
             ->add('category', CategoryChoiceType::class)
             ->add('isDepre', SwitchType::class)
             ->add('author', UserChoiceType::class)
-            ->add('image', VichFileType::class)
         ;
     }
 

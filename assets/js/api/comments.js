@@ -1,4 +1,4 @@
-import { jsonFetch } from '../functions/api'
+import {jsonFetch} from '@fn/api'
 
 /**
  * Représentation d'un commentaire de l'API
@@ -9,7 +9,7 @@ import { jsonFetch } from '../functions/api'
  * @param {string} target
  * @return {Promise<CommentResource[]>}
  */
-export async function findAllComments (target) {
+export async function findAllComments(target) {
   const comments = await jsonFetch('/api/comments?content=' + target)
   const commentsHash = {}
   for (const comment of comments) {
@@ -20,14 +20,14 @@ export async function findAllComments (target) {
       commentsHash[comment.parent].replies.push(comment)
     }
   }
-  return { count: comments.length, comments: Object.values(commentsHash) }
+  return {count: comments.length, comments: Object.values(commentsHash)}
 }
 
 /**
  * @param {{target: number, username: ?string, email: ?string, content: string}} data
  * @return {Promise<Object>}
  */
-export async function addComment (data) {
+export async function addComment(data) {
   return jsonFetch('/api/comments', {
     method: 'POST',
     body: JSON.stringify(data)
@@ -52,6 +52,6 @@ export async function deleteComment (id) {
 export async function updateComment (id, content) {
   return jsonFetch(`/api/comments/${id}`, {
     method: 'PUT',
-    body: JSON.stringify({ content })
+    body: JSON.stringify({content})
   })
 }

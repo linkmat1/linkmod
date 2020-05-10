@@ -1,22 +1,23 @@
 <nav class="header {% if headerWhite is defined %}is-white{% endif %}">
-    <ul class="header__nav">
-        <li class="header__home"><a href="{{ path('home') }}">{{ icon('home') }}</a></li>
-        <li><a href="{{ path('forum') }}" {{ menu_active('forum') }}>{{ icon('comment') }}Forum</a></li>
-        <li><a href="#">{{ icon('video') }}Mods</a></li>
-        <li><a href="#">{{ icon('video') }}Tutoriels</a></li>
-        <li><a href="#">{{ icon('video') }}A Propos</a></li>
+    <ul class="header-nav">
+        <li class="header__home"><a href="{{ path('home') }}" title="Accueil">{{ icon('home') }}</a></li>
+        <li><a href="#" >{{ icon('video') }} Tutoriels</a></li>
+        <li><a href="#">{{ icon('lines') }} Formations</a></li>
+        <li><a href="{{ path('forum') }}"  {{ menu_active('forum') }}>{{ icon('comment') }} Forum</a></li>
+        <li><a href="#" >{{ icon('camera') }} Live</a></li>
+        <li><a href="#">{{ icon('pen') }} Blog</a></li>
+        <li id="dark-toggle"><a href="#">Dark</a></li>
+    </ul>
+    <ul class="header-side">
+        <li class="header__notification">
+            <site-notifications></site-notifications>
+        </li>
+        <li class="header__search"><a href="#">{{ icon('search') }}</a></li>
         {% if app.user %}
-            <li class="header__account"><a
-                        href="{{ path('app_logout') }}">{{ icon('user') }} {{ app.user.username }}</a>
+            <li class="header__account"><a href="{{ path('app_logout') }}">{{ icon('user') }} {{ app.user.username }}</a>
             </li>
         {% else %}
             <li class="header__account"><a href="{{ path('app_login') }}">{{ icon('user') }} Se connecter</a></li>
-        {% endif %}
-        {% if is_granted('ROLE_ADMIN') %}
-            <li><a href="{{ path('admin_dashboard') }}">Admin</a></li>
-        {% endif %}
-        {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
-            <a href="{{ path('home', {'_switch_user': '_exit'}) }}">Sortir Ninja</a>
         {% endif %}
     </ul>
 </nav>

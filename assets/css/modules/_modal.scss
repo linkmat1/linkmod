@@ -15,9 +15,9 @@ modal-box,
 }
 
 modal-box.is-closing,
-.modal.is-closing {
-  animation: .5s fadeOut both;
-}
+ .modal.is-closing {
+   animation: .5s fadeOut both;
+ }
 
 modal-box > *,
 .modal > * {

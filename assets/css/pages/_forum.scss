@@ -51,7 +51,7 @@
   background: url(../../images/check.svg) center center / 70% 70% no-repeat var(--green);
 }
 
-// Listing sujet
+  // Listing sujet
 // =============
 .forum-topic {
   display: grid;
@@ -100,7 +100,7 @@
   color: var(--color-light);
 }
 .forum-topic__meta a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 .forum-topic__meta time-ago {
   font-weight: 300;
@@ -216,7 +216,7 @@
   margin-right: space(2);
 }
 
-// Tag
+  // Tag
 // =============
 .forum-tags a {
   display: inline-block;

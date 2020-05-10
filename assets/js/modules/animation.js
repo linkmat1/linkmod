@@ -1,9 +1,9 @@
 /**
-* Masque un élément avec un effet de repli
-* @param {HTMLElement} element
-* @param {Number} duration
-* @returns {Promise<boolean>}
-*/
+ * Masque un élément avec un effet de repli
+ * @param {HTMLElement} element
+ * @param {Number} duration
+ * @returns {Promise<boolean>}
+ */
 export function slideUp (element, duration = 500) {
   return new Promise(function (resolve, reject) {
     element.style.height = element.offsetHeight + 'px'

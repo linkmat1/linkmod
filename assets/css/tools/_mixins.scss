@@ -35,13 +35,13 @@
   $src: null;
 
   $extmods: (
-          eot: "?",
-          svg: "#" + str-replace($name, " ", "_")
+    eot: "?",
+    svg: "#" + str-replace($name, " ", "_")
   );
 
   $formats: (
-          otf: "opentype",
-          ttf: "truetype"
+    otf: "opentype",
+    ttf: "truetype"
   );
 
   @each $ext in $exts {
@@ -61,14 +61,17 @@
     $weights: $weight;
     @each $weight in $weights {
       $suffix: map-get((
-              300: Light,
-              400: Regular,
-              500: Medium,
-              600: SemiBold,
-              700: Bold
+        200: ExtraLight,
+        300: Light,
+        400: Regular,
+        500: Medium,
+        600: SemiBold,
+        700: Bold,
+        900: Black
       ), $weight);
       @include font-face($name, $path + "-" + $suffix,
-              $weight, $style, $exts)
+      $weight, $style, $exts)
     }
   }
 }
+

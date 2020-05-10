@@ -6,6 +6,7 @@ use App\Controller\Admin\Core\CrudController;
 use App\Core\Data\PostCrudData;
 use App\Core\Helper\Cloner\BlogCloner;
 use App\Entity\Posts;
+use App\Repository\PostsRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -31,7 +32,7 @@ class PostsController extends CrudController
     /**
      * @Route("/", name="_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(PostsRepository $postsRepository): Response
     {
         return  $this->crudIndex();
     }

@@ -6,36 +6,10 @@
 // Page header
 // ==========================================================================
 .page-header {
-  @extend %container-margin;
+  background: var(--background-light);
   border-bottom: 1px solid var(--border);
+  padding-top: space(6);
   padding-bottom: space(6);
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: space(2);
-
-  @include up(1100) {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-}
-
-.page-header__title {
-  @extend %hero-title;
-  white-space: nowrap;
-}
-
-.page-header__title strong {
-  display: block;
-  color: var(--contrast);
-}
-
-.page-header__description {
-  max-width: 80%;
-}
-
-.page-header__description a {
-  text-decoration: underline;
 }
 
 // En tête avec une vague
@@ -47,26 +21,21 @@
   grid-gap: space(3);
   color: #FFF;
 }
-
 .wave-header__body {
   @extend %hero-text;
   padding-bottom: 20px;
 }
-
 .wave-header__title {
   @extend %hero-title;
 }
-
 .wave-header__image {
   display: none;
   position: relative;
 }
-
 .wave-header__image img {
   position: relative;
   z-index: 2;
 }
-
 @include up(550) {
   .wave-header {
     grid-template-columns: 1fr 200px;
@@ -78,7 +47,6 @@
     padding: 0 25px;
   }
 }
-
 @include up(1000) {
   .wave-header {
     grid-template-columns: 1fr 400px;
@@ -94,7 +62,7 @@
     display: block;
   }
   .wave-header__image::after {
-    content: '';
+    content:'';
     position: absolute;
     bottom: -15px;
     left: 0;

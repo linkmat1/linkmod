@@ -83,10 +83,10 @@ export function strToDom(str) {
  * @return {null|HTMLElement}
  */
 export function closest (element, selector) {
-  for ( ; element && element !== document; element = element.parentNode ) {
-    if ( element.matches( selector ) ) return element;
-  }
-  return null;
+    for ( ; element && element !== document; element = element.parentNode ) {
+      if ( element.matches( selector ) ) return element;
+    }
+    return null;
 }
 
 /**

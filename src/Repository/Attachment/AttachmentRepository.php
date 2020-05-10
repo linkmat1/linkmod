@@ -14,6 +14,7 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class AttachmentRepository extends ServiceEntityRepository
 {
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Attachment::class);
@@ -28,7 +29,7 @@ class AttachmentRepository extends ServiceEntityRepository
             ->orderBy('year', 'DESC')
             ->getQuery()
             ->getResult();
-        return array_map(fn (array $row) => [
+        return array_map(fn(array $row) => [
             'path' => $row['year'] . '/' . str_pad($row['month'], 2, '0', STR_PAD_LEFT),
             'count' => $row['count']
         ], $rows);
@@ -37,7 +38,6 @@ class AttachmentRepository extends ServiceEntityRepository
     /**
      * @param string $path
      * @return array<Attachment>
-     * @throws \Exception
      */
     public function findForPath(string $path): array
     {
@@ -55,6 +55,8 @@ class AttachmentRepository extends ServiceEntityRepository
             ->setMaxResults(50)
             ->getQuery()
             ->getResult();
+
+
     }
 
     /**
@@ -83,4 +85,5 @@ class AttachmentRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
 }

@@ -1,6 +1,7 @@
 // Variables
 // ==================
 :root {
+  --color-dark: #000;
   --color: #121C42;
   --color-light: #121C4299;
   --color-inversed: #EFFBEC;
@@ -26,6 +27,7 @@
 }
 
 .dark {
+  --color-dark: #FFF;
   --color: #EFFBEC;
   --color-light: #EFFBEC99;
   --color-inversed: #121C42;
@@ -57,7 +59,7 @@ body {
   font-size: 16px;
   color: var(--color);
   line-height: 1.6;
-  background: var(--background);
+  background:  var(--background);
   scroll-margin: 100px 0 0 0;
 }
 
@@ -78,6 +80,7 @@ body::after {
   height: 506px;
   z-index: -1;
   pointer-events: none;
+  background: url(../images/logo.svg) top left / 100% 100% no-repeat;
 }
 
 ::selection {
@@ -98,19 +101,28 @@ body::after {
 @import "modules/table";
 @import "modules/modal";
 @import "modules/list";
-//@import "modules/comments";
+@import "modules/comments";
 @import "modules/page";
 @import "modules/breadcrumb";
 @import "modules/hero";
 @import "modules/nav";
+@import "modules/highlight";
+@import "modules/pricing";
+@import "modules/notifications";
 
 // Pages
 // ==================
-
+@import "pages/live";
+@import "pages/course";
+@import "pages/chapters";
+@import "pages/auth";
 @import "pages/blog";
 @import "pages/dashboard";
-@import "pages/chapters";
+@import "pages/env";
+@import "pages/formations";
+@import "pages/home";
 @import "pages/forum";
+@import "pages/user";
 // @import "pages/single";
 // @import "pages/single";
 // @import "pages/single";

@@ -5,26 +5,24 @@ import Choices from 'choices.js'
  */
 class ChoicesElement extends HTMLInputElement {
 
-    connectedCallback()
-    {
-        if (!this.getAttribute('choicesBinded')) {
-            this.setAttribute('choicesBinded', 'true')
-            this.choices = new Choices(this, {
-                removeItems: true,
-                removeItemButton: true,
-                addItemText: (value) => {
-                    return `Appuyer sur entrer pour ajouter <b>"${value}"</b>`;
-                }
-            })
+  connectedCallback () {
+    if (!this.getAttribute('choicesBinded')) {
+      this.setAttribute('choicesBinded', 'true')
+      this.choices = new Choices(this, {
+        removeItems: true,
+        removeItemButton: true,
+        addItemText: (value) => {
+          return `Appuyer sur entrer pour ajouter <b>"${value}"</b>`;
         }
+      })
     }
+  }
 
-    disconnectedCallback()
-    {
-        if (this.choices) {
-            this.choices.destroy()
-        }
+  disconnectedCallback () {
+    if (this.choices) {
+      this.choices.destroy()
     }
+  }
 
 }
 

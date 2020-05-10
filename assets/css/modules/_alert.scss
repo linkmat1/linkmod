@@ -9,7 +9,11 @@
   align-items: center;
   animation: alertIn .5s both;
   line-height: 1.2;
+  position: relative;
   border-bottom: 3px solid var(--border);
+}
+.alert strong {
+  font-weight: bold;
 }
 .alert.out {
   animation: alertOut .5s both;
@@ -54,6 +58,25 @@
     color: #23DB72;
   }
 }
+.alert-info {
+  border-bottom-color: #4869EE;
+
+  svg:first-child {
+    color: #4869EE;
+  }
+}
+
+.alert__progress {
+  height: 3px;
+  background: var(--background-light);
+  position: absolute;
+  bottom: -3px;
+  right: 0;
+  width: 100%;
+  z-index: 3;
+  transform-origin: 0 100%;
+  animation: alertDuration 2s linear both;
+}
 
 @keyframes alertIn {
   from {
@@ -75,18 +98,21 @@
     transform: translateY(-10px);
   }
 }
+@keyframes alertDuration {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
 
 .dashboard .alert,
 .is-floating .alert{
-  z-index: 5;
   border-left: 1px solid var(--border);
   border-right: 1px solid var(--border);
   border-top: 1px solid var(--border);
   box-shadow: 0 2px 20px var(--shadow);
-  position: fixed;
-  top: var(--container-padding);
-  right: var(--container-padding);
-  max-width: 400px;
 }
 
 // Bullets
