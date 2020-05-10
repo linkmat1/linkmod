@@ -2,7 +2,7 @@ user := $(shell id -u)
 group := $(shell id -g)
 dc :=  docker-compose
 dr := $(dc) run --rm
-sy := $(dc) php bin/console
+sy := $(dexec) php bin/console
 dexec := docker-compose exec
 drtest := $(dc) -f docker-compose.test.yml run --rm
 
@@ -91,4 +91,6 @@ phpcs: vendor/autoload.php ## Nettoie les code  en direct!
 db: #Lance un Terminal Interactif sur la base de donnée docker
 	$(dexec) db mysql -ulinkmat -plinkmat
 
-
+.PHONY: rollback
+rollback:
+	$(sy) doctrine:migration:migrate prev

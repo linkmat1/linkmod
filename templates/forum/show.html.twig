@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title topic.name %}
+
+{% block body %}
+
+  <div class="container stack topic-page">
+
+    <h1 class="forum-message__title">{{ topic.name }}</h1>
+
+    <div class="forum-message">
+      <div class="forum-message__header">
+        <div class="forum-avatar">
+          <img src="{{ topic.author | avatar }}" alt="">
+        </div>
+        <div>
+          <a class="forum-message__author" href="{{ path(topic.author) }}">{{ topic.author.username }}</a>
+          <div class="forum-message__date">{{ topic.createdAt | ago }}</div>
+        </div>
+      </div>
+      <div class="forum-message__body formatted">
+        {{ topic.content | markdown_untrusted }}
+      </div>
+      {% include 'forum/_report.html.twig' with {topic: topic.id} %}
+    </div>
+
+    <h2 class="section-title">{{ topic.messageCount }} Réponses</h2>
+
+    <div class="forum-messages">
+      {% for message in messages %}
+        {% include 'forum/_message.html.twig' %}
+      {% endfor %}
+
+      <div id="new-forum-message" data-topic="{{ topic.id }}"></div>
+    </div>
+
+  </div>
+
+{% endblock %}

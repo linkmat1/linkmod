@@ -8,7 +8,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\Forums\TopicRepository")
  *  @ORM\Table(name="forum_topic")
@@ -62,8 +61,6 @@ class Topic
      * @Assert\Count(min="1")
      */
     private Collection $tags;
-
-
 
     /**
      * @ORM\Column(type="integer", options={"default": 0})
@@ -265,4 +262,5 @@ class Topic
 
         return $this;
     }
+
 }

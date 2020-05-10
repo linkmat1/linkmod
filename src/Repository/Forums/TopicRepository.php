@@ -2,9 +2,12 @@
 
 namespace App\Repository\Forums;
 
+use App\Entity\Forums\Tag;
 use App\Entity\Forums\Topic;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query;
 
 /**
  * @method Topic|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,32 +22,47 @@ class TopicRepository extends ServiceEntityRepository
         parent::__construct($registry, Topic::class);
     }
 
-    // /**
-    //  * @return ForumTopics[] Returns an array of ForumTopics objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function queryAllForTag(?Tag $tag): Query
     {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('f.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $query = $this->createQueryBuilder('t')
+            ->setMaxResults(20)
+            ->orderBy('t.createdAt', 'DESC');
+        if ($tag) {
+            $tags = [$tag];
+            if ($tag->getChildren()->count() > 0) {
+                $tags = $tag->getChildren()->toArray();
+            }
+            $query
+                ->join('t.tags', 'tag')
+                ->where('tag IN (:tags)')
+                ->setParameter('tags', $tags);
+        }
+        return $query->getQuery();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?ForumTopics
+    public function findAllBatched(): iterable
     {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $limit = 0;
+        $perPage = 1000;
+        while (true) {
+            $rows = $this->createQueryBuilder('t')
+                ->setMaxResults($perPage)
+                ->setFirstResult($limit)
+                ->getQuery()
+                ->getResult();
+            if (empty($rows)) {
+                break;
+            }
+            foreach ($rows as $row) {
+                yield $row;
+            }
+            $limit += $perPage;
+            $this->getEntityManager()->clear();
+        }
     }
-    */
+
+    public function countForUser(User $user): int
+    {
+        return $this->count(['user' => $user]);
+    }
 }

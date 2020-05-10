@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Forum' %}
+
+{% block body %}
+
+<div class="container page-header flex mb3">
+  <h1 class="hero-title">Forum</h1>
+  <div class="form-group flex" style="width: 100%; margin-left: 70px;">
+    <input type="text" name="q" placeholder="Rechercher un sujet">
+    <button type="submit" class="btn-primary">Rechercher</button>
+  </div>
+</div>
+
+<div class="forum-page">
+  <div class="forum-page__sidebar stack">
+    <a href="{{ path('forum_new') }}" class="btn-primary">Nouveau sujet</a>
+    <ul class="forum-tags">
+      <li>
+        <a href="{{ path('forum') }}">
+          Tous les sujets
+        </a>
+      </li>
+      {% for tag in tags %}
+        <li>
+          <a href="{{ path(tag) }}">
+            <img src="/icons/{{ tag.name | lower }}.svg" alt="" width="16" height="16">
+            {{ tag.name }}
+          </a>
+          <ul>
+            {% for t in tag.children %}
+              <li>
+                <a href="{{ path(t) }}">
+                  {{ t.name }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <main class="forum-page__main stack">
+    {% for topic in topics %}
+      {% include('forum/_topic.html.twig') %}
+    {% endfor %}
+  </main>
+</div>
+{% endblock %}

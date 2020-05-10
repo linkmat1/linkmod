@@ -5,8 +5,6 @@ namespace App\Entity;
 use App\Core\ProfilTrait;
 use App\Entity\Content\Content;
 use App\Entity\Content\CreatedTimeTrait;
-use App\Entity\Forums\ForumMessages;
-use App\Entity\Forums\ForumTopics;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -30,11 +28,11 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private string $username = "";
+    private string $username = '';
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private string $email = "";
+    private string $email = '';
 
     /**
      * @ORM\Column(type="json")
@@ -45,12 +43,12 @@ class User implements UserInterface
      * @var string The hashed password
      * @ORM\Column(type="string", nullable=true)
      */
-    private ?string $password = "";
+    private ?string $password = '';
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Content\Content", mappedBy="author")
      */
-    private $contents;
+    private ?Collection $contents;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -62,18 +60,27 @@ class User implements UserInterface
      */
     private ?bool $term = false;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Groupes::class, mappedBy="members")
+     */
+    private ?Collection $groupes;
+
+
     use ProfilTrait;
     use CreatedTimeTrait;
 
     public function __construct()
     {
         $this->contents = new ArrayCollection();
+        $this->groupes = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
+
     }
+
     /**
      * A visual identifier that represents this user.
      *
@@ -90,6 +97,7 @@ class User implements UserInterface
 
         return $this;
     }
+
     /**
      * @see UserInterface
      */
@@ -141,19 +149,13 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-     /**
-     * @param string $email
-     * @return User
-     */
     public function setEmail(string $email): User
     {
         $this->email = $email;
+
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getEmail(): string
     {
         return $this->email;
@@ -214,5 +216,31 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return Collection|Groupes[]
+     */
+    public function getGroupes(): Collection
+    {
+        return $this->groupes;
+    }
 
+    public function addGroupe(Groupes $groupe): self
+    {
+        if (!$this->groupes->contains($groupe)) {
+            $this->groupes[] = $groupe;
+            $groupe->addMember($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGroupe(Groupes $groupe): self
+    {
+        if ($this->groupes->contains($groupe)) {
+            $this->groupes->removeElement($groupe);
+            $groupe->removeMember($this);
+        }
+
+        return $this;
+    }
 }

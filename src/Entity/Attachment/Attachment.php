@@ -17,10 +17,11 @@ class Attachment
      * @ORM\GeneratedValue(strategy="IDENTITY")
      * @ORM\Column(type="integer")
      */
-    protected ?int $id = 0;
+    protected ?int $id;
 
     /**
      * @Vich\UploadableField(mapping="attachments", fileNameProperty="fileName", size="fileSize")
+     *
      * @var File|null
      */
     private ?File $file = null;
@@ -28,61 +29,35 @@ class Attachment
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private string $fileName = "";
+    private string $fileName = '';
 
     /**
      * @ORM\Column(type="integer", options={"unsigned"=true})
      */
     private int $fileSize = 0;
+
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
      */
     private \DateTimeInterface $createdAt;
 
-    public function getFile(): ?string
-    {
-        return $this->file;
-    }
-
-    public function setFile(?string $file): self
-    {
-        $this->file = $file;
-
-        return $this;
-    }
-
     public function getId(): int
     {
-        return $this->id;
+        return $this->id ?: 0;
     }
 
-    public function getFileName(): ?string
+    public function getFileName(): string
     {
         return $this->fileName;
     }
 
-    public function setFileName(string $fileName): self
+    public function setFileName(?string $fileName): self
     {
         $this->fileName = $fileName ?: '';
 
         return $this;
     }
 
-    public function getFileSize(): ?int
-    {
-        return $this->fileSize;
-    }
-
-    public function setFileSize(int $fileSize): self
-    {
-        $this->fileSize = $fileSize;
-
-        return $this;
-    }
-
-    /**
-     * @return \DateTimeInterface
-     */
     public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;
@@ -91,6 +66,36 @@ class Attachment
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
         return $this;
+    }
+
+    public function getFile(): ?File
+    {
+        return $this->file;
+    }
+
+    public function setFile(?File $file): Attachment
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
+    public function getFileSize(): int
+    {
+        return $this->fileSize;
+    }
+
+    public function setFileSize(?int $fileSize): Attachment
+    {
+        $this->fileSize = $fileSize ?: 0;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->fileName;
     }
 }
