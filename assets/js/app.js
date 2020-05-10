@@ -1,14 +1,24 @@
 
 import '../css/app.scss'
+import './elements'
+import './pages'
 
-import './elements/Alert'
-import './modules/animation'
-import './elements/DatePicker'
-import './elements/TimeAgo'
-import './libs/turbolinks'
-import './elements/editor/index'
-import './elements/DiffEditor'
-import './elements/Autogrow'
-import './elements/admin/UserSelect'
-import './modules/highlight'
 import './elements/Switch'
+import './modules/scrollreveal'
+import Choices from 'choices.js'
+import {$$} from '@fn/dom'
+
+document.addEventListener('turbolinks:load', function () {
+  const darkToggle = document.querySelector('#dark-toggle')
+  if (darkToggle) {
+    darkToggle.addEventListener('click', e => {
+      e.stopPropagation()
+      e.preventDefault()
+      document.body.classList.toggle('dark')
+    })
+  }
+
+  // Choices
+  $$('select[multiple]').forEach((s) => new Choices(s))
+})
+Turbolinks.start()

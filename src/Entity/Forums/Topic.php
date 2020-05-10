@@ -43,7 +43,11 @@ class Topic
      * @ORM\Column(type="boolean", options={"default":0})
      */
     private ?bool $sticky = false;
-
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     */
+    private User $author;
     /**
      * @ORM\Column(type="datetime")
      */

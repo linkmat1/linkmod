@@ -1,4 +1,4 @@
-import { scrollTo } from '@fn/scroll'
+import {scrollTo} from '@fn/scroll'
 
 /**
  * Custom element pour créer un système d'onglet accessible

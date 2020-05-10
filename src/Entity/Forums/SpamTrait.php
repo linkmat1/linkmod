@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Entity\Forums;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -20,6 +19,7 @@ trait SpamTrait
     public function setSpam(bool $spam): self
     {
         $this->spam = $spam;
+
         return $this;
     }
 }

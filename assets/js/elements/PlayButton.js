@@ -1,26 +1,30 @@
 /**
  * Element permettant de représenter un bouton de lecture avec progression.
  *
+ * ## Attributes
+ *
+ * - progress, Nombre représentant la progression entre 0 et 100
+ * - playing, La vidéo est en cours de lecture
+ * - video, Selecteur de la vidéo à connecter à ce bouton
+ *
  * @property {ShadowRoot} root
  * @property {HTMLButtonElement} button
  * @property {SVGCircleElement} circle
  */
 export default class PlayButton extends global.HTMLElement {
   static get observedAttributes () {
-    return ['playing', 'progress']
+    return ['playing', 'progress', 'video']
   }
 
   constructor () {
     super()
     this.root = this.attachShadow({ mode: 'open' })
-  }
-
-  connectedCallback () {
     this.root.innerHTML = `
       ${this.buildStyles()}
       <button>
-        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="1" fill="none"/>
+        <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+          <circle cx="16" cy="16" r="15" fill="none" stroke-width="1" stroke="currentColor" />
+          <path d="M20.3 12.3L14 18.58l-2.3-2.3a1 1 0 00-1.4 1.42l3 3a1 1 0 001.4 0l7-7a1 1 0 00-1.4-1.42z" fill="#fff"/>
         </svg>
       </button>
     `
@@ -38,6 +42,17 @@ export default class PlayButton extends global.HTMLElement {
       const progress = newValue ? parseInt(newValue, 10) : 0
       if (this.circle) {
         this.circle.style.strokeDashoffset = (94 - 94 * progress / 100) + 'px'
+      }
+      if (progress === 100) {
+        this.root.host.classList.add('is-checked')
+      } else {
+        this.root.host.classList.remove('is-checked')
+      }
+    }
+    if (name === 'video' && newValue !== null) {
+      const video = document.querySelector(newValue)
+      if (video !== null) {
+        this.attachVideo(video)
       }
     }
   }
@@ -62,7 +77,7 @@ export default class PlayButton extends global.HTMLElement {
         color: var(--contrast);
       }
       button svg {
-        opacity: 0;
+        opacity: 1;
         position: absolute;
         top: 0;
         left: 0;
@@ -75,6 +90,9 @@ export default class PlayButton extends global.HTMLElement {
         stroke-dasharray: 94px;
         stroke-dashoffset: 94px;
         transition: stroke-dashoffset .1s;
+      }
+      button path {
+        opacity: 0;
       }
       button::before {
         position: absolute;
@@ -103,8 +121,20 @@ export default class PlayButton extends global.HTMLElement {
       :host-context(.is-playing) button::before {
         left: 10px;
       }
-      :host-context(.is-playing) button svg {
+      :host-context(.is-checked) button circle {
+        opacity: 0;
+      }
+      :host-context(.is-checked) button svg {
+        transform: rotate(0deg);
+      }
+      :host-context(.is-checked) button {
+        background: var(--green);
+      }
+      :host-context(.is-checked) button path {
         opacity: 1;
+      }
+      :host-context(.is-checked) button::before {
+        display: none;
       }
     </style>`
   }
@@ -116,7 +146,9 @@ export default class PlayButton extends global.HTMLElement {
    */
   attachVideo (video) {
     this.setAttribute('progress', 0)
-    const onTimeUpdate = () => this.setAttribute('progress', (100 * video.currentTime / video.duration).toString())
+    const onTimeUpdate = () => {
+      this.setAttribute('progress', (100 * video.currentTime / video.duration).toString())
+    }
     const onPlay = () => this.setAttribute('playing', 'playing')
     const onEnded = () => this.removeAttribute('playing')
     video.addEventListener('timeupdate', onTimeUpdate)

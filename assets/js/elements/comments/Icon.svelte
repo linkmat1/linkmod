@@ -1,8 +1,8 @@
 <script>
-    export let name
+  export let name
 </script>
 
 <svg class="icon icon-{name}">
-    <use xlink:href="/sprite.svg#{name}"></use>
+  <use xlink:href="/sprite.svg#{name}"></use>
 </svg>
 

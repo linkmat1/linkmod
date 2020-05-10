@@ -6,7 +6,6 @@ use App\Core\Helper\Paginator\PaginatorInterface;
 use App\Entity\Forums\Tag;
 use App\Entity\Forums\Topic;
 use App\Form\ForumTopicType;
-
 use App\Repository\Forums\TagRepository;
 use App\Repository\Forums\TopicRepository;
 use App\Service\TopicService;
@@ -19,6 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class ForumController extends AbstractController
 {
+    private string $menuItem = 'forum';
     private TagRepository $tagRepository;
     private TopicRepository $topicRepository;
     private PaginatorInterface $paginator;
@@ -82,19 +82,21 @@ class ForumController extends AbstractController
         return $this->render('forum/index.html.twig', [
             'tags' => $this->tagRepository->findTree(),
             'topics' => $topics,
-            'menu' => 'forum',
+            'menu' => $this->menuItem,
         ]);
     }
 
     /**
      * @Route("/{id<\d+>}", name="forum_show")
+     * @param Topic $topic
+     * @return Response
      */
     public function show(Topic $topic): Response
     {
         return $this->render('forum/show.html.twig', [
             'topic' => $topic,
             'messages' => $topic->getMessages(),
-            'menu' => 'forum',
+            'menu' => $this->menuItem,
         ]);
     }
 

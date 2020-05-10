@@ -5,7 +5,7 @@ import CommentsSvelte from './comments/Comments.svelte'
  */
 export default class Comments extends HTMLElement {
 
-  constructor () {
+  constructor() {
     super()
   }
 

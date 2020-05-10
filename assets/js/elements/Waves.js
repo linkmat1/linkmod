@@ -1,6 +1,6 @@
 // On mémorise si la page précédente avait la vague
-import { offsetTop } from '../functions/dom'
-import { debounce } from '../functions/timers'
+import {offsetTop} from '../functions/dom'
+import {debounce} from '../functions/timers'
 
 let previousPageHadWaves = false
 
@@ -25,11 +25,11 @@ export default class Waves extends global.HTMLElement {
     const className = previousPageHadWaves === true ? 'no-animation' : ''
     const target = document.querySelector(this.getAttribute('target'))
     const image = this.backgroundImage()
-    const opacity = image ? '.9' : '1'
+    const opacity = image ? '.9' : '1';
     previousPageHadWaves = true
     document.querySelector('.header').classList.add('is-inversed')
     this.target = target ? document.querySelector(this.getAttribute('target')) : null
-    this.position = this.getAttribute('position') || 'center'
+    this.position = this.getAttribute('position') || 'center';
     this.root.innerHTML = `
       <style>
       img {

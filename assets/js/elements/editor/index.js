@@ -8,37 +8,45 @@ import {createElement} from '@fn/dom'
  */
 class MarkdownEditor extends HTMLTextAreaElement {
 
-    constructor()
-    {
-        super()
-        this.toggleFullscreen = this.toggleFullscreen.bind(this)
+  constructor () {
+    super()
+    this.toggleFullscreen = this.toggleFullscreen.bind(this)
+  }
+
+  async connectedCallback () {
+    const editor = new Editor(this.value, this.getAttribute('original'))
+    await editor.boot()
+    const toolbar = new Toolbar(editor)
+
+    // Construction du DOM
+    this.container = createElement('div', {class: 'mdeditor'})
+    this.container.appendChild(toolbar.element)
+    this.container.appendChild(editor.element)
+
+    // Evènement
+    toolbar.onFullScreen = this.toggleFullscreen
+    editor.onChange = (value) => {
+      this.value = value
+      this.dispatchEvent(new CustomEvent('input'))
     }
+    this.syncEditor = () => editor.setValue(this.value)
 
-    async connectedCallback()
-    {
-        const editor = new Editor(this.value, this.getAttribute('original'))
-        await editor.boot()
-        const toolbar = new Toolbar(editor)
+    // On ajoute au dom
+    this.insertAdjacentElement('beforebegin', this.container)
+    this.style.display = 'none'
+  }
 
-      // Construction du DOM
-        this.container = createElement('div', {class: 'mdeditor'})
-        this.container.appendChild(toolbar.element)
-        this.container.appendChild(editor.element)
+  toggleFullscreen () {
+    this.container.classList.toggle('mdeditor--fullscreen')
+  }
 
-      // Evènement
-        toolbar.onFullScreen = this.toggleFullscreen
-        editor.onChange = (value) => this.value = value
+  /**
+   * Permet de forcer la synchronisation de l'éditeur depuis le textarea (utile quand le composant est monté dans react)
+   */
+  syncEditor () {
 
-      // On ajoute au dom
-        this.insertAdjacentElement('beforebegin', this.container)
-        this.style.display = 'none'
-    }
-
-    toggleFullscreen()
-    {
-        this.container.classList.toggle('mdeditor--fullscreen')
-    }
+  }
 
 }
 
-customElements.define('markdown-editor', MarkdownEditor, { extends: 'textarea'})
+customElements.define('markdown-editor', MarkdownEditor, {extends: 'textarea'})
