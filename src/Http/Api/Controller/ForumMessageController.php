@@ -53,7 +53,7 @@ class ForumMessageController extends AbstractController
 
             return $this->redirectToRoute('forum');
         }
-        return $this->render('forum/show.html.twig', [
+        return $this->render('forum/newMessage.html.twig', [
             'form' => $form->createView(),
         ]);
     }

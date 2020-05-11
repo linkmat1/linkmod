@@ -2,9 +2,11 @@
 
 namespace App\Repository;
 
+use App\Entity\Category;
 use App\Entity\Posts;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query;
 
 /**
  * @method Posts|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,6 +21,23 @@ class PostsRepository extends ServiceEntityRepository
         parent::__construct($registry, Posts::class);
     }
 
+    public function getPostForPublic(?Category $category = null): Query {
+
+        $query =  $this->createQueryBuilder('p')
+            ->select('p')
+            ->andWhere('p.isOnline = true')
+            ->andWhere('p.publishAt <= :now')
+            ->orderBy('p.publishAt', 'DESC')
+            ->setParameter('now', new \DateTime('now'));
+
+        if ($category) {
+            $query = $query
+                ->andWhere('p.category = :category')
+                ->setParameter('category', $category);
+        }
+        return $query->getQuery();
+
+    }
     // /**
     //  * @return Posts[] Returns an array of Posts objects
     //  */

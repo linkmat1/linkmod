@@ -59,7 +59,7 @@ class PostsController extends CrudController
     }
 
     /**
-     * @Route("/{id}", name="_delete", methods={"DELETE"})
+     * @Route("/{id}", name="_delete", methods="DELETE")
      */
     public function delete(Posts $post): Response
     {

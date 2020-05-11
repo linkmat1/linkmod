@@ -47,7 +47,8 @@ class AutomaticForm extends AbstractType
         'color' => ColorType::class,
         'category' => CategoryChoiceType::class,
         'description' => EditorType::class,
-        'position' => NumberType::class
+        'position' => NumberType::class,
+        'content' => EditorType::class
 
     ];
 

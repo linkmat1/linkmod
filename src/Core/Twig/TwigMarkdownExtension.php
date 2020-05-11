@@ -13,10 +13,29 @@ class TwigMarkdownExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
+            new TwigFilter('excerpt', [$this, 'excerpt']),
             new TwigFilter('markdown', [$this, 'markdown'], ['is_safe' => ['html']]),
             new TwigFilter('markdown_excerpt', [$this, 'markdownExcerpt'], ['is_safe' => ['html']]),
             new TwigFilter('markdown_untrusted', [$this, 'markdownUntrusted'], ['is_safe' => ['html']])
         ];
+    }
+
+    /**
+     * Renvoie un extrait d'un texte
+     */
+    public function excerpt(?string $content, int $characterLimit = 135): string
+    {
+        if ($content === null) {
+            return '';
+        }
+        if (mb_strlen($content) <= $characterLimit) {
+            return $content;
+        }
+        $lastSpace = strpos($content, ' ', $characterLimit);
+        if ($lastSpace === false) {
+            return $content;
+        }
+        return substr($content, 0, $lastSpace) . '...';
     }
 
     /**
