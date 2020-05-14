@@ -22,7 +22,7 @@ class TopicRepository extends ServiceEntityRepository
         parent::__construct($registry, Topic::class);
     }
 
-    public function countTopic()
+    public function countTopic():int
     {
         $q = $this->createQueryBuilder('t')
           ->select('count(t.id)')->getQuery()->useQueryCache(true);

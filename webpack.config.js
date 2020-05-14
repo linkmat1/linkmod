@@ -10,11 +10,12 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 Encore
   .setOutputPath('public/build/')
   .setPublicPath('/build')
-  // only needed for CDN's or sub-directory deploy
-  // .setManifestKeyPrefix('assets/')
+// only needed for CDN's or sub-directory deploy
+// .setManifestKeyPrefix('assets/')
   .addEntry('app', './assets/js/app.js')
   .addEntry('admin', './assets/js/admin.js')
-  // .splitEntryChunks()
+// .addEntry('admin', './assets/js/admin.js')
+// .splitEntryChunks()
   .enableSingleRuntimeChunk()
   .configureBabel(c => { return {} })
   .addAliases({
@@ -36,22 +37,22 @@ Encore
             }
           }
         }
-      },
+      }
     })
-  /*
-   * FEATURE CONFIG
-   *
-   * Enable & configure other features below. For a full
-   * list of features, see:
-   * https://symfony.com/doc/current/frontend.html#adding-more-features
-   */
+/*
+     * FEATURE CONFIG
+     *
+     * Enable & configure other features below. For a full
+     * list of features, see:
+     * https://symfony.com/doc/current/frontend.html#adding-more-features
+     */
   .cleanupOutputBeforeBuild()
-  // .enableBuildNotifications()
+// .enableBuildNotifications()
   .enableSourceMaps(!Encore.isProduction())
-  // enables hashed filenames (e.g. app.abc123.css)
+// enables hashed filenames (e.g. app.abc123.css)
   .enableVersioning(Encore.isProduction())
 
-  // enables Sass/SCSS support
+// enables Sass/SCSS support
   .enableSassLoader()
   .enablePreactPreset({ preactCompat: true })
 
@@ -60,14 +61,14 @@ Encore
 
 // uncomment to get integrity="..." attributes on your script & link tags
 // requires WebpackEncoreBundle 1.4 or higher
-//.enableIntegrityHashes(Encore.isProduction())
+// .enableIntegrityHashes(Encore.isProduction())
 
 // uncomment if you're having problems with a jQuery plugin
-//.autoProvidejQuery()
+// .autoProvidejQuery()
 
 // uncomment if you use API Platform Admin (composer req api-admin)
-//.enableReactPreset()
-//.addEntry('admin', './assets/js/admin.js')
+// .enableReactPreset()
+// .addEntry('admin', './assets/js/admin.js')
 
 if (!Encore.isProduction()) {
   Encore.disableCssExtraction()

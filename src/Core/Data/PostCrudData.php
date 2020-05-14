@@ -6,9 +6,9 @@ use App\Entity\Category;
 use App\Entity\Posts;
 use App\Entity\User;
 use App\Form\PostsType;
-use App\Http\Form\AutomaticForm;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+
 
 final class PostCrudData implements CrudDataInterface
 {
@@ -18,6 +18,7 @@ final class PostCrudData implements CrudDataInterface
      * @Assert\NotBlank()
      */
     public ?string $title = null;
+
 
     public ?Category $category = null;
 

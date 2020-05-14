@@ -53,7 +53,7 @@ class Category
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Posts", mappedBy="category")
      */
-    private $posts;
+    private Collection $posts;
 
     public function __construct()
     {

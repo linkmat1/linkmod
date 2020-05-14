@@ -44,9 +44,7 @@ trait ProfilTrait
         return $this->github;
     }
 
-    /**
-     * @return ProfilTrait
-     */
+
     public function setGithub(?string $github): self
     {
         $this->github = $github;
@@ -59,9 +57,6 @@ trait ProfilTrait
         return $this->instagram;
     }
 
-    /**
-     * @return ProfilTrait
-     */
     public function setInstagram(?string $instagram): self
     {
         $this->instagram = $instagram;
@@ -74,9 +69,7 @@ trait ProfilTrait
         return $this->facebook;
     }
 
-    /**
-     * @return ProfilTrait
-     */
+
     public function setFacebook(?string $facebook): self
     {
         $this->facebook = $facebook;
@@ -101,9 +94,7 @@ trait ProfilTrait
         return $this->country;
     }
 
-    /**
-     * @return ProfilTrait
-     */
+
     public function setCountry(?string $country): self
     {
         $this->country = $country;
@@ -116,9 +107,7 @@ trait ProfilTrait
         return $this->whatsapp;
     }
 
-    /**
-     * @return ProfilTrait
-     */
+
     public function setWhatsapp(?string $whatsapp): self
     {
         $this->whatsapp = $whatsapp;
@@ -131,9 +120,7 @@ trait ProfilTrait
         return $this->twitch;
     }
 
-    /**
-     * @return ProfilTrait
-     */
+
     public function setTwitch(?string $twitch): self
     {
         $this->twitch = $twitch;

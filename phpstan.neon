@@ -4,10 +4,10 @@ includes:
   - vendor/phpstan/phpstan-doctrine/extension.neon
 
 parameters:
-  level: 5
+  level: 6
   paths:
     - src
   excludes_analyse:
-    - src/Migrations/*
+    - src/Infrastructure/migrations/*
   checkMissingIterableValueType: false
   checkGenericClassInNonGenericObjectType: false

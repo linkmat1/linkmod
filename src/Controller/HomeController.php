@@ -12,7 +12,7 @@ class HomeController extends AbstractController
 {
 
     /**
-     * @Route("/", name="home", methods={"GET"})
+     * @Route("/", name="app_home", methods={"GET"})
      * @param Request $request
      * @return Response
      */

@@ -27,8 +27,7 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setAcceptAt(new \DateTime('now'));
-            $user->setCreatedAt(new \DateTime('now'));
+           $user->setCreatedAt(new \DateTime('now'));
 
             // encode the plain password
             $user->setPassword(

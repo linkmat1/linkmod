@@ -57,7 +57,7 @@ tt: vendor/autoload.php ## Lance le Watcher de Tests
 
 .PHONY: seed
 seed: vendor/autoload.php ## Génère des données
-	$(dexec) php bash -c "php bin/console doctrine:migrations:migrate -q && php bin/console doctrine:fixtures:load  -q"
+	$(dexec) php bash -c "php bin/console doctrine:fixtures:load  -q"
 
 .PHONY: clear ## Nettoie les containers
 clear: vendor/autoload.php

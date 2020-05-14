@@ -14,7 +14,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AttachmentType extends TextType implements DataTransformerInterface
+class AttachementType extends TextType implements DataTransformerInterface
 {
     /**
      * @var AttachmentUrlGenerator

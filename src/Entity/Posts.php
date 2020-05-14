@@ -34,8 +34,9 @@ class Posts extends Content
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="posts")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
-    private $category;
+    private ?Category $category = null;
 
 
     public function getPublishAt(): ?\DateTimeInterface

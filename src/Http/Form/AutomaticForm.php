@@ -4,6 +4,7 @@ namespace App\Http\Form;
 
 use App\Entity\Forums\Tag;
 use App\Entity\User;
+use App\Type\AttachementType;
 use App\Type\CategoryChoiceType;
 use App\Type\DateTimeType;
 use App\Type\EditorType;
@@ -38,6 +39,7 @@ class AutomaticForm extends AbstractType
         DateTimeInterface::class => DateTimeType::class,
         UploadedFile::class      => FileType::class,
         'text' => EditorType::class,
+        'upload' => AttachementType::class
 
     ];
 

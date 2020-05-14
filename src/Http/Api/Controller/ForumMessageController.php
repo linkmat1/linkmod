@@ -32,7 +32,7 @@ class ForumMessageController extends AbstractController
         ValidatorInterface $validator,
         EntityManagerInterface $em,
         EventDispatcherInterface $dispatcher
-    )
+    ):string
     {
         $user = $this->getUser();
         $message = (new Message())->setCreatedAt(new \DateTime())->setUpdatedAt(new \DateTime())

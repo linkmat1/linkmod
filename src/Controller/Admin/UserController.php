@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
-use App\Form\User2Type;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -115,17 +114,7 @@ class UserController extends AbstractController
 
             return $this->redirectToRoute('user_index');
         }
-
-        $form2 = $this->createForm(User2Type::class, $user);
-        $form2->handleRequest($request);
-
-        if ($form2->isSubmitted() && $form2->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-            return  $this->redirectToRoute('user_index');
-        }
-
-
-        if ($form->isSubmitted() && $form->isValid()) {
+      if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('user_index');
@@ -134,7 +123,6 @@ class UserController extends AbstractController
         return $this->render($this->adminPath . 'user/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
-            'form2' => $form2->createView(),
         ]);
     }
 

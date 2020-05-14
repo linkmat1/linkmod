@@ -63,10 +63,6 @@ class User implements UserInterface, \Serializable
     private ?bool $term = false;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Groupes::class, mappedBy="members")
-     */
-    private ?Collection $groupes;
-    /**
      * @Vich\UploadableField(mapping="avatars", fileNameProperty="avatarName")
      */
     private ?File $avatarFile = null;
@@ -82,7 +78,6 @@ class User implements UserInterface, \Serializable
     public function __construct()
     {
         $this->contents = new ArrayCollection();
-        $this->groupes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -152,10 +147,9 @@ class User implements UserInterface, \Serializable
     /**
      * @see UserInterface
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        return;
     }
 
     public function setEmail(string $email): User
@@ -221,34 +215,6 @@ class User implements UserInterface, \Serializable
     public function setTerm(bool $term): self
     {
         $this->term = $term;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Groupes[]
-     */
-    public function getGroupes(): Collection
-    {
-        return $this->groupes;
-    }
-
-    public function addGroupe(Groupes $groupe): self
-    {
-        if (!$this->groupes->contains($groupe)) {
-            $this->groupes[] = $groupe;
-            $groupe->addMember($this);
-        }
-
-        return $this;
-    }
-
-    public function removeGroupe(Groupes $groupe): self
-    {
-        if ($this->groupes->contains($groupe)) {
-            $this->groupes->removeElement($groupe);
-            $groupe->removeMember($this);
-        }
 
         return $this;
     }

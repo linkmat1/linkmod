@@ -7,6 +7,7 @@ use App\Entity\Category;
 use App\Entity\Content\Episodes;
 use App\Entity\Posts;
 use App\Entity\User;
+use App\Repository\CategoryRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
@@ -23,10 +24,9 @@ class ContentFixtures extends Fixture
     {
         $this->encoder = $encoder;
     }
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
-
         $user = (new User())
             ->setUsername('linkmat')
             ->setEmail('admin@admin.com')
@@ -45,34 +45,18 @@ class ContentFixtures extends Fixture
                 ->setCreatedAt(new \DateTime())
                 ->setUpdatedAt(new \DateTime())
                 ->setIsOnline(true);
-
             $manager->persist($category);
+
         }
 
         for ($i = 0; $i < 200; ++$i) {
             $post = (new Posts())
                 ->setTitle($faker->sentence(6))
-                ->setCategory($category)
                 ->setAuthor($user)
                 ->setCreatedAt(new \DateTime())
-                ->setPublishAt(new \DateTime())
                 ->setContent($faker->paragraph);
             $manager->persist($post);
         }
-
-        for ($i = 0; $i < 200; ++$i) {
-            $episode = (new Episodes())
-                ->setTitle($faker->sentence(6))
-                ->setCreatedAt(new \DateTime())
-                ->setAuthor($user)
-                ->setContent($faker->paragraph)
-                ->setIsOnline(true)
-                ->setDuration($faker->randomNumber(3))
-                ->setYoutubeId($faker->randomNumber(8))
-                ->setVideoPath($faker->url);
-            $manager->persist($episode);
-        }
-
 
         $manager->flush();
     }

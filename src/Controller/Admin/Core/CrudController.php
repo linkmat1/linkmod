@@ -20,9 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 abstract class CrudController extends BaseController
 {
 
-    /**
-     * @var class-string<E> $entity
-     */
+
     protected string $entity = Content::class;
     protected string $templatePath = 'blog';
     protected string $menuItem = '';
@@ -76,7 +74,6 @@ abstract class CrudController extends BaseController
         $form = $this->createForm($data->getFormClass(), $data);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var E $entity */
             $entity = $data->getEntity();
             $data->hydrate();
             $this->em->flush();
@@ -101,7 +98,7 @@ abstract class CrudController extends BaseController
         $form = $this->createForm($data->getFormClass(), $data);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var E $entity */
+
             $entity = $data->getEntity();
             $data->hydrate();
             $this->em->persist($entity);
@@ -133,6 +130,7 @@ abstract class CrudController extends BaseController
 
     public function getRepository(): EntityRepository
     {
+
         return $this->em->getRepository($this->entity);
     }
 

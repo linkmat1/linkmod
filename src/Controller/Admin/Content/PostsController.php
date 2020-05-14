@@ -15,9 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class PostsController extends CrudController
 {
-    /**
-     * @var class-string<E>
-     */
+
     protected string $entity = Posts::class;
     protected string $templatePath = 'blog';
     protected string $menuItem = 'blog';
@@ -32,7 +30,7 @@ class PostsController extends CrudController
     /**
      * @Route("/", name="_index", methods={"GET"})
      */
-    public function index(PostsRepository $postsRepository): Response
+    public function index(): Response
     {
         return  $this->crudIndex();
     }

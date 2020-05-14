@@ -2,20 +2,19 @@ version: '3.1'
 services:
   phptest:
     build:
-      context: ./docker/php
+      context: ./tools/docker/php
       args:
-        USER_ID: 1000
-        GROUP_ID: 1000
+        USER_ID: ${USER_ID}
+        GROUP_ID: ${GROUP_ID}
     volumes:
       - .:/var/www:delegated
     links:
       - dbtest
   dbtest:
-    image: mariadb:latest
-    volumes:
-      - ./mysql/data:/var/lib/mysql
+    image: postgres:12
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: test
-      MYSQL_USER: test
-      MYSQL_PASSWORD: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_USER: test
+      POSTGRES_DB: test
+    ports:
+      - 5433:5433
