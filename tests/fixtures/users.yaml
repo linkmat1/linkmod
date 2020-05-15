@@ -1,0 +1,25 @@
+include:
+  - ../../fixtures/templates.yaml
+
+App\Entity\User:
+  user{1..5} (extends user):
+
+  user_admin (extends user):
+    username: linkmat
+    email: fake@email.fr
+    roles: ["ROLE_MANAGE"]
+
+  user_admin1 (extends user):
+    username: linkmat2
+    email: fake2@email.fr
+    roles: ["ROLE_ADMIN"]
+
+  user_editor (extends user):
+    username: linkmat3
+    email: fake3@email.fr
+    roles: ["ROLE_EDITOR"]
+
+  user_modo (extends user):
+    username: linkmat4
+    email: fake4@email.fr
+    roles: ["ROLE_MODO"]

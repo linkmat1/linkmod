@@ -18,6 +18,5 @@ class ProfileService
 
         // On la déplace dans le profil utilisateur
         $data->user->setAvatarFile($data->file);
-        $data->user->setUpdatedAt(new \DateTime());
     }
 }

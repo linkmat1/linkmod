@@ -1,39 +1,24 @@
-pp\Domain\Blog\Post:
-  post (template):
-    title: <sentence(5, true)>
-    slug: <slug()>
-    content: <text(1500)>
-    created_at: <dateTimeThisYear()>
-    updated_at: <dateTimeThisYear()>
-    online: true
-    author: '@user1'
 
-App\Domain\Blog\Category:
-  category (template):
-    name: <sentence(5, true)>
-    slug: <slug()>
-
-App\Domain\Auth\User:
+App\Entity\User:
   user (template):
     username: John<current()>
     email: john<current()>\@doe.fr
     password: <password('0000')>
 
-App\Domain\Forum\Entity\Tag:
-  tag (template):
-    name: Tag <current()>
-    slug: tag-<current()>
-    position: <current()>
-    createdAt: <dateTimeThisYear()>
-    updatedAt: <dateTimeThisYear()>
+App\Entity\Posts:
+  post (template):
+    title: <sentence(5, true)>
+    content: <text(1500)>
+    created_at: <dateTimeThisYear()>
+    updated_at: <dateTimeThisYear()>
+    isOnline: true
+    author: '@user1'
 
-App\Domain\Forum\Entity\Topic:
-  topic (template):
-    name: Tpic <current()>
-    content: <sentence(2)>
-    createdAt: <dateTimeThisYear()>
-    updatedAt: <dateTimeThisYear()>
-    message_count: <numberBetween(1, 50)>
-    solved: 0
-    sticky: 0
-    author: '@user*'
+App\Entity\Category:
+  category (template):
+    name: <sentence(5, true)>
+    isOnline: true
+    content: <text(1500)>
+    created_at: <dateTimeThisYear()>
+    updated_at: <dateTimeThisYear()>
+    author: '@user1'

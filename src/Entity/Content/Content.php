@@ -53,6 +53,7 @@ abstract class Content
     private ?Attachment $image = null;
 
     use ContentAdd;
+
     use CreatedTimeTrait;
 
     public function getId(): ?int

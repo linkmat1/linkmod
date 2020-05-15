@@ -98,4 +98,5 @@ class Posts extends Content
 
         return $this;
     }
+
 }

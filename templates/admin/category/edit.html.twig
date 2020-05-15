@@ -1,0 +1,11 @@
+
+{% extends 'admin/layout/card.html.twig' %}
+
+{% block title %}
+    {{ icon('pen') }}
+    Editer une catégorie
+{% endblock %}
+
+{% block content %}
+  {{ include('admin/category/_form.html.twig', {'button_label': 'Modifiée'}) }}
+{% endblock %}

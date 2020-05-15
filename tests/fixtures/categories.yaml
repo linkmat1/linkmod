@@ -1,0 +1,8 @@
+include:
+  - ../../fixtures/templates.yaml
+
+App\Entity\User:
+  user{1} (extends user):
+
+App\Entity\Category:
+  category{1} (extends category):

@@ -9,7 +9,6 @@ use App\Form\PostsType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 final class PostCrudData implements CrudDataInterface
 {
 
@@ -44,15 +43,17 @@ final class PostCrudData implements CrudDataInterface
     public ?string $deprecated = " ";
 
     public ?bool $isDepre = false;
+
     /**
      * @Assert\NotBlank()
+     * @Assert\Length(min=10)
      */
     public ?string $content = null;
 
     public ?bool $isOnline = false;
 
     public Posts $entity;
-
+    private ?EntityManagerInterface $em = null;
 
     public function __construct(Posts $post)
     {
@@ -115,7 +116,6 @@ final class PostCrudData implements CrudDataInterface
         $this->author = $author;
         return $this;
     }
-
     public function setEntityManager(EntityManagerInterface $em): self
     {
         $this->em = $em;

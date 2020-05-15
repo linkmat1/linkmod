@@ -5,14 +5,15 @@ namespace App\Controller\Admin\Content;
 use App\Controller\Admin\Core\CrudController;
 use App\Core\Data\PostCrudData;
 use App\Core\Helper\Cloner\BlogCloner;
-use App\Entity\Content\Content;
 use App\Entity\Posts;
-use App\Repository\PostsRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
+ *
  * @Route("/admin/blog", name="posts")
+ * @IsGranted("ROLE_ADMIN")
  */
 class PostsController extends CrudController
 {
@@ -38,6 +39,7 @@ class PostsController extends CrudController
 
     /**
      * @Route("/new", name="_new", methods={"GET","POST"})
+
      */
     public function new(): Response
     {
@@ -53,9 +55,13 @@ class PostsController extends CrudController
      */
     public function edit(Posts $post): Response
     {
+        $this->denyAccessUnlessGranted('edit', $post);
         $data = (new PostCrudData($post))->setEntityManager($this->em);
 
         return $this->crudEdit($data);
+
+
+
     }
 
     /**
@@ -75,9 +81,10 @@ class PostsController extends CrudController
      */
     public function clone(Posts $posts): Response
     {
+
         $posts = BlogCloner::clone($posts);
         $data = new PostCrudData($posts);
-
         return $this->crudNew($data);
     }
+    
 }

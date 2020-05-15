@@ -2,26 +2,24 @@
 
   {% block title %}
       {{ icon('pen') }}
-      Gestion du blog
+      Gestion des Category
   {% endblock %}
 {% block content %}
     <div class="flex">
         <form class="form-group dashboard-search">
-            <input name="q" type="text" placeholder="Rechercher un article" value="{{ app.request.get('q') }}" >
+            <input name="q" type="text" placeholder="Rechercher une categorie" value="{{ app.request.get('q') }}" >
         </form>
 
-        {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path(prefix ~ '_new') }}" class="dashboard-btn">Ajoutée un article</a>
+        {% if is_granted('ROLE_MANAGE') %}
+            <a href="{{ path(prefix ~ '_new') }}" class="dashboard-btn">Ajoutée une Category</a>
         {% endif %}
-
 
     </div>
     <table class="table">
         <thead>
         <tr>
             <th>{{ sort_by(rows, 'ID', 'row.id') }}</th>
-           <th> {{ sort_by(rows, 'Titre', 'row.title') }}</th>
-            <th>Category</th>
+           <th> {{ sort_by(rows, 'Titre', 'row.name') }}</th>
             <th class="text-center">{{ sort_by(rows, 'Status', 'row.isOnline') }}</th>
             <th class="text-right">Actions</th>
         </tr>
@@ -34,21 +32,14 @@
                     <a href="{{ link }}">{{ row.id }}</a>
                 </td>
                 <td>
-                    <a href="{{ link }}" style="color:{{ row.category.color }};">{{ row.title }}</a>
+                    <a href="{{ link }}"{% if(row.color != null)%} style="color: {{ row.color }}{% endif %}">{{ row.name }}</a>
                 </td>
-                <td>
-             <a href="{{ link }}" style="color:{{ row.category.color }};">{{ row.category.id }} - {{ row.category.name }}</a>
-                </td>
+
                 <td><span class="bullet {% if row.isOnline == false %}bullet--danger{% endif %}"></span></td>
                 <td>
                     <div class="dashboard-actions">
-                        {% if is_granted('edit', row) %}
                             <a href="{{ link }}">{{ icon('edit') }}</a>
-                        {% endif %}
-                        {% if is_granted('ROLE_MANAGE') %}
-                        <a href="{{ path(prefix ~ '_clone', {id: row.id}) }}">{{ icon('clone') }}</a>
-                        {% endif %}
-                        {% if is_granted('ROLE_MANAGE') %}
+                         {% if is_granted('ROLE_MANAGE') %}
                             <form action="{{ path(prefix ~ '_edit', {id: row.id}) }}" method="post" onsubmit="return confirm('Voulez vous vraiment supprimer ce contenu')">
                                 <input type="hidden" name="_method" value="DELETE" />
                                 <button type="submit">
