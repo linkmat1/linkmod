@@ -1,15 +1,11 @@
-{% extends 'admin/base.html.twig' %}
+{% extends 'admin/layout/card.html.twig' %}
 
-{% block title %}New User{% endblock %}
+{% block title %}
+    {{ icon('pen') }}
+    Ajoutée une catégorie
+{% endblock %}
 
-{% block body %}
-    <h1>Create new User</h1>
+{% block content %}
+    {{ include('admin/user/_form.html.twig', {'button_label': 'Ajoutée un article'}) }}
 
-    {% if is_granted('ROLE_SUPERADMIN') %}
-        {{  include('admin/user/_form.html.twig') }}
-    {% elseif is_granted('ROLE_ADMIN') %}
-        {{  include('admin/user/_form2.html.twig') }}
-    {% endif %}
-
-    <a href="{{ path('user_index') }}">back to list</a>
 {% endblock %}

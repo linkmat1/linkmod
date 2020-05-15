@@ -1,74 +1,67 @@
-{% extends 'admin/base.html.twig' %}
+{% extends 'admin/layout/card.html.twig' %}
 
-{% block title %}User index{% endblock %}
-
-{% block body %}
-    <h1>User index</h1>
-    <div class="right-align2">
-        {% if is_granted('ROLE_SUPERADMIN') %}
-            <a href="{{ path('user_new') }}" class="btn-gradient">Nouveau Utilisateur</a>
-
-        {% endif %}
+  {% block title %}
+      {{ icon('pen') }}
+      Gestion des Users
+  {% endblock %}
+{% block content %}
+    <div class="flex">
         <form class="form-group dashboard-search">
-            <input name="q" type="text" placeholder="Rechercher un article" value="{{ app.request.get('q') }}">
+            <input name="q" type="text" placeholder="Rechercher un Utilisateur" value="{{ app.request.get('q') }}" >
         </form>
+
+        {#
+        {% if is_granted('ROLE_MANAGE') %}
+            <a href="{{ path(prefix ~ '_edit') }}" class="dashboard-btn">Ajoutée une Category</a>
+        {% endif %}
+        #}
 
     </div>
     <table class="table">
         <thead>
         <tr>
-            <th>Id</th>
-            <th>Username</th>
+            <th>{{ sort_by(rows, 'ID', 'row.id') }}</th>
+           <th> {{ sort_by(rows, 'Username', 'row.username') }}</th>
             <th>Email</th>
-            <th>Inscrit le</th>
-            <th>Roles</th>
-            <th>actions</th>
+            <th class="text-center">{{ sort_by(rows, 'Status', 'row.term') }}</th>
+            <th class="text-right">Actions</th>
         </tr>
         </thead>
         <tbody>
-        {% for user in users %}
+        {% for row in rows %}
+            {% set link = path(prefix ~ '_edit', {id: row.id}) %}
             <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.createdat | date('j F yy') }}</td>
-
-                <td> {% for role in user.roles %}
-                        {% if role == "ROLE_USER" %}
-                            <div class="role_user">Utilisateur</div>
-                        {% elseif role  == "ROLE_EDITOR" %}
-                            <div class="role_editor">Editor</div>
-                        {% elseif role == "ROLE_ADMIN" %}
-                            <div class="role_admin">Administrateur</div>
-                        {% elseif role == "ROLE_SUPERADMIN" %}
-                            <div class="role_fondateur">Fondateur</div>
-                        {% elseif role == "ROLE_MODO" %}
-                           <div class="role_modo">Moderateur </div>
-                        {% endif %}
-                    {% endfor %}</td>
-
+                <td class="dashboard-id">
+                    <a href="{{ link }}">{{ row.id }}</a>
+                </td>
+                <td>
+                    <a href="{{ link }}">{{ row.username }}</a>
+                </td>
+                <td>
+                    <a href="{{ link }}">{{ row.email }}</a>
+                </td>
+                <td><span class="bullet {% if row.term == false %}bullet--danger{% endif %}"></span></td>
                 <td>
                     <div class="dashboard-actions">
-                    <a title="Edition de l'article" href="{{ path('user_edit', {'id': user.id}) }}">{{ icon('edit')}}</a>
-                    {% if is_granted('ROLE_SUPERADMIN') %}
+                            <a href="{{ link }}">{{ icon('edit') }}</a>
+                            <a href="http://localhost:8000/?_switch_user={{ row.username }}">{{ icon('user') }}</a>
+                         {% if is_granted('ROLE_MANAGE') %}
 
-                        <form method="post" action="{{ path('user_delete', {'id': user.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
-                            <button class="btn">{{ icon('cross') }}</button>
-                        </form>
-                        <a title="Permet d'allez en Mode Ninja" href="{{ app.request.baseUrl }}/?_switch_user={{ user.username }}" >{{ icon('camera')}}</a>
-                {% endif %}
+                            <form action="{{ path(prefix ~ '_edit', {id: row.id}) }}" method="post" onsubmit="return confirm('Voulez vous vraiment supprimer ce contenu')">
+                                <input type="hidden" name="_method" value="DELETE" />
+                                <button type="submit">
+                                    {{ icon('delete') }}
+                                </button>
+                            </form>
+                        {% endif %}
+
                     </div>
                 </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('user_new') }}">Create new</a>
+    {{ paginate(rows) }}
 {% endblock %}
+

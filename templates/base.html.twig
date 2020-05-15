@@ -40,6 +40,8 @@
 </nav>
 
 {% block body %}{% endblock %}
-
+{% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+    <a href="{{ path('app_home', {'_switch_user': '_exit'}) }}">Exit impersonation</a>
+{% endif %}
 </body>
 </html>

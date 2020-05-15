@@ -1,18 +1,11 @@
-{% extends 'admin/base.html.twig' %}
 
-{% block title %}Modifier Utilisateur{% endblock %}
+{% extends 'admin/layout/card.html.twig' %}
 
-{% block body %}
-    <h1>Modifier l'utilisateur ( {{ user.username }} ) </h1>
+{% block title %}
+    {{ icon('pen') }}
+    Editer une catégorie
+{% endblock %}
 
-    {% if is_granted('ROLE_SUPERADMIN') %}
-        {{  include('admin/user/_form.html.twig') }}
-
-    {% elseif is_granted('ROLE_ADMIN') %}
-          {{  include('admin/user/_form2.html.twig') }}
-    {% endif %}
-
-    <a href="{{ path('user_index') }}">back to list</a>
-
-    {{ include('admin/user/_delete_form.html.twig') }}
+{% block content %}
+  {{ include('admin/user/_form.html.twig', {'button_label': 'Modifiée'}) }}
 {% endblock %}
