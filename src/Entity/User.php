@@ -2,9 +2,7 @@
 
 namespace App\Entity;
 
-use App\Core\ProfilTrait;
 use App\Entity\Content\Content;
-use App\Entity\Content\CreatedTimeTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -22,7 +20,7 @@ class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private ?int $id = null;
@@ -72,9 +70,6 @@ class User implements UserInterface, \Serializable
      */
     private ?string $avatarName = null;
 
-    use ProfilTrait;
-    use CreatedTimeTrait;
-
     public function __construct()
     {
         $this->contents = new ArrayCollection();
@@ -84,7 +79,6 @@ class User implements UserInterface, \Serializable
     {
         return $this->id;
     }
-
     /**
      * A visual identifier that represents this user.
      *
@@ -94,14 +88,12 @@ class User implements UserInterface, \Serializable
     {
         return (string) $this->username;
     }
-
     public function setUsername(string $username): self
     {
         $this->username = $username;
 
         return $this;
     }
-
     /**
      * @see UserInterface
      */
@@ -113,14 +105,12 @@ class User implements UserInterface, \Serializable
 
         return array_unique($roles);
     }
-
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
 
         return $this;
     }
-
     /**
      * @see UserInterface
      */

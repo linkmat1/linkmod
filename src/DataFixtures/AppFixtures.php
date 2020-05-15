@@ -36,7 +36,6 @@ class AppFixtures extends Fixture
             $test->setUsername($faker->userName);
             $test->setEmail($faker->email);
             $test->setRoles(['ROLE_USER']);
-            $test->setCreatedAt(new \DateTime());
             $plain2 = "admin";
             $encode2 = $this->encoder->encodePassword($test, $plain2);
             $test->setPassword($encode2);
@@ -44,7 +43,6 @@ class AppFixtures extends Fixture
         }
         $user2 = (new User())
             ->setUsername('user')
-            ->setCreatedAt(new \DateTime())
             ->setEmail('admi2n@admin.com')
             ->setRoles(['ROLE_USER']);
         $plain2 = "admin";
@@ -55,7 +53,7 @@ class AppFixtures extends Fixture
         $user3 = (new User())
             ->setUsername('editeur')
             ->setEmail('admiQWQn@admin.com')
-            ->setCreatedAt(new \DateTime())
+
             ->setRoles(['ROLE_EDITOR']);
         $plain3 = "admin";
         $encode3 = $this->encoder->encodePassword($user3, $plain3);
@@ -65,7 +63,6 @@ class AppFixtures extends Fixture
         $user4 = (new User())
             ->setUsername('modo')
             ->setEmail('DSdwadadS@admin.com')
-            ->setCreatedAt(new \DateTime())
             ->setRoles(['ROLE_MODO']);
         $plain4 = "admin";
         $encode4 = $this->encoder->encodePassword($user4, $plain4);
@@ -75,8 +72,7 @@ class AppFixtures extends Fixture
         $user5 = (new User())
             ->setUsername('admin')
             ->setEmail('DSdadS@admin.com')
-            ->setCreatedAt(new \DateTime())
-            ->setRoles(['ROLE_ADMIN']);
+            ->setRoles(['CMS_MANAGE']);
         $plain5 = "admin";
         $encode5 = $this->encoder->encodePassword($user5, $plain5);
         $user5->setPassword($encode5);

@@ -11,10 +11,10 @@ services:
     links:
       - dbtest
   dbtest:
-    image: postgres:12
+    image: mariadb:latest
     environment:
-      POSTGRES_PASSWORD: test
-      POSTGRES_USER: test
-      POSTGRES_DB: test
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+      MYSQL_DATABASE: test
     ports:
-      - 5433:5433
+      - 3307:3306

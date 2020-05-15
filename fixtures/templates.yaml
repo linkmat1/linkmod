@@ -1,4 +1,4 @@
-App\Domain\Blog\Post:
+pp\Domain\Blog\Post:
   post (template):
     title: <sentence(5, true)>
     slug: <slug()>

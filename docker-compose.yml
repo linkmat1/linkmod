@@ -38,15 +38,17 @@ services:
     ports:
       - 8080:8080
   db:
-    image: postgres:12
+    image: mariadb:latest
     environment:
-      POSTGRES_PASSWORD: linkmat
-      POSTGRES_USER: linkmat
-      POSTGRES_DB: linkmat
+      MYSQL_USER: linkmat
+      MYSQL_PASSWORD: linkmat
+      MYSQL_DATABASE: linkmat
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: = db
     ports:
-      - 5432:5432 # On expose le port pour pouvoir inspecter la base pendant la phase de développement
+      - 3307:3306
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - db-data:/var/lib/mysql
   adminer:
     image: adminer
     environment:

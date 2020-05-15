@@ -8,6 +8,6 @@ parameters:
   paths:
     - src
   excludes_analyse:
-    - src/Infrastructure/migrations/*
+    - src/Migrations/*
   checkMissingIterableValueType: false
   checkGenericClassInNonGenericObjectType: false

@@ -26,8 +26,6 @@ class User1Type extends AbstractType
             ->add('country')
             ->add('whatsapp')
             ->add('twitch')
-            ->add('createdAt')
-            ->add('updatedAt')
             ->add('groupes')
         ;
     }

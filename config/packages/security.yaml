@@ -33,13 +33,13 @@ security:
             switch_user:
                 provider:             ~
                 parameter:            _switch_user
-                role:                 ROLE_ALLOWED_TO_SWITCH
+                role:                 CMS_MANAGE
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/superadmin, roles: ROLE_SUPERADMIN }
-        #- { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin/setting, roles: CMS_MANAGE }
+        - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/users, roles: ROLE_USER }
         - { path: ^/moderation, roles: ROLE_MODO }
         - { path: ^/upload, roles: ROLE_EDITOR }
@@ -48,4 +48,4 @@ security:
         ROLE_EDITOR: ROLE_USER
         ROLE_MODO: ROLE_EDITOR
         ROLE_ADMIN: ROLE_MODO
-        ROLE_SUPERADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        CMS_MANAGE: ROLE_ADMIN

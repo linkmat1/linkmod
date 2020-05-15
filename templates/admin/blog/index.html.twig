@@ -9,7 +9,10 @@
         <form class="form-group dashboard-search">
             <input name="q" type="text" placeholder="Rechercher un article" value="{{ app.request.get('q') }}" >
         </form>
-        <a href="{{ path(prefix ~ '_new') }}" class="dashboard-btn">Ajoutée un article</a>
+        {% if is_granted('CMS_MANAGE') %}
+            <a href="{{ path(prefix ~ '_new') }}" class="dashboard-btn">Ajoutée un article</a>
+        {% endif %}
+
     </div>
     <table class="table">
         <thead>

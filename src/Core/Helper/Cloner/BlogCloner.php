@@ -20,7 +20,10 @@ class BlogCloner
         $clone->setIsOnline(false);
         $clone->setIsInfo(false);
         $clone->setDeprecated(null);
-        $clone->setCreatedAt(clone $posts->getCreatedAt());
+        $clone->setCreatedAt(new \DateTime('@' . ($clone->getCreatedAt()->getTimestamp() + 24 * 3600)));
+        if ($createdAt = $clone->getCreatedAt()) {
+            $clone->setCreatedAt(new \DateTime('@' . ($createdAt->getTimestamp() + 24 * 3600)));
+        }
         return $clone;
     }
 }
