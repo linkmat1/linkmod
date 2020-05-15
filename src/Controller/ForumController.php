@@ -25,6 +25,9 @@ class ForumController extends AbstractController
 
     /**
      * ForumController constructor.
+     * @param TagRepository $tagRepository
+     * @param TopicRepository $topicRepository
+     * @param PaginatorInterface $paginator
      */
     public function __construct(
         TagRepository $tagRepository,
