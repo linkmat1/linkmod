@@ -34,11 +34,13 @@ class PostsFixtures extends Fixture
             $posts = (new Posts())
                 ->setTitle($this->faker->sentence(3))
                 ->setContent($this->faker->paragraph(3))
+                ->setCategory($this->r->getlastCategory())
                 ->setCreatedAt(new \DateTime());
             $manager->persist($posts);
             $manager->flush();
         }
     }
+
 
 
 }

@@ -31,7 +31,7 @@ class PostsType extends AbstractType
         $builder
             ->add('title')
             ->add('content', EditorType::class)
-            ->add('isOnline', SwitchType::class)
+            ->add('online', SwitchType::class)
             ->add('isInfo', SwitchType::class)
             ->add('Info')
             ->add('publishAt', DateTimeType::class)

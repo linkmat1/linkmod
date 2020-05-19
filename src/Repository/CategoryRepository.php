@@ -22,10 +22,19 @@ class CategoryRepository extends ServiceEntityRepository
       public function getCountPublic() {
 
         return $this->createQueryBuilder('c')
-            ->select('count(t.id)')->getQuery()->useQueryCache(true)
+            ->select('count(c.id)')
+            ->getQuery()
+            ->useQueryCache(true)
             ->getScalarResult();
         }
 
+    public function getlastCategory(){
+        $this->createQueryBuilder('c')
+            ->orderBy('c.id','DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
+    }
 
 
 }

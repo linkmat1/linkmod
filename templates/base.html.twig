@@ -15,6 +15,7 @@
     <meta name="turbolinks-cache-control" content="no-cache"/>
 </head>
 <body {% if bodyClass is defined %}class="{{ bodyClass }}"{% endif %}>
+{% if website.online == true %}
 <nav class="header {% if headerWhite is defined %}is-white{% endif %}">
     <ul class="header-nav">
         <li class="header__home"><a href="{{ path('app_home') }}" title="Accueil">{{ icon('home') }}</a></li>
@@ -40,6 +41,10 @@
 </nav>
 
 {% block body %}{% endblock %}
+
+{% else %}
+LE sITE EST EN maintenance
+{% endif %}
 {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
     <a href="{{ path('app_home', {'_switch_user': '_exit'}) }}">Exit impersonation</a>
 {% endif %}

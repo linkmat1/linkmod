@@ -32,7 +32,7 @@ class PostsControllerTest extends WebTestCase
         $users = $this->loadFixtures(['users']);
         $this->login($users['user1']);
         $this->client->request('GET', '/admin/');
-        $this->assertResponseStatusCodeSame(Response::HTTP_MOVED_PERMANENTLY);
+        $this->assertResponseStatusCodeSame(Response::HTTP_FOUND);
     }
     public function testGetGoodTitle(){
         $users = $this->loadFixtures(['users']);

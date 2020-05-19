@@ -15,19 +15,19 @@ class CategoryControllerTest extends WebTestCase
     public function testGetGoodTitle(){
         $users = $this->loadFixtures(['users']);
         $this->login($users['user_admin']);
-        $this->client->request('GET', '/admin/settings/blog/category/');
+        $this->client->request('GET', '/admin/blog/category/');
         $this->expectTitle('Administration Gestion des Category');
     }
     public function testIfAccessNotGranted() {
         $users = $this->loadFixtures(['users']);
         $this->login($users['user_admin1']);
-        $this->client->request('GET', '/admin/settings/blog/category/');
-        $this->assertResponseStatusCodeSame(Response::HTTP_MOVED_PERMANENTLY);
+        $this->client->request('GET', '/admin/blog/category/');
+        $this->assertResponseStatusCodeSame(Response::HTTP_FOUND);
         }
     public function testIfAccessIsGranted() {
         $users = $this->loadFixtures(['users']);
         $this->login($users['user_admin']);
-        $this->client->request('GET', '/admin/settings/blog/category/');
+        $this->client->request('GET', '/admin/blog/category/');
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
     }
 

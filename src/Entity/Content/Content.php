@@ -12,8 +12,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({
-      "posts" = "App\Entity\Posts",
-      "episode" = "App\Entity\Content\Episodes"
+      "posts" = "App\Entity\Posts"
     })
  * @Vich\Uploadable()
  */
@@ -38,7 +37,7 @@ abstract class Content
     /**
      * @ORM\Column(type="boolean")
      */
-    private ?bool $isOnline = false;
+    private ?bool $online = false;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="contents" )
@@ -97,17 +96,6 @@ abstract class Content
         return $this;
     }
 
-    public function getIsOnline(): ?bool
-    {
-        return $this->isOnline;
-    }
-
-    public function setIsOnline(?bool $isOnline): self
-    {
-        $this->isOnline = $isOnline;
-
-        return $this;
-    }
 
     public function getAuthor(): ?User
     {
@@ -135,5 +123,15 @@ abstract class Content
         $this->image = $image;
 
         return $this;
+    }
+
+    public function getOnline(): ?bool
+    {
+        return $this->online;
+    }
+
+    public function setOnline(?bool $online): self
+    {
+        $this->online = $online;
     }
 }

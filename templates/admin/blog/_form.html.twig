@@ -8,15 +8,11 @@
         {{ form_row(form.source) }}
         {{ form_row(form.deprecated) }}
         {{ form_row(form.Info) }}
-
+    {{ form_row(form.online, {row_attr: {style: 'align-self: flex-end'}}) }}
 </div>
     <div class="grid" style="padding-top: 16px">
 
-    {{ form_row(form.isDepre, {row_attr: {style: 'align-self: flex-end'}}) }}
-    {{ form_row(form.isInfo, {row_attr: {style: 'align-self: flex-end'}}) }}
-
-    {{ form_row(form.isOnline, {row_attr: {style: 'align-self: flex-end'}}) }}
-    {{ form_row(form.content) }}
+        {{ form_row(form.content, {label: false}) }}
     <div class="full">
         <button type="submit" class="btn-gradient">Sauvegarder</button>
     </div>

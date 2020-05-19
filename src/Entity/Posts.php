@@ -28,11 +28,6 @@ class Posts extends Content
     private ?string $deprecated = " ";
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private bool $isDepre = false;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="posts")
      * @ORM\JoinColumn(onDelete="SET NULL")
      */

@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  *
- * @Route("/admin/blog/category", name="category")
+ * @Route("/admin/blog/category", name="admin_category")
  * @IsGranted("ROLE_MANAGE")
  */
 class CategoryController extends CrudController
@@ -22,8 +22,8 @@ class CategoryController extends CrudController
 
     protected string $entity = Category::class;
     protected string $templatePath = 'category';
-    protected string $menuItem = 'blog';
-    protected string $routePrefix = 'category';
+    protected string $menuItem = 'category';
+    protected string $routePrefix = 'admin_category';
     protected string $searchField = 'title';
     protected array $events = [
         'update' => null,

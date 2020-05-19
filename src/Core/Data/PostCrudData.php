@@ -18,16 +18,11 @@ final class PostCrudData implements CrudDataInterface
      */
     public ?string $title = null;
 
-
     public ?Category $category = null;
 
     public ?\DateTimeInterface $createdAt;
 
     public ?\DateTimeInterface $updatedAt = null;
-
-    public ?bool  $isNews = false;
-
-    public ?bool  $isInfo = false;
 
     public ?string $Info = " ";
 
@@ -42,15 +37,14 @@ final class PostCrudData implements CrudDataInterface
 
     public ?string $deprecated = " ";
 
-    public ?bool $isDepre = false;
-
+    public ?bool  $inOnline = false;
     /**
      * @Assert\NotBlank()
      * @Assert\Length(min=10)
      */
     public ?string $content = null;
 
-    public ?bool $isOnline = false;
+    public ?bool $online = false;
 
     public Posts $entity;
     private ?EntityManagerInterface $em = null;
@@ -62,15 +56,12 @@ final class PostCrudData implements CrudDataInterface
         $this->createdAt = $post->getCreatedAt();
         $this->content = $post->getContent();
         $this->author = $post->getAuthor();
-        $this->isInfo = $post->getIsInfo();
-        $this->isNews = $post->getIsNews();
-        $this->isOnline = $post->getIsOnline();
+        $this->online = $post->getOnline();
         $this->updatedAt = $post->getUpdatedAt();
         $this->category = $post->getCategory();
         $this->Info = $post->getInfo();
         $this->source = $post->getSource();
         $this->publishAt = $post->getPublishAt();
-        $this->isDepre = $post->getIsDepre();
         $this->deprecated = $post->getDeprecated();
         $this->id = $post->getId();
     }
@@ -82,14 +73,11 @@ final class PostCrudData implements CrudDataInterface
             ->setTitle($this->title)
             ->setCreatedAt($this->createdAt)
             ->setContent($this->content)
-            ->setIsOnline($this->isOnline)
+            ->setOnline($this->online)
             ->setUpdatedAt(new \DateTime('now'))
             ->setAuthor($this->author)
             ->setInfo($this->Info)
             ->setCategory($this->category)
-            ->setIsDepre($this->isDepre)
-            ->setIsNews($this->isNews)
-            ->setIsInfo($this->isInfo)
             ->setDeprecated($this->deprecated)
             ->setPublishAt($this->publishAt)
             ->setSource($this->source);

@@ -22,7 +22,7 @@
             <th>{{ sort_by(rows, 'ID', 'row.id') }}</th>
            <th> {{ sort_by(rows, 'Titre', 'row.title') }}</th>
             <th>Category</th>
-            <th class="text-center">{{ sort_by(rows, 'Status', 'row.isOnline') }}</th>
+            <th class="text-center">{{ sort_by(rows, 'Status', 'row.online') }}</th>
             <th class="text-right">Actions</th>
         </tr>
         </thead>
@@ -34,12 +34,15 @@
                     <a href="{{ link }}">{{ row.id }}</a>
                 </td>
                 <td>
-                    <a href="{{ link }}" style="color:{{ row.category.color }};">{{ row.title }}</a>
+                    <a href="{{ link }}">{{ row.title }}</a>
                 </td>
                 <td>
-             <a href="{{ link }}" style="color:{{ row.category.color }};">{{ row.category.id }} - {{ row.category.name }}</a>
+
+                {% if row.category %}
+             <a href="{{ link }}">{{ row.category.name }}</a>
+                    {% endif %}
                 </td>
-                <td><span class="bullet {% if row.isOnline == false %}bullet--danger{% endif %}"></span></td>
+                <td><span class="bullet {% if row.online == false %}bullet--danger{% endif %}"></span></td>
                 <td>
                     <div class="dashboard-actions">
                         {% if is_granted('edit', row) %}
