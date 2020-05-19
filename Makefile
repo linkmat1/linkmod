@@ -94,3 +94,7 @@ db: #Lance un Terminal Interactif sur la base de donnée docker
 .PHONY: rollback
 rollback:
 	$(sy) doctrine:migration:migrate prev
+
+.PHONY: bashtest
+bashtest: ## Ouvre un Terminal dans que containerdrtest := $(dc) -f docker-compose.test.yml run --rm php
+	$(dc) -f docker-compose.test.yml run --rm

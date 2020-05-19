@@ -35,10 +35,6 @@ class CategoryValidationTest extends KernelTestCase
 
         $this->assertHasErrors($this->getEntity()->setName('1'), 0);
     }
-    public function testContentValidation():void {
-
-        $this->assertHasErrors($this->getEntity()->setContent('0'), 1);
-    }
 
 
 }
