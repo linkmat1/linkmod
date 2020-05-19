@@ -3,8 +3,10 @@
 namespace App\Controller\Admin\Content;
 
 use App\Controller\Admin\Core\CrudController;
+use App\Controller\SecurityController;
 use App\Core\Data\CategoryCrudData;
 use App\Entity\Category;
+use App\Entity\User;
 use App\Security\Voter\CategoryVoter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  *
- * @Route("/admin/settings/blog/category", name="category")
+ * @Route("/admin/blog/category", name="category")
  * @IsGranted("ROLE_MANAGE")
  */
 class CategoryController extends CrudController
@@ -42,6 +44,7 @@ class CategoryController extends CrudController
      */
     public function new(): Response
     {
+        /** @var User $this */
         $entity = (new Category())->setAuthor($this->getUser())->setCreatedAt(new \DateTime());
         $data = new CategoryCrudData($entity);
         return  $this->crudNew($data);

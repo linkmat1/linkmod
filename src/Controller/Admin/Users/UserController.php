@@ -6,54 +6,26 @@ use App\Controller\Admin\Core\CrudController;
 use App\Core\Data\UserCrudData;
 use App\Entity\User;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
-/**
- * @Route("/admin/settings/users",name="admin_user")
- * @IsGranted("ROLE_MANAGE")
- */
-class UserController extends CrudController
+
+class UserController extends AbstractController
 {
-
-    protected string $entity = User::class;
-    protected string $templatePath = 'user';
-    protected string $menuItem = 'users';
-    protected string $routePrefix = 'admin_user';
-    protected string $searchField = 'username';
-    protected array $events = [
-        'update' => null,
-        'delete' => null,
-        'create' => null,
-    ];
-
     /**
-     * @Route("/", name="_index", methods={"GET"})
-     * @param UserRepository $repository
-     * @return Response
+     * @var EntityManagerInterface
      */
-    public function index(UserRepository $repository): Response
-    {
-        $this->paginator->allowSort('count', 'row.id', 'row.username', 'row.term', 'row.email');
-        $query = $repository
-            ->createQueryBuilder('row')
-            ->orderBy('row.acceptedAt', 'DESC');
-        return  $this->crudIndex($query);
-    }
+    private EntityManagerInterface $manager;
 
-    /**
-     * @Route("/{id}/edit", name="_edit", methods={"GET","POST"})
-     * @param User $user
-     * @return Response
-     */
-    public function edit(User $user): Response
+    public function __construct(EntityManagerInterface $manager)
     {
-        $data = (new UserCrudData($user))->setEntityManager($this->em);
-        return $this->crudEdit($data);
-    }
 
+        $this->manager = $manager;
+    }
     /**
      * @Route("/users/search/{q?}", name="admin_user_autocomplete")
      * @param string $q

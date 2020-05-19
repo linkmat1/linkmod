@@ -11,7 +11,7 @@ use Faker\Factory;
 
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class AppFixtures extends Fixture
+class CategoryFixtures extends Fixture
 {
 
 
@@ -24,5 +24,14 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager):void
     {
+        for ($i = 0; $i < 15; ++$i) {
+            $cat = (new Category())
+                ->setCreatedAt(new \DateTime())
+                ->setName($this->faker->sentence(3))
+                ->setContent($this->faker->paragraph(3))
+                ->setColor($this->faker->hexColor);
+            $manager->persist($cat);
+            $manager->flush();
+        }
     }
 }
