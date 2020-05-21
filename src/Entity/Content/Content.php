@@ -12,7 +12,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({
-      "posts" = "App\Entity\Posts"
+      "posts" = "App\Entity\Posts",
+ *    "courses" = "App\Entity\Course"
     })
  * @Vich\Uploadable()
  */

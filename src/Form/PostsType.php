@@ -32,13 +32,11 @@ class PostsType extends AbstractType
             ->add('title')
             ->add('content', EditorType::class)
             ->add('online', SwitchType::class)
-            ->add('isInfo', SwitchType::class)
             ->add('Info')
             ->add('publishAt', DateTimeType::class)
             ->add('source')
             ->add('deprecated')
             ->add('category', CategoryChoiceType::class)
-            ->add('isDepre', SwitchType::class)
             ->add('author', UserChoiceType::class)
         ;
     }

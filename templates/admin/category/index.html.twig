@@ -32,7 +32,7 @@
                     <a href="{{ link }}">{{ row.id }}</a>
                 </td>
                 <td>
-                    <a href="{{ link }}"{% if(row.color IS NOT NULL)%} style="color: {{ row.color }}{% endif %}">{{ row.name }}</a>
+                    <a href="{{ link }}"{% if row.color %} style="color: {{ row.color }}{% endif %}">{{ row.name }}</a>
                 </td>
 
                 <td><span class="bullet {% if row.isOnline == false %}bullet--danger{% endif %}"></span></td>

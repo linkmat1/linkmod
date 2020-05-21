@@ -35,9 +35,7 @@ class WebsiteOnline extends CrudController
      */
     public function edit(Settings $settings): Response
     {
-
         $data = (new WebsiteOnlineCrudData($settings))->setEntityManager($this->em);
-
         return $this->crudEdit($data);
 
 

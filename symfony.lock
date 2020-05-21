@@ -215,6 +215,9 @@
     "league/flysystem": {
         "version": "1.0.68"
     },
+    "lorenzo/pinky": {
+        "version": "1.0.5"
+    },
     "moneyphp/money": {
         "version": "v3.3.1"
     },
@@ -861,6 +864,9 @@
         "version": "v3.0.3"
     },
     "twig/extra-bundle": {
+        "version": "v3.0.3"
+    },
+    "twig/inky-extra": {
         "version": "v3.0.3"
     },
     "twig/markdown-extra": {

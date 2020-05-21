@@ -5,6 +5,7 @@
     "php": "^7.4.2",
     "ext-ctype": "*",
     "ext-iconv": "*",
+    "ext-json": "*",
     "api-platform/api-pack": "^1.2",
     "beberlei/doctrineextensions": "^1.2",
     "cocur/slugify": "^4.0",
@@ -45,9 +46,9 @@
     "symfony/yaml": "5.0.*",
     "twig/cssinliner-extra": "^3.0",
     "twig/extra-bundle": "^3.0",
+    "twig/inky-extra": "^3.0",
     "twig/markdown-extra": "^3.0",
-    "vich/uploader-bundle": "^1.13",
-    "ext-json": "*"
+    "vich/uploader-bundle": "^1.13"
   },
   "require-dev": {
     "dama/doctrine-test-bundle": "^7.0@dev",

@@ -20,7 +20,7 @@ class Settings
     /**
      * @ORM\Column(type="boolean")
      */
-    private ?bool $online;
+    private ?bool $online = false;
 
     public function getId(): ?int
     {
