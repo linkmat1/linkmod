@@ -2,9 +2,9 @@
 
 namespace App\Repository\Forums;
 
-use App\Entity\Forums\Tag;
-use App\Entity\Forums\Topic;
-use App\Entity\User;
+use App\Domain\Forums\Tag;
+use App\Domain\Forums\Topic;
+use App\Domain\Auth\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Query;

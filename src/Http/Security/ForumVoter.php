@@ -2,8 +2,8 @@
 
 namespace App\Http\Security;
 
-use App\Entity\Forums\Topic;
-use App\Entity\User;
+use App\Domain\Forums\Topic;
+use App\Domain\Auth\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 

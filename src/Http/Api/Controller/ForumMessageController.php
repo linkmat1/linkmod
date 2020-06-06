@@ -3,15 +3,13 @@
 namespace App\Http\Api\Controller;
 
 use ApiPlatform\Core\Validator\ValidatorInterface;
-use App\Controller\AbstractController;
-use App\Entity\Forums\Message;
-use App\Entity\Forums\Topic;
 
+use App\Domain\Forums\Message;
+use App\Domain\Forums\Topic;
 use App\Form\ForumMessageType;
-
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 

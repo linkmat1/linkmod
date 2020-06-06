@@ -1,8 +1,0 @@
-include:
-  - ../../fixtures/templates.yaml
-
-App\Entity\User:
-  user{1} (extends user):
-
-App\Entity\Posts:
-  post{1} (extends post):

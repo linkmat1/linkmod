@@ -2,8 +2,8 @@
 
 namespace App\Http\Form;
 
-use App\Entity\Forums\Tag;
-use App\Entity\User;
+use App\Domain\Forums\Tag;
+use App\Domain\Auth\User;
 use App\Type\AttachementType;
 use App\Type\CategoryChoiceType;
 use App\Type\DateTimeType;

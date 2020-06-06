@@ -2,7 +2,7 @@
 
 namespace App\Http\Attachment\Normalizer;
 
-use App\Entity\Attachment\Attachment;
+use App\Domain\Attachment\Attachment;
 use App\Http\Attachment\AttachmentUrlGenerator;
 use App\Http\Attachment\Image\ImageResizer;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;

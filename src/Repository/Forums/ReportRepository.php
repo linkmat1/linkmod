@@ -3,7 +3,7 @@
 namespace App\Repository\Forums;
 
 
-use App\Entity\Forums\Report;
+use App\Domain\Forums\Report;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

@@ -2,8 +2,8 @@
 
 namespace App\Http\Normalizer;
 
-use App\Entity\Forums\Tag;
-use App\Entity\Forums\Topic;
+use App\Domain\Forums\Tag;
+use App\Domain\Forums\Topic;
 use App\Http\Encoder\PathEncoder;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 

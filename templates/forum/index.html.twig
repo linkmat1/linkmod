@@ -14,7 +14,10 @@
 
 <div class="forum-page">
   <div class="forum-page__sidebar stack">
-    <a href="{{ path('forum_new') }}" class="btn-primary">Nouveau sujet</a>
+    {% if is_granted('ROLE_USER') %}
+      <a href="{{ path('forum_new') }}" class="btn-primary">Nouveau sujet</a>
+    {% endif %}
+
     <ul class="forum-tags">
       <li>
         <a href="{{ path('forum') }}">
