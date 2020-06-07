@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Events;
+namespace App\Domain\Forums\Events;
 
-use App\Entity\Forums\Message;
+
+
+use App\Domain\Forums\Entity\Message;
 
 class MessageCreatedEvent
 {

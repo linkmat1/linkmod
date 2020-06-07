@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Domain\Forums;
+namespace App\Domain\Forums\Entity;
 
-use App\Domain\User;
+use App\Domain\Auth\User;
+use App\Domain\Forums\SpamTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 

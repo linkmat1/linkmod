@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Domain\Forums;
+namespace App\Domain\Forums\Entity;;
 
-use App\Domain\User;
+use App\Domain\Auth\User;
+use App\Domain\Forums\SpamTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

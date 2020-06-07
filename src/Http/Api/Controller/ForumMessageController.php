@@ -4,8 +4,9 @@ namespace App\Http\Api\Controller;
 
 use ApiPlatform\Core\Validator\ValidatorInterface;
 
-use App\Domain\Forums\Message;
-use App\Domain\Forums\Topic;
+
+use App\Domain\Forums\Entity\Message;
+use App\Domain\Forums\Entity\Topic;
 use App\Form\ForumMessageType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

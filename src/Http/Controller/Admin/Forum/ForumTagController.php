@@ -2,9 +2,9 @@
 
 namespace App\Http\Controller\Admin\Forum;
 
+use App\Domain\Forums\Entity\Tag;
 use App\Http\Controller\Admin\Core\CrudController;
 use App\Core\Data\Forum\ForumTagCrudData;
-use App\Domain\Forums\Tag;
 use App\Repository\Forums\TagRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;

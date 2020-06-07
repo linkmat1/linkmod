@@ -3,8 +3,9 @@
 namespace App\Http\Controller\Forum;
 
 use App\Core\Helper\Paginator\PaginatorInterface;
-use App\Domain\Forums\Tag;
-use App\Domain\Forums\Topic;
+
+use App\Domain\Forums\Entity\Tag;
+use App\Domain\Forums\Entity\Topic;
 use App\Form\ForumTopicType;
 use App\Http\Controller\AbstractController;
 use App\Repository\Forums\TagRepository;

@@ -1,4 +1,4 @@
-App\Entity\Forums\Report:
+App\Domain\Forums\Report:
   collectionOperations:
     post:
       security: is_granted("forumReport")
@@ -14,7 +14,7 @@ App\Entity\Forums\Report:
     get:
       controller: "EmptyController"
 
-App\Entity\Forums\Topic:
+App\Domain\Forums\Topic:
   collectionOperations: []
   itemOperations:
     get:

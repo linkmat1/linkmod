@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Domain\Forums;
+namespace App\Domain\Report;
 
 use ApiPlatform\Core\Annotation\ApiProperty;
 
-use App\Domain\User;
+use App\Domain\Auth\User;
+use App\Domain\Forums\Entity\Message;
+use App\Domain\Forums\Entity\Topic;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -36,7 +38,7 @@ class Report
     private User $author;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Domain\Forums\Topic")
+     * @ORM\ManyToOne(targetEntity="App\Domain\Forums\Entity\Topic")
      * @ORM\JoinColumn(nullable=true, onDelete="CASCADE")
      * @ApiProperty()
      * @Groups({"create:report"})
@@ -44,7 +46,7 @@ class Report
     private ?Topic $topic = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Domain\Forums\Message")
+     * @ORM\ManyToOne(targetEntity="App\Domain\Forums\Entity\Message")
      * @ORM\JoinColumn(nullable=true, onDelete="CASCADE")
      * @ApiProperty()
      * @Groups({"create:report"})

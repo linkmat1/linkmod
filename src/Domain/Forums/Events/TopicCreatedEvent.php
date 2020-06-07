@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Events;
+namespace App\Domain\Forums\Events;
 
-use App\Entity\Forums\Topic;
+
+use App\Domain\Forums\Entity\Topic;
 
 class TopicCreatedEvent
 {

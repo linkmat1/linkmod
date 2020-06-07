@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Repository\Forums;
+namespace App\Domain\Report;
 
 
-use App\Domain\Forums\Report;
+
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

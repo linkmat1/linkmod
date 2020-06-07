@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Forums;
+namespace App\Domain\Forums\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
