@@ -51,7 +51,7 @@ class Tag
     private ?\DateTimeInterface $createdAt = null;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Domain\Forums\Topic", mappedBy="tags")
+     * @ORM\ManyToMany(targetEntity="App\Domain\Forums\Entity\Topic", mappedBy="tags")
      */
     private Collection $topics;
 
@@ -61,12 +61,12 @@ class Tag
     private ?string $color = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Domain\Forums\Tag", inversedBy="children")
+     * @ORM\ManyToOne(targetEntity="App\Domain\Forums\Entity\Tag", inversedBy="children")
      */
     private ?Tag $parent = null;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Domain\Forums\Tag", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="App\Domain\Forums\Entity\Tag", mappedBy="parent")
      */
     private Collection $children;
 

@@ -2,7 +2,8 @@
 
 namespace App\Repository\Forums;
 
-use App\Domain\Forums\Tag;
+
+use App\Domain\Forums\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 

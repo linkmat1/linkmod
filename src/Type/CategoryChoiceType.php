@@ -2,8 +2,8 @@
 
 namespace App\Type;
 
-use App\Entity\Category;
-use App\Entity\Forums\Tag;
+
+use App\Domain\Blog\Entity\Category;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,8 +17,8 @@ class CategoryChoiceType extends EntityType
             'class' => Category::class,
             'query_builder' => function (EntityRepository $er) {
                 return $er->createQueryBuilder('c')
-                    ->where('c.isOnline =  true')
-                    ->orderBy('c.name', 'ASC');
+                    ->where('c.published =  true')
+                    ->orderBy('c.title', 'ASC');
             },
             'choice_label' => 'name',
         ]);

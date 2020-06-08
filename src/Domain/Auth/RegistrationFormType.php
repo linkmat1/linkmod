@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Form;
+namespace App\Domain\Auth;
 
-use App\Entity\User;
+
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
@@ -26,6 +25,10 @@ class RegistrationFormType extends AbstractType
                 // instead of being set onto the object directly,
                 'label' => 'Mot de passe',
                 'type' => PasswordType::class,
+                'invalid_message' => 'Les mot de passe ne corresponde pas',
+                'options' => ['attr' => ['class' => 'password-field']],
+                'first_options'  => ['label' => 'Mot de Passe'],
+                'second_options' => ['label' => 'Confirmation du mot de passe'],
                 'required' => true,
                 'mapped' => false,
                 'constraints' => [

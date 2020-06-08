@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="App\Domain\Auth\Repository\UserRepository")
  * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  * @Vich\Uploadable()
  */

@@ -60,7 +60,7 @@ class Topic
     private ?\DateTimeInterface $updatedAt = null;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Domain\Forums\Tag", inversedBy="topics")
+     * @ORM\ManyToMany(targetEntity="App\Domain\Forums\Entity\Tag", inversedBy="topics")
      * @ORM\JoinTable(name="forum_topic_tag")
      * @Assert\NotBlank()
      * @Assert\Count(min="1")
@@ -73,12 +73,12 @@ class Topic
     private int $messageCount = 0;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Domain\Forums\Message", mappedBy="topic")
+     * @ORM\OneToMany(targetEntity="App\Domain\Forums\Entity\Message", mappedBy="topic")
      */
     private Collection $messages;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Domain\Forums\Message")
+     * @ORM\ManyToOne(targetEntity="App\Domain\Forums\Entity\Message")
      * @ORM\JoinColumn(nullable=true)
      */
     private ?Message $lastMessage = null;

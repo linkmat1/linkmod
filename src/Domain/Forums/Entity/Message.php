@@ -22,7 +22,7 @@ class Message
     private ?int $id = null;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Domain\Forums\Topic", inversedBy="messages")
+     * @ORM\ManyToOne(targetEntity="App\Domain\Forums\Entity\Topic", inversedBy="messages")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private ?Topic $topic = null;

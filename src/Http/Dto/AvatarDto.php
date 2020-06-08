@@ -2,7 +2,8 @@
 
 namespace App\Http\Dto;
 
-use App\Entity\User;
+use App\Domain\Auth\User;
+
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 

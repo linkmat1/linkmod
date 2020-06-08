@@ -22,7 +22,7 @@
             <th>{{ sort_by(rows, 'ID', 'row.id') }}</th>
            <th> {{ sort_by(rows, 'Titre', 'row.title') }}</th>
             <th>Category</th>
-            <th class="text-center">{{ sort_by(rows, 'Status', 'row.online') }}</th>
+            <th class="text-center">{{ sort_by(rows, 'Status', 'row.published') }}</th>
             <th class="text-right">Actions</th>
         </tr>
         </thead>
@@ -39,17 +39,18 @@
                 <td>
 
                 {% if row.category %}
-             <a href="{{ link }}">{{ row.category.name }}</a>
+             <a href="{{ link }}">{{ row.category.title }}</a>
                     {% endif %}
                 </td>
-                <td><span class="bullet {% if row.online == false %}bullet--danger{% endif %}"></span></td>
+                <td><span class="bullet {% if row.published == false %}bullet--danger{% endif %}"></span></td>
                 <td>
                     <div class="dashboard-actions">
                         {% if is_granted('edit', row) %}
                             <a href="{{ link }}">{{ icon('edit') }}</a>
                         {% endif %}
                         {% if is_granted('ROLE_MANAGE') %}
-                        <a href="{{ path(prefix ~ '_clone', {id: row.id}) }}">{{ icon('clone') }}</a>
+                            {#                        <a href="{{ path(prefix ~ '_clone', {id: row.id}) }}">{{ icon('clone') }}</a>
+#}
                         {% endif %}
                         {% if is_granted('ROLE_MANAGE') %}
                             <form action="{{ path(prefix ~ '_edit', {id: row.id}) }}" method="post" onsubmit="return confirm('Voulez vous vraiment supprimer ce contenu')">
