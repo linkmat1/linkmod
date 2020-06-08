@@ -47,7 +47,7 @@ class Category
     private ?string $slug = "";
 
     /**
-     * @ORM\OneToMany(targetEntity=Post::class, mappedBy="category")
+     * @ORM\OneToMany(targetEntity="App\Domain\Blog\Entity\Post", mappedBy="category")
      */
     private ?Collection $Post;
 
@@ -157,4 +157,5 @@ class Category
 
         return $this;
     }
+
 }

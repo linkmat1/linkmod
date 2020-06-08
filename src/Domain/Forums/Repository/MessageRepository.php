@@ -1,6 +1,5 @@
 <?php
-
-namespace App\Repository\Forums;
+namespace App\Domain\Forums\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -11,11 +10,11 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  * @method ForumMessages[]    findAll()
  * @method ForumMessages[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class Messagerepository extends ServiceEntityRepository
+class MessageRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Messagerepository::class);
+        parent::__construct($registry, MessageRepository::class);
     }
 
     // /**

@@ -2,16 +2,7 @@
 
 namespace App\Form;
 
-use App\Core\Data\PostCrudData;
-use App\Entity\Attachment\Attachment;
-use App\Entity\Category;
 use App\Http\Api\Controller\ForumMessageController;
-use App\Type\AttachmentType;
-use App\Type\CategoryChoiceType;
-use App\Type\DateTimeType;
-use App\Type\EditorType;
-use App\Type\SwitchType;
-use App\Type\UserChoiceType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;

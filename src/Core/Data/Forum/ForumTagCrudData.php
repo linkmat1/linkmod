@@ -3,11 +3,13 @@
 namespace App\Core\Data\Forum;
 
 use App\Core\Data\AutomaticCrudData;
-use App\Entity\Forums\Tag;
+use App\Domain\Forums\Entity\Tag;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @property Tag $entity
+ * @IsGranted("ROLE_MANAGE")
  */
 final class ForumTagCrudData extends AutomaticCrudData
 {
@@ -24,6 +26,9 @@ final class ForumTagCrudData extends AutomaticCrudData
 
     public ?\DateTimeInterface $updatedAt = null;
 
+    /**
+     * @var Tag $parent
+     */
     public ?Tag $parent;
 
     public ?string $color = null;

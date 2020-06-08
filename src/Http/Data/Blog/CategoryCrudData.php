@@ -3,11 +3,12 @@
 namespace App\Http\Data\Blog;
 
 use App\Core\Data\AutomaticCrudData;
-use App\Domain\Blog\Entity\Post;
+use App\Domain\Blog\Entity\Category;
+
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @property Post $entity
+ * @property Category $entity
  */
 final class CategoryCrudData extends AutomaticCrudData
 {

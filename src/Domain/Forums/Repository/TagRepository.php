@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository\Forums;
+namespace App\Domain\Forums\Repository;
 
 
 use App\Domain\Forums\Entity\Tag;

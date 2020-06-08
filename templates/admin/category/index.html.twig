@@ -19,8 +19,8 @@
         <thead>
         <tr>
             <th>{{ sort_by(rows, 'ID', 'row.id') }}</th>
-           <th> {{ sort_by(rows, 'Titre', 'row.name') }}</th>
-            <th class="text-center">{{ sort_by(rows, 'Status', 'row.isOnline') }}</th>
+            <th> {{ sort_by(rows, 'Titre', 'row.name') }}</th>
+            <th class="text-center">{{ sort_by(rows, 'Status', 'row.published') }}</th>
             <th class="text-right">Actions</th>
         </tr>
         </thead>
@@ -32,14 +32,14 @@
                     <a href="{{ link }}">{{ row.id }}</a>
                 </td>
                 <td>
-                    <a href="{{ link }}"{% if row.color %} style="color: {{ row.color }}{% endif %}">{{ row.name }}</a>
+                    <a href="{{ link }}">{{ row.title }}</a>
                 </td>
 
-                <td><span class="bullet {% if row.isOnline == false %}bullet--danger{% endif %}"></span></td>
+                <td><span class="bullet {% if row.published == false %}bullet--danger{% endif %}"></span></td>
                 <td>
                     <div class="dashboard-actions">
-                            <a href="{{ link }}">{{ icon('edit') }}</a>
-                         {% if is_granted('ROLE_MANAGE') %}
+                        <a href="{{ link }}">{{ icon('edit') }}</a>
+                        {% if is_granted('ROLE_MANAGE') %}
                             <form action="{{ path(prefix ~ '_edit', {id: row.id}) }}" method="post" onsubmit="return confirm('Voulez vous vraiment supprimer ce contenu')">
                                 <input type="hidden" name="_method" value="DELETE" />
                                 <button type="submit">

@@ -2,8 +2,9 @@
 
 namespace App\Http\Form;
 
-use App\Domain\Forums\Tag;
+
 use App\Domain\Auth\User;
+use App\Domain\Forums\Entity\Tag;
 use App\Type\AttachementType;
 use App\Type\CategoryChoiceType;
 use App\Type\DateTimeType;
@@ -52,6 +53,7 @@ class AutomaticForm extends AbstractType
         'description' => EditorType::class,
         'position' => NumberType::class,
         'content' => EditorType::class,
+        'parent'   => ForumTagChoiceType::class,
     ];
 
     public function buildForm(FormBuilderInterface $builder, array $options): void

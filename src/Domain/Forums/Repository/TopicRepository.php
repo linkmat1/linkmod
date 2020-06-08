@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Repository\Forums;
+namespace App\Domain\Forums\Repository;
 
 
 use App\Domain\Auth\User;
-use App\Domain\Forums\Entity\Tag;
 use App\Domain\Forums\Entity\Topic;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;

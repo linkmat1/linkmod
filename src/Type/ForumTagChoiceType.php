@@ -2,7 +2,9 @@
 
 namespace App\Type;
 
-use App\Entity\Forums\Tag;
+
+
+use App\Domain\Forums\Entity\Tag;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;

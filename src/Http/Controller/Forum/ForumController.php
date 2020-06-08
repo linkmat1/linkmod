@@ -6,10 +6,11 @@ use App\Core\Helper\Paginator\PaginatorInterface;
 
 use App\Domain\Forums\Entity\Tag;
 use App\Domain\Forums\Entity\Topic;
+use App\Domain\Forums\Repository\TagRepository;
+use App\Domain\Forums\Repository\TopicRepository;
 use App\Form\ForumTopicType;
 use App\Http\Controller\AbstractController;
-use App\Repository\Forums\TagRepository;
-use App\Repository\Forums\TopicRepository;
+
 use App\Service\TopicService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

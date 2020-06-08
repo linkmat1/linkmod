@@ -3,7 +3,8 @@
 namespace App\Http\Normalizer;
 
 use ApiPlatform\Core\Api\UrlGeneratorInterface;
-use App\Entity\Forums\Tag;
+
+use App\Domain\Forums\Entity\Tag;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class ForumTagNormalizer implements NormalizerInterface

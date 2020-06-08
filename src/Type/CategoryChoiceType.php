@@ -20,7 +20,7 @@ class CategoryChoiceType extends EntityType
                     ->where('c.published =  true')
                     ->orderBy('c.title', 'ASC');
             },
-            'choice_label' => 'name',
+            'choice_label' => 'title',
         ]);
     }
 }

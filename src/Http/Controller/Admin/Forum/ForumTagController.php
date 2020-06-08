@@ -2,10 +2,11 @@
 
 namespace App\Http\Controller\Admin\Forum;
 
+
 use App\Domain\Forums\Entity\Tag;
+use App\Domain\Forums\Repository\TagRepository;
 use App\Http\Controller\Admin\Core\CrudController;
 use App\Core\Data\Forum\ForumTagCrudData;
-use App\Repository\Forums\TagRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,10 +31,9 @@ final class ForumTagController extends CrudController
      * @Route("/forum-tag", name="forum-tag_index")
      * @param SerializerInterface $serializer
      * @param TagRepository $tagRepository
-     * @param Request $request
      * @return Response
      */
-    public function index(SerializerInterface $serializer, TagRepository $tagRepository, Request $request): Response
+    public function index(SerializerInterface $serializer, TagRepository $tagRepository): Response
     {
         return $this->render("admin/{$this->templatePath}/index.html.twig", [
             'tags' => $serializer->serialize($tagRepository->findTree(), 'json'),

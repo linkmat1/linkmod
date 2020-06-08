@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\Forums\TopicRepository")
+ * @ORM\Entity(repositoryClass="App\Domain\Forums\Repository\TopicRepository")
  *  @ORM\Table(name="forum_topic")
  */
 class Topic
