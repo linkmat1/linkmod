@@ -24,7 +24,7 @@
     "@sb-elements/all": "^0.3.2",
     "@types/jest": "^25.1.3",
     "choices.js": "^9.0.1",
-    "codemirror": "^5.52.0",
+    "codemirror": "^5.58.2",
     "flatpickr": "^4.6.3",
     "htm": "^3.0.3",
     "monaco-editor": "^0.20.0",
